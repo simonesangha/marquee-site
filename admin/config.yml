@@ -104,3 +104,4 @@ collections:
       - { label: "Caption",      name: "caption", widget: "string", required: false }
       - { label: "Event Type",   name: "type",    widget: "string", hint: "e.g. Wedding, Corporate" }
       - { label: "Display Order", name: "order",  widget: "number" }
+      
