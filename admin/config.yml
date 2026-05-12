@@ -1,75 +1,106 @@
-# Marquee & Events Site — Setup Guide
+# ═══════════════════════════════════════════════════
+# Decap CMS Configuration
+# This defines what your team can edit visually
+# ═══════════════════════════════════════════════════
 
-## Your file structure
-```
-marquee-site/
-├── index.html          ← your website
-├── netlify.toml        ← Netlify config
-├── admin/
-│   ├── index.html      ← Decap CMS app
-│   └── config.yml      ← CMS content fields
-└── images/
-    └── uploads/        ← CMS image uploads go here
-```
+backend:
+  name: git-gateway
+  branch: main          # must match your GitHub default branch
 
----
+# Where uploaded images are stored in the repo
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
 
-## Step 1 — GitHub
+# ─── Content Collections ────────────────────────────
+collections:
 
-1. Go to github.com and create a free account (or log in)
-2. Click the **+** icon → **New repository**
-3. Name it `marquee-site`, set to **Public**, click **Create repository**
-4. Upload all your files: click **uploading an existing file** on the repo page
-5. Drag all files/folders in, click **Commit changes**
+  # ── Site Settings ──────────────────────────────────
+  - name: "settings"
+    label: "Site Settings"
+    files:
 
----
+      - label: "General"
+        name: "general"
+        file: "content/settings/general.json"
+        fields:
+          - { label: "Company Name",    name: "company_name",  widget: "string" }
+          - { label: "Tagline",         name: "tagline",       widget: "string" }
+          - { label: "Phone Number",    name: "phone",         widget: "string" }
+          - { label: "Email Address",   name: "email",         widget: "string" }
+          - { label: "Service Area",    name: "area",          widget: "string" }
+          - { label: "GA4 Measurement ID", name: "ga4_id",    widget: "string", hint: "Format: G-XXXXXXXXXX" }
 
-## Step 2 — Netlify
+      - label: "SEO"
+        name: "seo"
+        file: "content/settings/seo.json"
+        fields:
+          - { label: "Site Title",        name: "title",       widget: "string" }
+          - { label: "Meta Description",  name: "description", widget: "text" }
+          - { label: "OG Image",          name: "og_image",    widget: "image" }
 
-1. Go to netlify.com and sign up free (use **Continue with GitHub**)
-2. Click **Add new site** → **Import an existing project**
-3. Choose **GitHub**, select your `marquee-site` repo
-4. Build settings: leave everything blank (it auto-detects `netlify.toml`)
-5. Click **Deploy site** — your site will be live in ~60 seconds
+  # ── Hero Section ───────────────────────────────────
+  - name: "hero"
+    label: "Hero Section"
+    files:
+      - label: "Hero"
+        name: "hero"
+        file: "content/hero.json"
+        fields:
+          - { label: "Tag Line (small text)",  name: "tag",      widget: "string" }
+          - { label: "Heading Line 1",         name: "heading1", widget: "string" }
+          - { label: "Heading Line 2 (italic)", name: "heading2", widget: "string" }
+          - { label: "Subheading",             name: "sub",      widget: "text" }
+          - { label: "Primary Button Text",    name: "btn1",     widget: "string" }
+          - { label: "Secondary Button Text",  name: "btn2",     widget: "string" }
 
----
+  # ── Services ───────────────────────────────────────
+  - name: "services"
+    label: "Services"
+    folder: "content/services"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Service Name",   name: "title",   widget: "string" }
+      - { label: "Icon (emoji)",   name: "icon",    widget: "string", hint: "Paste an emoji e.g. ⛺" }
+      - { label: "Description",    name: "body",    widget: "text" }
+      - { label: "Display Order",  name: "order",   widget: "number" }
+      - { label: "Active",         name: "active",  widget: "boolean", default: true }
 
-## Step 3 — Enable CMS (Decap + Netlify Identity)
+  # ── Testimonials ───────────────────────────────────
+  - name: "testimonials"
+    label: "Testimonials"
+    folder: "content/testimonials"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Quote",        name: "quote",     widget: "text" }
+      - { label: "Author Name",  name: "author",    widget: "string" }
+      - { label: "Event Type",   name: "event",     widget: "string", hint: "e.g. Wedding, June 2024" }
+      - { label: "Display Order", name: "order",    widget: "number" }
 
-In your Netlify dashboard:
+  # ── About Section ──────────────────────────────────
+  - name: "about"
+    label: "About Section"
+    files:
+      - label: "About"
+        name: "about"
+        file: "content/about.json"
+        fields:
+          - { label: "Heading",      name: "heading",   widget: "string" }
+          - { label: "Paragraph 1",  name: "para1",     widget: "text" }
+          - { label: "Paragraph 2",  name: "para2",     widget: "text" }
+          - { label: "Paragraph 3",  name: "para3",     widget: "text" }
+          - { label: "Photo",        name: "image",     widget: "image" }
+          - { label: "Founded Year", name: "year",      widget: "string" }
 
-1. Go to **Site configuration** → **Identity** → click **Enable Identity**
-2. Under **Registration preferences** → set to **Invite only**
-3. Scroll to **Services** → **Git Gateway** → click **Enable Git Gateway**
-4. Go to **Identity** tab → **Invite users** → enter your email
-5. Check your email and accept the invite — this creates your CMS login
-
-Visit `yoursite.netlify.app/admin` to log in and edit content.
-
----
-
-## Step 4 — Custom Domain (optional, free)
-
-1. In Netlify: **Domain management** → **Add custom domain**
-2. Enter your domain → follow the DNS instructions
-3. Netlify provisions SSL automatically (free)
-
----
-
-## Step 5 — GA4
-
-1. Go to analytics.google.com → create a property → copy your **Measurement ID** (G-XXXXXXXXXX)
-2. Open `index.html`, find the two lines with `G-XXXXXXXXXX`, replace with your real ID
-3. Commit the change to GitHub → Netlify auto-redeploys
-
----
-
-## Editing content
-
-- Visit `yoursite.com/admin`
-- Log in with your email/password
-- Edit services, testimonials, gallery, settings — all changes auto-deploy
-
-## Updating the site design
-
-Edit `index.html` in any text editor, push to GitHub, Netlify deploys in ~30 seconds.
+  # ── Gallery ────────────────────────────────────────
+  - name: "gallery"
+    label: "Gallery Images"
+    folder: "content/gallery"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Image",        name: "image",   widget: "image" }
+      - { label: "Caption",      name: "caption", widget: "string", required: false }
+      - { label: "Event Type",   name: "type",    widget: "string", hint: "e.g. Wedding, Corporate" }
+      - { label: "Display Order", name: "order",  widget: "number" }
