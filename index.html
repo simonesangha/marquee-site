@@ -1,106 +1,935 @@
-# ═══════════════════════════════════════════════════
-# Decap CMS Configuration
-# This defines what your team can edit visually
-# ═══════════════════════════════════════════════════
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-backend:
-  name: git-gateway
-  branch: main          # must match your GitHub default branch
+  <!-- ═══════════════════════════════════════════
+       SEO META TAGS — edit these for every page
+  ════════════════════════════════════════════ -->
+  <title>Marquee & Event Hire | Your Company Name</title>
+  <meta name="description" content="Premium marquee and event hire across [your region]. Weddings, corporate events, private parties. Request a free quote today." />
+  <meta name="keywords" content="marquee hire, event hire, wedding marquee, party tent, corporate events" />
+  <link rel="canonical" href="https://yoursite.com/" />
 
-# Where uploaded images are stored in the repo
-media_folder: "images/uploads"
-public_folder: "/images/uploads"
+  <!-- Open Graph (social sharing) -->
+  <meta property="og:title" content="Marquee & Event Hire | Your Company Name" />
+  <meta property="og:description" content="Premium marquee and event hire. Weddings, corporate events, private parties." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://yoursite.com/" />
+  <meta property="og:image" content="https://yoursite.com/images/og-image.jpg" />
 
-# ─── Content Collections ────────────────────────────
-collections:
+  <!-- ═══════════════════════════════════════════
+       GA4 — replace G-XXXXXXXXXX with your ID
+  ════════════════════════════════════════════ -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
 
-  # ── Site Settings ──────────────────────────────────
-  - name: "settings"
-    label: "Site Settings"
-    files:
+  <!-- Netlify Identity Widget — handles invite/password links -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
-      - label: "General"
-        name: "general"
-        file: "content/settings/general.json"
-        fields:
-          - { label: "Company Name",    name: "company_name",  widget: "string" }
-          - { label: "Tagline",         name: "tagline",       widget: "string" }
-          - { label: "Phone Number",    name: "phone",         widget: "string" }
-          - { label: "Email Address",   name: "email",         widget: "string" }
-          - { label: "Service Area",    name: "area",          widget: "string" }
-          - { label: "GA4 Measurement ID", name: "ga4_id",    widget: "string", hint: "Format: G-XXXXXXXXXX" }
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
 
-      - label: "SEO"
-        name: "seo"
-        file: "content/settings/seo.json"
-        fields:
-          - { label: "Site Title",        name: "title",       widget: "string" }
-          - { label: "Meta Description",  name: "description", widget: "text" }
-          - { label: "OG Image",          name: "og_image",    widget: "image" }
+  <style>
+    /* ─── Reset & Base ─────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  # ── Hero Section ───────────────────────────────────
-  - name: "hero"
-    label: "Hero Section"
-    files:
-      - label: "Hero"
-        name: "hero"
-        file: "content/hero.json"
-        fields:
-          - { label: "Tag Line (small text)",  name: "tag",      widget: "string" }
-          - { label: "Heading Line 1",         name: "heading1", widget: "string" }
-          - { label: "Heading Line 2 (italic)", name: "heading2", widget: "string" }
-          - { label: "Subheading",             name: "sub",      widget: "text" }
-          - { label: "Primary Button Text",    name: "btn1",     widget: "string" }
-          - { label: "Secondary Button Text",  name: "btn2",     widget: "string" }
+    :root {
+      --black:   #111010;
+      --cream:   #f7f2eb;
+      --gold:    #b89a5a;
+      --gold-lt: #d4b878;
+      --white:   #ffffff;
+      --mid:     #5a5550;
+      --serif:   'Cormorant Garamond', Georgia, serif;
+      --sans:    'DM Sans', system-ui, sans-serif;
+      --max:     1200px;
+      --pad:     clamp(1.5rem, 5vw, 4rem);
+    }
 
-  # ── Services ───────────────────────────────────────
-  - name: "services"
-    label: "Services"
-    folder: "content/services"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Service Name",   name: "title",   widget: "string" }
-      - { label: "Icon (emoji)",   name: "icon",    widget: "string", hint: "Paste an emoji e.g. ⛺" }
-      - { label: "Description",    name: "body",    widget: "text" }
-      - { label: "Display Order",  name: "order",   widget: "number" }
-      - { label: "Active",         name: "active",  widget: "boolean", default: true }
+    html { scroll-behavior: smooth; }
 
-  # ── Testimonials ───────────────────────────────────
-  - name: "testimonials"
-    label: "Testimonials"
-    folder: "content/testimonials"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Quote",        name: "quote",     widget: "text" }
-      - { label: "Author Name",  name: "author",    widget: "string" }
-      - { label: "Event Type",   name: "event",     widget: "string", hint: "e.g. Wedding, June 2024" }
-      - { label: "Display Order", name: "order",    widget: "number" }
+    body {
+      font-family: var(--sans);
+      background: var(--cream);
+      color: var(--black);
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
 
-  # ── About Section ──────────────────────────────────
-  - name: "about"
-    label: "About Section"
-    files:
-      - label: "About"
-        name: "about"
-        file: "content/about.json"
-        fields:
-          - { label: "Heading",      name: "heading",   widget: "string" }
-          - { label: "Paragraph 1",  name: "para1",     widget: "text" }
-          - { label: "Paragraph 2",  name: "para2",     widget: "text" }
-          - { label: "Paragraph 3",  name: "para3",     widget: "text" }
-          - { label: "Photo",        name: "image",     widget: "image" }
-          - { label: "Founded Year", name: "year",      widget: "string" }
+    img { display: block; width: 100%; object-fit: cover; }
+    a { color: inherit; text-decoration: none; }
 
-  # ── Gallery ────────────────────────────────────────
-  - name: "gallery"
-    label: "Gallery Images"
-    folder: "content/gallery"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Image",        name: "image",   widget: "image" }
-      - { label: "Caption",      name: "caption", widget: "string", required: false }
-      - { label: "Event Type",   name: "type",    widget: "string", hint: "e.g. Wedding, Corporate" }
-      - { label: "Display Order", name: "order",  widget: "number" }
+    /* ─── Utility ──────────────────────────────── */
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 var(--pad); }
+    .section    { padding: clamp(4rem, 10vw, 8rem) 0; }
+    .gold       { color: var(--gold); }
+    .serif      { font-family: var(--serif); }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: none; }
+
+    /* ─── Nav ──────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      padding: 1.25rem var(--pad);
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+    nav.scrolled {
+      background: rgba(247,242,235,0.96);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 rgba(0,0,0,0.08);
+    }
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      color: var(--white);
+      transition: color 0.3s;
+    }
+    nav.scrolled .nav-logo { color: var(--black); }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+      transition: color 0.2s;
+    }
+    nav.scrolled .nav-links a { color: var(--mid); }
+    .nav-links a:hover { color: var(--gold); }
+
+    .nav-cta {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,0.5);
+      padding: 0.55rem 1.4rem;
+      border-radius: 2px;
+      color: var(--white);
+      transition: all 0.2s;
+    }
+    nav.scrolled .nav-cta {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+    .nav-cta:hover { background: var(--gold); color: var(--white) !important; border-color: var(--gold); }
+
+    .nav-burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .nav-burger span { display: block; width: 24px; height: 1.5px; background: var(--white); transition: background 0.3s; }
+    nav.scrolled .nav-burger span { background: var(--black); }
+
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .nav-burger { display: flex; }
+    }
+
+    /* ─── Hero ─────────────────────────────────── */
+    #hero {
+      min-height: 100svh;
+      background: linear-gradient(160deg, #1a1510 0%, #2a2218 60%, #1a1510 100%);
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
+    }
+    #hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 70% 50%, rgba(185,155,90,0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 20% 80%, rgba(185,155,90,0.07) 0%, transparent 60%);
+    }
+    .hero-inner {
+      position: relative; z-index: 1;
+      padding: calc(var(--pad) + 80px) var(--pad) var(--pad);
+      max-width: var(--max); margin: 0 auto; width: 100%;
+    }
+    .hero-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .hero-tag::before {
+      content: '';
+      display: block; width: 40px; height: 1px;
+      background: var(--gold);
+    }
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--cream);
+      max-width: 800px;
+      margin-bottom: 1.75rem;
+    }
+    h1 em { font-style: italic; color: var(--gold-lt); }
+    .hero-sub {
+      color: rgba(247,242,235,0.55);
+      font-size: 1rem;
+      max-width: 480px;
+      margin-bottom: 3rem;
+      line-height: 1.8;
+    }
+    .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--white);
+      padding: 0.9rem 2.5rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { background: var(--gold-lt); transform: translateY(-1px); }
+    .btn-outline {
+      display: inline-block;
+      border: 1px solid rgba(247,242,235,0.3);
+      color: rgba(247,242,235,0.75);
+      padding: 0.9rem 2.5rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: all 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+    .hero-scroll {
+      position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+      color: rgba(247,242,235,0.3);
+      font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+    }
+    .hero-scroll::after {
+      content: '';
+      display: block; width: 1px; height: 50px;
+      background: linear-gradient(to bottom, rgba(247,242,235,0.3), transparent);
+      animation: scrollLine 1.8s ease-in-out infinite;
+    }
+    @keyframes scrollLine {
+      0%, 100% { opacity: 0.3; transform: scaleY(1); }
+      50%       { opacity: 0.7; transform: scaleY(0.6); }
+    }
+
+    /* ─── Intro strip ──────────────────────────── */
+    .intro-strip {
+      background: var(--black);
+      padding: 2rem var(--pad);
+    }
+    .intro-stats {
+      max-width: var(--max); margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 2rem;
+      text-align: center;
+    }
+    .stat-num {
+      font-family: var(--serif);
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .stat-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(247,242,235,0.4);
+    }
+
+    /* ─── Services ─────────────────────────────── */
+    #services { background: var(--cream); }
+    .section-head { margin-bottom: 3.5rem; }
+    .section-tag {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .section-tag::after {
+      content: ''; display: block;
+      width: 30px; height: 1px; background: var(--gold);
+    }
+    h2 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--black);
+    }
+    .section-sub {
+      margin-top: 1rem;
+      color: var(--mid);
+      max-width: 520px;
+      font-size: 0.95rem;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5px;
+      background: rgba(0,0,0,0.08);
+      border: 1.5px solid rgba(0,0,0,0.08);
+    }
+    .service-card {
+      background: var(--cream);
+      padding: 2.5rem 2rem;
+      transition: background 0.25s;
+      cursor: default;
+    }
+    .service-card:hover { background: #f0e9df; }
+    .service-icon {
+      font-size: 1.75rem;
+      margin-bottom: 1.25rem;
+      display: block;
+    }
+    .service-card h3 {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-weight: 400;
+      margin-bottom: 0.75rem;
+      color: var(--black);
+    }
+    .service-card p {
+      font-size: 0.88rem;
+      color: var(--mid);
+      line-height: 1.75;
+    }
+    .service-link {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      margin-top: 1.25rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      transition: gap 0.2s;
+    }
+    .service-link:hover { gap: 0.9rem; }
+
+    /* ─── About ────────────────────────────────── */
+    #about { background: #f0e9de; }
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    @media (max-width: 768px) { .about-inner { grid-template-columns: 1fr; gap: 3rem; } }
+    .about-img-wrap {
+      position: relative;
+      aspect-ratio: 4/5;
+      background: #d4c9b8;
+      overflow: hidden;
+    }
+    .about-img-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 1px solid rgba(185,155,90,0.3);
+      margin: 1.25rem;
+    }
+    .about-img-placeholder {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(90,85,80,0.3);
+      font-family: var(--serif);
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+    }
+    .about-text h2 { margin-bottom: 1.5rem; }
+    .about-text p { color: var(--mid); margin-bottom: 1.25rem; font-size: 0.93rem; }
+    .about-text .btn-primary { margin-top: 1.5rem; }
+
+    /* ─── Gallery ──────────────────────────────── */
+    #gallery { background: var(--black); }
+    #gallery h2 { color: var(--cream); }
+    #gallery .section-sub { color: rgba(247,242,235,0.4); }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto auto;
+      gap: 4px;
+    }
+    @media (max-width: 600px) { .gallery-grid { grid-template-columns: 1fr 1fr; } }
+    .gallery-item {
+      background: #2a2218;
+      aspect-ratio: 1;
+      overflow: hidden;
+      position: relative;
+    }
+    .gallery-item:first-child {
+      grid-column: span 2;
+      aspect-ratio: 2/1;
+    }
+    .gallery-placeholder {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(247,242,235,0.15);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+    }
+    .gallery-item::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: rgba(0,0,0,0);
+      transition: background 0.3s;
+    }
+    .gallery-item:hover::after { background: rgba(185,155,90,0.12); }
+
+    /* ─── Testimonials ─────────────────────────── */
+    #testimonials { background: var(--cream); }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .testimonial {
+      background: var(--white);
+      padding: 2rem;
+      border-left: 2px solid var(--gold);
+    }
+    .testimonial-text {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.65;
+      color: var(--black);
+      margin-bottom: 1.25rem;
+    }
+    .testimonial-author {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .testimonial-event {
+      font-size: 0.78rem;
+      color: var(--mid);
+      margin-top: 0.2rem;
+    }
+
+    /* ─── Contact / Intake Form ────────────────── */
+    #contact { background: #1a1510; }
+    #contact h2 { color: var(--cream); }
+    #contact .section-sub { color: rgba(247,242,235,0.4); }
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    @media (max-width: 900px) { .contact-inner { grid-template-columns: 1fr; gap: 3rem; } }
+
+    .contact-info h3 {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: var(--cream);
+      margin-bottom: 1.25rem;
+    }
+    .contact-item {
+      display: flex; gap: 1rem; align-items: flex-start;
+      margin-bottom: 1.5rem;
+    }
+    .contact-icon {
+      width: 36px; height: 36px;
+      border: 1px solid rgba(185,155,90,0.3);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold); font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .contact-item-text p:first-child {
+      font-size: 0.68rem; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 0.15rem;
+    }
+    .contact-item-text p:last-child {
+      font-size: 0.88rem;
+      color: rgba(247,242,235,0.55);
+    }
+
+    /* Form */
+    form { width: 100%; }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+    .form-group { margin-bottom: 1rem; }
+    label {
+      display: block;
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(247,242,235,0.4);
+      margin-bottom: 0.45rem;
+    }
+    input, select, textarea {
+      width: 100%;
+      background: rgba(247,242,235,0.06);
+      border: 1px solid rgba(247,242,235,0.12);
+      color: var(--cream);
+      padding: 0.85rem 1rem;
+      font-family: var(--sans);
+      font-size: 0.9rem;
+      font-weight: 300;
+      border-radius: 2px;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+      appearance: none;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--gold);
+      background: rgba(247,242,235,0.09);
+    }
+    select option { background: #1a1510; color: var(--cream); }
+    textarea { resize: vertical; min-height: 120px; }
+    input::placeholder, textarea::placeholder { color: rgba(247,242,235,0.25); }
+
+    .form-submit {
+      margin-top: 1.5rem;
+      width: 100%;
+      background: var(--gold);
+      color: var(--white);
+      padding: 1rem 2rem;
+      font-family: var(--sans);
+      font-size: 0.78rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .form-submit:hover { background: var(--gold-lt); transform: translateY(-1px); }
+
+    .form-success {
+      display: none;
+      background: rgba(185,155,90,0.1);
+      border: 1px solid rgba(185,155,90,0.3);
+      color: var(--gold-lt);
+      padding: 1.5rem;
+      text-align: center;
+      font-family: var(--serif);
+      font-size: 1.1rem;
+    }
+
+    /* ─── Footer ───────────────────────────────── */
+    footer {
+      background: var(--black);
+      padding: 3rem var(--pad);
+      border-top: 1px solid rgba(247,242,235,0.06);
+    }
+    .footer-inner {
+      max-width: var(--max); margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1.5rem;
+    }
+    .footer-logo {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      color: var(--cream);
+      font-weight: 300;
+    }
+    .footer-links {
+      display: flex; gap: 2rem; list-style: none;
+    }
+    .footer-links a {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(247,242,235,0.35);
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-copy {
+      font-size: 0.75rem;
+      color: rgba(247,242,235,0.2);
+      width: 100%;
+      text-align: center;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(247,242,235,0.05);
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ NAV ═══════════════════════════════════ -->
+  <nav id="nav">
+    <a href="#" class="nav-logo">Marquee & Co.</a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Get a Quote</a>
+    <div class="nav-burger" onclick="toggleMenu(this)">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- ═══ HERO ══════════════════════════════════ -->
+  <section id="hero">
+    <div class="hero-inner">
+      <p class="hero-tag">Premium Event Hire</p>
+      <h1>Every event deserves<br /><em>an extraordinary</em><br />setting.</h1>
+      <p class="hero-sub">
+        Bespoke marquee and event hire across [Your Region].
+        Weddings, corporate gatherings, milestone celebrations — crafted to perfection.
+      </p>
+      <div class="btn-group">
+        <a href="#contact" class="btn-primary">Request a Quote</a>
+        <a href="#services" class="btn-outline">Our Services</a>
+      </div>
+    </div>
+    <div class="hero-scroll">Scroll</div>
+  </section>
+
+  <!-- ═══ STATS ══════════════════════════════════ -->
+  <div class="intro-strip">
+    <div class="intro-stats">
+      <div class="fade-in">
+        <div class="stat-num">500+</div>
+        <div class="stat-label">Events Delivered</div>
+      </div>
+      <div class="fade-in">
+        <div class="stat-num">12</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div class="fade-in">
+        <div class="stat-num">98%</div>
+        <div class="stat-label">Client Satisfaction</div>
+      </div>
+      <div class="fade-in">
+        <div class="stat-num">50+</div>
+        <div class="stat-label">Marquee Styles</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SERVICES ═══════════════════════════════ -->
+  <section id="services" class="section">
+    <div class="container">
+      <div class="section-head fade-in">
+        <p class="section-tag">What we offer</p>
+        <h2>Hire packages<br />built around <em class="serif" style="font-style:italic;">you</em></h2>
+        <p class="section-sub">From intimate garden parties to large-scale corporate events, we have a solution for every occasion and budget.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card fade-in">
+          <span class="service-icon">⛺</span>
+          <h3>Marquee Hire</h3>
+          <p>Traditional pole, frame, and stretch marquees available in a range of sizes. Fully lined, carpeted, and lit to your specification.</p>
+          <a href="#contact" class="service-link">Enquire →</a>
+        </div>
+        <div class="service-card fade-in">
+          <span class="service-icon">💍</span>
+          <h3>Wedding Packages</h3>
+          <p>Bespoke wedding marquee experiences, from intimate ceremonies to grand receptions. Full styling and coordination available.</p>
+          <a href="#contact" class="service-link">Enquire →</a>
+        </div>
+        <div class="service-card fade-in">
+          <span class="service-icon">🏢</span>
+          <h3>Corporate Events</h3>
+          <p>Professional event infrastructure for product launches, team days, conferences, and client hospitality.</p>
+          <a href="#contact" class="service-link">Enquire →</a>
+        </div>
+        <div class="service-card fade-in">
+          <span class="service-icon">🎉</span>
+          <h3>Private Parties</h3>
+          <p>Birthdays, anniversaries, garden parties — we make your celebration unforgettable with elegant temporary venues.</p>
+          <a href="#contact" class="service-link">Enquire →</a>
+        </div>
+        <div class="service-card fade-in">
+          <span class="service-icon">🪑</span>
+          <h3>Furniture & Extras</h3>
+          <p>Tables, chairs, bars, dancefloors, lighting rigs, heating, and flooring — everything to complete your event.</p>
+          <a href="#contact" class="service-link">Enquire →</a>
+        </div>
+        <div class="service-card fade-in">
+          <span class="service-icon">🎨</span>
+          <h3>Full Styling</h3>
+          <p>Let our in-house styling team transform your space. Themes, florals, draping, and mood lighting to match your vision.</p>
+          <a href="#contact" class="service-link">Enquire →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ ABOUT ════════════════════════════════ -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="about-inner">
+        <div class="about-img-wrap fade-in">
+          <div class="about-img-placeholder">Your Image Here</div>
+        </div>
+        <div class="about-text fade-in">
+          <p class="section-tag">Our story</p>
+          <h2>Crafting memories since <em class="gold">2012</em></h2>
+          <p>We started as a small family business with a single marquee and a passion for making occasions special. Today, we're one of [Region]'s most trusted event hire companies — but our values haven't changed.</p>
+          <p>Every event we touch receives the same personal attention. From your first enquiry to the final pack-down, you'll deal directly with our experienced team.</p>
+          <p>We own our entire fleet of marquees and equipment, which means no subcontracting — just consistent, high-quality setups delivered on time, every time.</p>
+          <a href="#contact" class="btn-primary">Meet the team</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ GALLERY ═══════════════════════════════ -->
+  <section id="gallery" class="section">
+    <div class="container">
+      <div class="section-head fade-in">
+        <p class="section-tag" style="color:var(--gold)">Our work</p>
+        <h2 style="color:var(--cream)">Recent events</h2>
+        <p class="section-sub">Replace these placeholders with your own photos.</p>
+      </div>
+    </div>
+    <div class="gallery-grid fade-in" style="max-width:var(--max);margin:0 auto;padding:0 var(--pad);">
+      <div class="gallery-item"><div class="gallery-placeholder">Photo 1</div></div>
+      <div class="gallery-item"><div class="gallery-placeholder">Photo 2</div></div>
+      <div class="gallery-item"><div class="gallery-placeholder">Photo 3</div></div>
+      <div class="gallery-item"><div class="gallery-placeholder">Photo 4</div></div>
+      <div class="gallery-item"><div class="gallery-placeholder">Photo 5</div></div>
+    </div>
+  </section>
+
+  <!-- ═══ TESTIMONIALS ══════════════════════════ -->
+  <section id="testimonials" class="section">
+    <div class="container">
+      <div class="section-head fade-in">
+        <p class="section-tag">Reviews</p>
+        <h2>What our clients say</h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial fade-in">
+          <p class="testimonial-text">"The marquee was absolutely stunning. The team were professional from start to finish and our guests were blown away. We couldn't have asked for more."</p>
+          <p class="testimonial-author">Sarah & James T.</p>
+          <p class="testimonial-event">Wedding, June 2024</p>
+        </div>
+        <div class="testimonial fade-in">
+          <p class="testimonial-text">"We used them for our company summer party. Seamless setup, the space looked incredible, and they were incredibly accommodating with our last-minute changes."</p>
+          <p class="testimonial-author">Mark D., Events Manager</p>
+          <p class="testimonial-event">Corporate Event, August 2024</p>
+        </div>
+        <div class="testimonial fade-in">
+          <p class="testimonial-text">"Third year running we've hired from them for our annual festival. Reliable, fairly priced, and the quality just keeps getting better."</p>
+          <p class="testimonial-author">Emma R.</p>
+          <p class="testimonial-event">Private Festival, July 2024</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CONTACT / INTAKE FORM ═════════════════ -->
+  <section id="contact" class="section">
+    <div class="container">
+      <div class="section-head fade-in">
+        <p class="section-tag" style="color:var(--gold)">Get in touch</p>
+        <h2>Request a free quote</h2>
+        <p class="section-sub">Tell us about your event and we'll get back to you within one working day.</p>
+      </div>
+      <div class="contact-inner">
+        <div class="contact-info fade-in">
+          <h3>We'd love to hear about your event</h3>
+          <div class="contact-item">
+            <div class="contact-icon">📞</div>
+            <div class="contact-item-text">
+              <p>Phone</p>
+              <p>07700 000000</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">✉️</div>
+            <div class="contact-item-text">
+              <p>Email</p>
+              <p>hello@yoursite.com</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div class="contact-item-text">
+              <p>Service Area</p>
+              <p>[Your Region] & surrounding areas</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Netlify Form — the netlify attribute is all you need -->
+        <form
+          name="enquiry"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          class="fade-in"
+          id="enquiry-form"
+        >
+          <input type="hidden" name="form-name" value="enquiry" />
+          <p hidden><input name="bot-field" /></p>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Full Name *</label>
+              <input type="text" id="name" name="name" placeholder="Your name" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" name="email" placeholder="your@email.com" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="07700 000000" />
+            </div>
+            <div class="form-group">
+              <label for="event-date">Event Date *</label>
+              <input type="date" id="event-date" name="event-date" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="event-type">Event Type *</label>
+              <select id="event-type" name="event-type" required>
+                <option value="" disabled selected>Select type</option>
+                <option>Wedding</option>
+                <option>Birthday / Anniversary</option>
+                <option>Corporate Event</option>
+                <option>Private Party</option>
+                <option>Festival / Outdoor Event</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="guests">Number of Guests</label>
+              <select id="guests" name="guests">
+                <option value="" disabled selected>Approx. guests</option>
+                <option>Under 50</option>
+                <option>50 – 100</option>
+                <option>100 – 200</option>
+                <option>200 – 500</option>
+                <option>500+</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="location">Event Location / Postcode</label>
+            <input type="text" id="location" name="location" placeholder="Town or postcode" />
+          </div>
+
+          <div class="form-group">
+            <label for="message">Tell us more about your event</label>
+            <textarea id="message" name="message" placeholder="Any specific requirements, ideas, or questions..."></textarea>
+          </div>
+
+          <button type="submit" class="form-submit">Send Enquiry →</button>
+          <div class="form-success" id="form-success">
+            Thank you — we'll be in touch within one working day.
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ════════════════════════════════ -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">Marquee & Co.</div>
+      <ul class="footer-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="/admin">CMS Login</a></li>
+      </ul>
+    </div>
+    <div class="footer-inner">
+      <p class="footer-copy">© 2025 Your Company Name. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    /* Nav scroll */
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    /* Fade-in on scroll */
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    /* Mobile menu toggle */
+    function toggleMenu(btn) {
+      const links = document.querySelector('.nav-links');
+      const cta = document.querySelector('.nav-cta');
+      const open = links.style.display === 'flex';
+      links.style.cssText = open ? '' : 'display:flex;flex-direction:column;position:fixed;top:70px;left:0;width:100%;background:rgba(247,242,235,0.97);padding:2rem;gap:1.5rem;';
+      if (!open) {
+        cta.style.cssText = 'display:block;position:fixed;top:calc(70px + 10rem);left:0;width:100%;text-align:center;padding:1rem;background:var(--gold);color:#fff;';
+      } else {
+        cta.style.cssText = 'display:none';
+      }
+    }
+
+    /* Netlify Identity — redirect to CMS after login */
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+
+    /* Form submission feedback */
+    const form = document.getElementById('enquiry-form');
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        // Netlify handles submission; show success after short delay
+        setTimeout(() => {
+          document.getElementById('form-success').style.display = 'block';
+          form.reset();
+        }, 500);
+      });
+    }
+  </script>
+</body>
+</html>
