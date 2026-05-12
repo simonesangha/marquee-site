@@ -1,18 +1,31 @@
+# ═══════════════════════════════════════════════
 # netlify.toml — Netlify configuration
+# ═══════════════════════════════════════════════
 
 [build]
   publish = "."
 
+# Fix: explicitly redirect /admin and /admin/ as well as /admin/*
 [[redirects]]
   from = "/admin"
-  to = "/admin/index.html"
+  to   = "/admin/index.html"
   status = 200
 
+[[redirects]]
+  from = "/admin/"
+  to   = "/admin/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/admin/*"
+  to   = "/admin/index.html"
+  status = 200
+
+# Security headers
 [[headers]]
   for = "/*"
   [headers.values]
-    X-Frame-Options = "SAMEORIGIN"
-    X-XSS-Protection = "1; mode=block"
+    X-Frame-Options        = "SAMEORIGIN"
+    X-XSS-Protection       = "1; mode=block"
     X-Content-Type-Options = "nosniff"
-    Access-Control-Allow-Origin = "*"
-    Referrer-Policy = "strict-origin-when-cross-origin"
+    Referrer-Policy        = "strict-origin-when-cross-origin"
