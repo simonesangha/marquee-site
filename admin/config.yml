@@ -1,1 +1,75 @@
+# Marquee & Events Site — Setup Guide
 
+## Your file structure
+```
+marquee-site/
+├── index.html          ← your website
+├── netlify.toml        ← Netlify config
+├── admin/
+│   ├── index.html      ← Decap CMS app
+│   └── config.yml      ← CMS content fields
+└── images/
+    └── uploads/        ← CMS image uploads go here
+```
+
+---
+
+## Step 1 — GitHub
+
+1. Go to github.com and create a free account (or log in)
+2. Click the **+** icon → **New repository**
+3. Name it `marquee-site`, set to **Public**, click **Create repository**
+4. Upload all your files: click **uploading an existing file** on the repo page
+5. Drag all files/folders in, click **Commit changes**
+
+---
+
+## Step 2 — Netlify
+
+1. Go to netlify.com and sign up free (use **Continue with GitHub**)
+2. Click **Add new site** → **Import an existing project**
+3. Choose **GitHub**, select your `marquee-site` repo
+4. Build settings: leave everything blank (it auto-detects `netlify.toml`)
+5. Click **Deploy site** — your site will be live in ~60 seconds
+
+---
+
+## Step 3 — Enable CMS (Decap + Netlify Identity)
+
+In your Netlify dashboard:
+
+1. Go to **Site configuration** → **Identity** → click **Enable Identity**
+2. Under **Registration preferences** → set to **Invite only**
+3. Scroll to **Services** → **Git Gateway** → click **Enable Git Gateway**
+4. Go to **Identity** tab → **Invite users** → enter your email
+5. Check your email and accept the invite — this creates your CMS login
+
+Visit `yoursite.netlify.app/admin` to log in and edit content.
+
+---
+
+## Step 4 — Custom Domain (optional, free)
+
+1. In Netlify: **Domain management** → **Add custom domain**
+2. Enter your domain → follow the DNS instructions
+3. Netlify provisions SSL automatically (free)
+
+---
+
+## Step 5 — GA4
+
+1. Go to analytics.google.com → create a property → copy your **Measurement ID** (G-XXXXXXXXXX)
+2. Open `index.html`, find the two lines with `G-XXXXXXXXXX`, replace with your real ID
+3. Commit the change to GitHub → Netlify auto-redeploys
+
+---
+
+## Editing content
+
+- Visit `yoursite.com/admin`
+- Log in with your email/password
+- Edit services, testimonials, gallery, settings — all changes auto-deploy
+
+## Updating the site design
+
+Edit `index.html` in any text editor, push to GitHub, Netlify deploys in ~30 seconds.
