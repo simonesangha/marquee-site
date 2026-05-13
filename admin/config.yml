@@ -104,4 +104,11 @@ collections:
       - { label: "Caption",      name: "caption", widget: "string", required: false }
       - { label: "Event Type",   name: "type",    widget: "string", hint: "e.g. Wedding, Corporate" }
       - { label: "Display Order", name: "order",  widget: "number" }
-      
+     - name: "pages"
+    label: "Pages"
+    folder: "content/pages"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Body", name: "body", widget: "markdown" } 
