@@ -150,7 +150,6 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-W1EBPB2N87');
   </script>
 
   <!-- Netlify Identity Widget -->
@@ -765,5 +764,45 @@
       });
     }
   </script>
+  <!-- Cookie Consent (WhiteCanvas Style) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
+
+<script>
+window.addEventListener("load", function(){
+  window.cookieconsent.initialise({
+    palette: {
+      popup: { background: "#000000", text: "#f5f0e6" }, // black + cream text
+      button: { background: "#d4af37", text: "#000000" } // rich gold button
+    },
+    theme: "classic",
+    type: "opt-in",
+    position: "bottom",
+    content: {
+      message: "We use cookies to improve your browsing experience and analyse traffic.",
+      allow: "Accept",
+      deny: "Reject",
+      link: "Privacy Policy",
+      href: "/privacy-policy"
+    },
+    onInitialise: function (status) {
+      if (status == cookieconsent.status.allow) {
+        enableGA();
+      }
+    },
+    onStatusChange: function(status) {
+      if (status == cookieconsent.status.allow) {
+        enableGA();
+      }
+    }
+  });
+});
+
+// GA4 loads ONLY after consent
+function enableGA() {
+  // Insert your GA4 ID below
+  gtag('config', 'G-W1EBPB2N87');
+}
+</script>
 </body>
 </html>
