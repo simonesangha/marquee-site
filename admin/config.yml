@@ -2,69 +2,106 @@
 # Decap CMS Configuration
 # This defines what your team can edit visually
 # ═══════════════════════════════════════════════════
+
 backend:
   name: git-gateway
-  branch: main
+  branch: main          # must match your GitHub default branch
 
+# Where uploaded images are stored in the repo
 media_folder: "images/uploads"
-public_folder: "/images/uploads/"
+public_folder: "/images/uploads"
 
+# ─── Content Collections ────────────────────────────
 collections:
+
+  # ── Site Settings ──────────────────────────────────
   - name: "settings"
     label: "Site Settings"
     files:
+
       - label: "General"
         name: "general"
         file: "content/settings/general.json"
         fields:
-          - { label: "Company Name", name: "company_name", widget: "string" }
-          - { label: "Tagline", name: "tagline", widget: "string" }
-          - { label: "Phone Number", name: "phone", widget: "string" }
-          - { label: "Email Address", name: "email", widget: "string" }
-          - { label: "SEO Image", name: "seo_image", widget: "image" }
-          - { label: "Meta Description", name: "description", widget: "text" }
+          - { label: "Company Name",    name: "company_name",  widget: "string" }
+          - { label: "Tagline",         name: "tagline",       widget: "string" }
+          - { label: "Phone Number",    name: "phone",         widget: "string" }
+          - { label: "Email Address",   name: "email",         widget: "string" }
+          - { label: "Service Area",    name: "area",          widget: "string" }
+          - { label: "GA4 Measurement ID", name: "ga4_id",    widget: "string", hint: "Format: G-XXXXXXXXXX" }
 
+      - label: "SEO"
+        name: "seo"
+        file: "content/settings/seo.json"
+        fields:
+          - { label: "Site Title",        name: "title",       widget: "string" }
+          - { label: "Meta Description",  name: "description", widget: "text" }
+          - { label: "OG Image",          name: "og_image",    widget: "image" }
+
+  # ── Hero Section ───────────────────────────────────
   - name: "hero"
     label: "Hero Section"
-    file: "content/hero.json"
-    fields:
-      - { label: "Heading Line 1", name: "heading_1", widget: "string" }
-      - { label: "Heading Line 2", name: "heading_2", widget: "string" }
-      - { label: "Primary Button Text", name: "button_text", widget: "string" }
+    files:
+      - label: "Hero"
+        name: "hero"
+        file: "content/hero.json"
+        fields:
+          - { label: "Tag Line (small text)",  name: "tag",      widget: "string" }
+          - { label: "Heading Line 1",         name: "heading1", widget: "string" }
+          - { label: "Heading Line 2 (italic)", name: "heading2", widget: "string" }
+          - { label: "Subheading",             name: "sub",      widget: "text" }
+          - { label: "Primary Button Text",    name: "btn1",     widget: "string" }
+          - { label: "Secondary Button Text",  name: "btn2",     widget: "string" }
 
+  # ── Services ───────────────────────────────────────
   - name: "services"
     label: "Services"
     folder: "content/services"
     create: true
     slug: "{{slug}}"
     fields:
-      - { label: "Service Name", name: "title", widget: "string" }
-      - { label: "Description", name: "description", widget: "text" }
-      - { label: "Icon", name: "icon", widget: "string" }
+      - { label: "Service Name",   name: "title",   widget: "string" }
+      - { label: "Icon (emoji)",   name: "icon",    widget: "string", hint: "Paste an emoji e.g. ⛺" }
+      - { label: "Description",    name: "body",    widget: "text" }
+      - { label: "Display Order",  name: "order",   widget: "number" }
+      - { label: "Active",         name: "active",  widget: "boolean", default: true }
 
+  # ── Testimonials ───────────────────────────────────
   - name: "testimonials"
     label: "Testimonials"
     folder: "content/testimonials"
     create: true
     slug: "{{slug}}"
     fields:
-      - { label: "Author Name", name: "author", widget: "string" }
-      - { label: "Quote", name: "quote", widget: "text" }
+      - { label: "Quote",        name: "quote",     widget: "text" }
+      - { label: "Author Name",  name: "author",    widget: "string" }
+      - { label: "Event Type",   name: "event",     widget: "string", hint: "e.g. Wedding, June 2024" }
+      - { label: "Display Order", name: "order",    widget: "number" }
 
+  # ── About Section ──────────────────────────────────
+  - name: "about"
+    label: "About Section"
+    files:
+      - label: "About"
+        name: "about"
+        file: "content/about.json"
+        fields:
+          - { label: "Heading",      name: "heading",   widget: "string" }
+          - { label: "Paragraph 1",  name: "para1",     widget: "text" }
+          - { label: "Paragraph 2",  name: "para2",     widget: "text" }
+          - { label: "Paragraph 3",  name: "para3",     widget: "text" }
+          - { label: "Photo",        name: "image",     widget: "image" }
+          - { label: "Founded Year", name: "year",      widget: "string" }
+
+  # ── Gallery ────────────────────────────────────────
   - name: "gallery"
     label: "Gallery Images"
     folder: "content/gallery"
     create: true
     slug: "{{slug}}"
     fields:
-      - { label: "Photo", name: "image", widget: "image" }
-      - { label: "Caption", name: "caption", widget: "string" }
-
-  - name: "pages"
-    label: "Pages"
-    folder: "content/pages"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Body", name: "body", widget: "markdown" }
+      - { label: "Image",        name: "image",   widget: "image" }
+      - { label: "Caption",      name: "caption", widget: "string", required: false }
+      - { label: "Event Type",   name: "type",    widget: "string", hint: "e.g. Wedding, Corporate" }
+      - { label: "Display Order", name: "order",  widget: "number" }
+      
