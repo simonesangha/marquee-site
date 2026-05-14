@@ -341,8 +341,6 @@
     input::placeholder, textarea::placeholder { color: rgba(26,20,16,0.25); }
     .form-submit { margin-top: 1.5rem; width: 100%; background: var(--gold); color: var(--white); padding: 1rem 2rem; font-family: var(--sans); font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase; border: none; border-radius: 1px; cursor: pointer; transition: background 0.2s, transform 0.15s; }
     .form-submit:hover { background: var(--gold-lt); transform: translateY(-1px); }
-    .form-success { display: none; background: var(--gold-pale); border: 1px solid rgba(184,150,62,0.3); color: var(--gold); padding: 1.5rem; text-align: center; font-family: var(--serif); font-size: 1.1rem; margin-top: 1rem; }
-
     /* ── FOOTER ── */
     footer { background: var(--black); padding: 3rem var(--pad); }
     .footer-inner { max-width: var(--max); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
@@ -624,8 +622,9 @@
           </div>
         </div>
 
-        <form name="enquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="enquiry-form" class="fade-in">
+        <form name="enquiry" method="POST" action="/thank-you" data-netlify="true" netlify-honeypot="bot-field" id="enquiry-form" class="fade-in">
           <input type="hidden" name="form-name" value="enquiry" />
+          <input type="hidden" name="subject" value="New enquiry from %{formName}" />
           <p hidden><input name="bot-field" /></p>
           <div class="form-row">
             <div class="form-group"><label for="name">Full Name *</label><input type="text" id="name" name="name" placeholder="Your name" required /></div>
@@ -679,7 +678,6 @@
           </div>
           <div class="form-group"><label for="message">Tell us about your event</label><textarea id="message" name="message" placeholder="Any ideas, themes, special requirements or questions — the more you tell us, the better we can help."></textarea></div>
           <button type="submit" class="form-submit">Send Enquiry — it's free →</button>
-          <div class="form-success" id="form-success">Thank you! We'll be in touch within one working day. We can't wait to hear more about your event. 🎉</div>
         </form>
       </div>
     </div>
@@ -719,11 +717,6 @@
       const open = links.style.display === 'flex';
       links.style.cssText = open ? '' : 'display:flex;flex-direction:column;position:fixed;top:68px;left:0;width:100%;background:rgba(247,241,232,0.98);padding:2rem;gap:1.5rem;box-shadow:0 8px 24px rgba(0,0,0,0.08);z-index:99;';
     }
-
-    /* Form feedback */
-    document.getElementById('enquiry-form').addEventListener('submit', () => {
-      setTimeout(() => { document.getElementById('form-success').style.display = 'block'; }, 500);
-    });
 
     /* Netlify Identity */
     if (window.netlifyIdentity) {
