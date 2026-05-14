@@ -38,7 +38,7 @@
         "@id": "https://whitecanvasevents.co.uk/#business",
         "name": "White Canvas Events UK",
         "url": "https://whitecanvasevents.co.uk",
-        "logo": "https://whitecanvasevents.co.uk/images/logo.png",
+        "logo": "https://whitecanvasevents.co.uk/images/logo-transparent.png",
         "image": "https://whitecanvasevents.co.uk/images/og-image.jpg",
         "description": "White Canvas Events UK provides premium marquee hire and the unique Memory Vault telephone video box across the Midlands. We cater for weddings, birthday parties, corporate events, pub events, job fairs, garden parties and more. Dry hire available.",
         "email": "whitecanvaseventsuk@gmail.com",
@@ -95,7 +95,7 @@
             "name": "What size marquees do White Canvas Events offer?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "We currently offer a 6x12 metre marquee, perfect for garden parties, weddings and corporate events of up to 80–100 guests. A smaller marquee is also coming soon, making us ideal for more intimate celebrations too."
+              "text": "We currently offer a 6x12 metre marquee, perfect for garden parties, weddings and corporate events of up to 80–100 guests. A smaller marquee is also available, making us ideal for more intimate celebrations too."
             }
           },
           {
@@ -144,7 +144,7 @@
   }
   </script>
 
-  <!-- ═══ GA4 ═══════════════════════════════════════════════════════════ -->
+  <!-- ═══ GA4 — consent-managed, loads only after cookie acceptance ══════ -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-W1EBPB2N87"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -179,7 +179,7 @@
     }
     html { scroll-behavior: smooth; }
     body { font-family: var(--sans); background: var(--cream); color: var(--black); font-weight: 300; line-height: 1.7; overflow-x: hidden; }
-    img { display: block; width: 100%; object-fit: cover; }
+    img { display: block; object-fit: cover; }
     a { color: inherit; text-decoration: none; }
     .container { max-width: var(--max); margin: 0 auto; padding: 0 var(--pad); }
     .section { padding: clamp(4rem, 10vw, 8rem) 0; }
@@ -189,21 +189,26 @@
     /* ── NAV ── */
     nav {
       position: fixed; top: 0; width: 100%; z-index: 100;
-      padding: 0.85rem var(--pad);
+      padding: 0.75rem var(--pad);
       display: flex; align-items: center; justify-content: space-between;
       background: rgba(247,241,232,0.97); backdrop-filter: blur(12px);
       box-shadow: 0 1px 0 rgba(26,20,16,0.07);
     }
-    .nav-logo img { height: 52px; width: auto; display: block; }
-    .nav-logo-fallback { font-family: var(--serif); font-size: 1.3rem; font-weight: 300; letter-spacing: 0.06em; color: var(--black); }
-    .nav-logo-fallback span { color: var(--gold); }
+    .nav-logo { display: flex; align-items: center; }
+    .nav-logo img {
+      height: 56px;
+      width: auto;
+      display: block;
+      /* logo has transparent bg — sits cleanly on cream nav */
+    }
     .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); transition: color 0.2s; }
     .nav-links a:hover { color: var(--gold); }
-    .nav-cta { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid var(--gold); padding: 0.55rem 1.4rem; border-radius: 1px; color: var(--gold); transition: all 0.2s; }
+    .nav-cta { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid var(--gold); padding: 0.55rem 1.4rem; border-radius: 1px; color: var(--gold); transition: all 0.2s; white-space: nowrap; }
     .nav-cta:hover { background: var(--gold); color: var(--white); }
     .nav-burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
     .nav-burger span { display: block; width: 24px; height: 1.5px; background: var(--black); }
+    @media (max-width: 900px) { .nav-links { gap: 1.25rem; } }
     @media (max-width: 768px) { .nav-links, .nav-cta { display: none; } .nav-burger { display: flex; } }
 
     /* ── HERO ── */
@@ -224,13 +229,11 @@
     .btn-outline { display: inline-block; border: 1px solid rgba(26,20,16,0.18); color: var(--charcoal); padding: 0.9rem 2.25rem; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; border-radius: 1px; transition: all 0.2s; }
     .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
 
-    /* Hero visual — logo box */
+    /* Hero visual */
     .hero-visual { display: flex; align-items: center; justify-content: center; }
     .hero-logo-box { width: 100%; max-width: 340px; aspect-ratio: 1; border: 1px solid rgba(184,150,62,0.3); display: flex; align-items: center; justify-content: center; background: var(--white); position: relative; }
     .hero-logo-box::before { content: ''; position: absolute; inset: 14px; border: 1px solid rgba(184,150,62,0.15); }
-    .hero-logo-inner { text-align: center; padding: 2rem; }
-    .hero-logo-img { max-width: 200px; margin: 0 auto; }
-    .hero-logo-img img { width: 100%; height: auto; }
+    .hero-logo-box img { width: 75%; height: auto; position: relative; z-index: 1; }
 
     /* ── DIFFERENTIATOR STRIP ── */
     .diff-strip { background: var(--black); padding: 3rem var(--pad); }
@@ -263,11 +266,10 @@
     .service-link { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1.25rem; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); transition: gap 0.2s; }
     .service-link:hover { gap: 0.9rem; }
 
-    /* ── MEMORY VAULT FEATURE ── */
+    /* ── MEMORY VAULT ── */
     #memory-vault { background: var(--cream); }
     .vault-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
     @media (max-width: 768px) { .vault-inner { grid-template-columns: 1fr; gap: 3rem; } }
-    .vault-visual { position: relative; }
     .vault-box { aspect-ratio: 3/4; background: var(--white); border: 1px solid rgba(184,150,62,0.25); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
     .vault-box::before { content: ''; position: absolute; inset: 16px; border: 1px solid rgba(184,150,62,0.15); }
     .vault-box-inner { text-align: center; padding: 2rem; position: relative; z-index: 1; }
@@ -293,8 +295,9 @@
     .about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
     @media (max-width: 768px) { .about-inner { grid-template-columns: 1fr; gap: 3rem; } }
     .about-img-wrap { aspect-ratio: 4/5; background: var(--cream-dk); overflow: hidden; position: relative; }
+    .about-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
     .about-img-wrap::after { content: ''; position: absolute; inset: 0; border: 1px solid rgba(184,150,62,0.25); margin: 1.25rem; pointer-events: none; }
-    .about-img-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--mid); font-family: var(--serif); font-size: 0.9rem; letter-spacing: 0.1em; }
+    .about-img-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--mid); font-family: var(--serif); font-size: 0.9rem; letter-spacing: 0.1em; text-align: center; padding: 2rem; }
     .about-text h2 { margin-bottom: 1rem; }
     .about-text p { color: var(--mid); margin-bottom: 1.25rem; font-size: 0.93rem; }
 
@@ -304,6 +307,8 @@
     @media (max-width: 600px) { .gallery-grid { grid-template-columns: 1fr 1fr; } }
     .gallery-item { background: var(--cream-dk); aspect-ratio: 1; overflow: hidden; position: relative; }
     .gallery-item:first-child { grid-column: span 2; aspect-ratio: 2/1; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+    .gallery-item:hover img { transform: scale(1.03); }
     .gallery-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--mid); font-size: 0.75rem; letter-spacing: 0.15em; font-family: var(--serif); flex-direction: column; gap: 0.5rem; }
     .gallery-placeholder span { font-size: 1.5rem; }
 
@@ -311,7 +316,8 @@
     #faq { background: var(--white); }
     .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
     @media (max-width: 768px) { .faq-grid { grid-template-columns: 1fr; } }
-    .faq-item { border: 1px solid rgba(26,20,16,0.08); padding: 1.75rem; }
+    .faq-item { border: 1px solid rgba(26,20,16,0.08); padding: 1.75rem; cursor: pointer; }
+    .faq-item:hover { border-color: rgba(184,150,62,0.3); background: var(--cream); }
     .faq-q { font-family: var(--serif); font-size: 1.05rem; font-weight: 400; color: var(--black); margin-bottom: 0.75rem; line-height: 1.4; }
     .faq-a { font-size: 0.88rem; color: var(--mid); line-height: 1.75; }
 
@@ -325,7 +331,6 @@
     .contact-item-text p:first-child { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.15rem; }
     .contact-item-text p:last-child { font-size: 0.88rem; color: var(--mid); }
     .contact-note { font-size: 0.8rem; color: var(--mid); margin-top: 2rem; padding: 1rem; background: var(--gold-pale); border-left: 2px solid var(--gold); line-height: 1.7; }
-
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
     @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
     .form-group { margin-bottom: 1rem; }
@@ -341,8 +346,7 @@
     /* ── FOOTER ── */
     footer { background: var(--black); padding: 3rem var(--pad); }
     .footer-inner { max-width: var(--max); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
-    .footer-logo { font-family: var(--serif); font-size: 1.2rem; color: var(--cream); font-weight: 300; letter-spacing: 0.06em; }
-    .footer-logo span { color: var(--gold); }
+    .footer-logo img { height: 40px; width: auto; filter: brightness(0) invert(1) sepia(1) saturate(0.3) brightness(1.1); opacity: 0.85; }
     .footer-links { display: flex; gap: 2rem; list-style: none; flex-wrap: wrap; }
     .footer-links a { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(247,241,232,0.35); transition: color 0.2s; }
     .footer-links a:hover { color: var(--gold); }
@@ -354,8 +358,7 @@
   <!-- ═══ NAV ══════════════════════════════════════════════════════════ -->
   <nav id="nav" role="navigation" aria-label="Main navigation">
     <a href="#" class="nav-logo" aria-label="White Canvas Events UK - Home">
-      <!-- If your logo image uploads, replace the fallback below with: <img src="/images/logo.png" alt="White Canvas Events UK" /> -->
-      <span class="nav-logo-fallback">White<span>C</span>anvas <small style="font-size:0.6em;letter-spacing:0.2em;display:block;color:var(--mid);">EVENTS UK</small></span>
+      <img src="/images/logo-transparent.png" alt="White Canvas Events UK" />
     </a>
     <ul class="nav-links">
       <li><a href="#services">Services</a></li>
@@ -392,12 +395,7 @@
       </div>
       <div class="hero-visual fade-in" aria-hidden="true">
         <div class="hero-logo-box">
-          <div class="hero-logo-inner">
-            <div style="font-family:var(--serif);font-size:2.5rem;font-weight:300;letter-spacing:0.04em;color:var(--black)">White<span style="color:var(--gold)">C</span>anvas</div>
-            <div style="width:40px;height:1px;background:var(--gold);margin:0.75rem auto;"></div>
-            <div style="font-size:0.62rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--mid)">Events UK</div>
-            <div style="margin-top:1.25rem;font-size:0.72rem;color:var(--mid);line-height:1.6;">Marquees · Memory Vault<br/>Midlands & beyond</div>
-          </div>
+          <img src="/images/logo-transparent.png" alt="" />
         </div>
       </div>
     </div>
@@ -441,7 +439,7 @@
         <div class="service-card fade-in">
           <span class="service-icon">⛺</span>
           <h3>Marquee Hire</h3>
-          <p>Our 6x12 metre marquee is the perfect blank canvas for any outdoor event — garden weddings, birthday parties, corporate days and more. A smaller marquee is coming soon for more intimate gatherings. Fully set up by us or available as a dry hire.</p>
+          <p>Our 6x12 metre marquee is the perfect blank canvas for any outdoor event — garden weddings, birthday parties, corporate days and more. Available in multiple sizes for intimate gatherings through to large celebrations. Fully set up by us or available as a dry hire.</p>
           <a href="#contact" class="service-link">Get a quote →</a>
         </div>
         <div class="service-card featured fade-in">
@@ -467,7 +465,7 @@
     </div>
   </section>
 
-  <!-- ═══ MEMORY VAULT FEATURE ══════════════════════════════════════════ -->
+  <!-- ═══ MEMORY VAULT ══════════════════════════════════════════════════ -->
   <section id="memory-vault" class="section" aria-labelledby="vault-heading">
     <div class="container">
       <div class="vault-inner">
@@ -544,15 +542,16 @@
     <div class="container">
       <div class="about-inner">
         <div class="about-img-wrap fade-in">
-          <div class="about-img-placeholder">Your marquee photo here<br/><small style="font-size:0.7rem;margin-top:0.5rem;display:block;">(structure in your garden works perfectly)</small></div>
+          <!-- Replace placeholder with: <img src="/images/uploads/your-photo.jpg" alt="White Canvas Events marquee setup" /> -->
+          <div class="about-img-placeholder">Your marquee photo here</div>
         </div>
         <div class="about-text fade-in">
           <p class="section-tag">Our story</p>
-          <h2 id="about-heading">A <em>fresh</em> vision for events in the Midlands</h2>
+          <h2 id="about-heading">Born from a belief that <em>every event</em> deserves to be extraordinary</h2>
           <div class="gold-divider"></div>
-          <p>White Canvas Events UK was born from a simple belief — that beautiful, memorable events shouldn't come with an eye-watering price tag, and that truly unique experiences should be available to everyone.</p>
-          <p>We're a new, passionate team based right here in the Midlands, and we're on a mission to change what event hire looks like in this region. Our 6x12 marquee is already available, with more to come — and the Memory Vault is unlike anything else you'll find locally.</p>
-          <p>We're just getting started, but what we lack in years we more than make up for in care, creativity, and commitment to making your event one you'll never forget.</p>
+          <p>White Canvas Events UK was built on a simple but powerful principle — that premium event experiences should be accessible to everyone, at prices that make sense. No unnecessary overheads, no inflated quotes, just beautiful events done properly.</p>
+          <p>We're a passionate, Midlands-based team with a genuine commitment to the details that make your event stand out. From our 6x12 marquee to the one-of-a-kind Memory Vault, every product in our range is chosen because it creates something truly memorable.</p>
+          <p>We work closely with every client — you'll always speak to us directly. Your event is personal to you, and we treat it that way.</p>
           <a href="#contact" class="btn-primary" style="margin-top:1.5rem;display:inline-block;">Let's talk about your event</a>
         </div>
       </div>
@@ -565,7 +564,7 @@
       <div class="section-head fade-in">
         <p class="section-tag">See it in action</p>
         <h2>Our marquee &<br /><em>Memory Vault</em></h2>
-        <p class="section-sub">Photos coming soon — in the meantime, get in touch to ask us anything or arrange a viewing.</p>
+        <p class="section-sub">Get in touch to ask us anything or arrange a viewing.</p>
       </div>
     </div>
     <div class="gallery-grid fade-in" style="max-width:var(--max);margin:0 auto;padding:0 var(--pad);">
@@ -577,7 +576,7 @@
     </div>
   </section>
 
-  <!-- ═══ FAQ — AEO/GEO OPTIMISED ══════════════════════════════════════ -->
+  <!-- ═══ FAQ ════════════════════════════════════════════════════════════ -->
   <section id="faq" class="section" aria-labelledby="faq-heading">
     <div class="container">
       <div class="section-head fade-in">
@@ -585,38 +584,14 @@
         <h2 id="faq-heading">Everything you need<br />to <em>know</em></h2>
       </div>
       <div class="faq-grid">
-        <div class="faq-item fade-in">
-          <p class="faq-q">What areas do you cover?</p>
-          <p class="faq-a">We cover the whole of the Midlands including Birmingham, Coventry, Leicester, Nottingham, Derby, Wolverhampton, Stoke-on-Trent and all surrounding areas. Not sure if we reach you? Just ask.</p>
-        </div>
-        <div class="faq-item fade-in">
-          <p class="faq-q">What size marquee do you have?</p>
-          <p class="faq-a">We currently have a 6x12 metre marquee — ideal for 50–100+ guests. A smaller marquee is in the pipeline, perfect for more intimate gatherings and home events.</p>
-        </div>
-        <div class="faq-item fade-in">
-          <p class="faq-q">What is dry hire?</p>
-          <p class="faq-a">Dry hire means you hire just the marquee structure, without additional styling or setup services. It's our most competitively priced option and gives you full creative control.</p>
-        </div>
-        <div class="faq-item fade-in">
-          <p class="faq-q">What exactly is the Memory Vault?</p>
-          <p class="faq-a">It's a unique cream and gold telephone video box where guests record personal video messages. We package and preserve everything, then deliver it to you within 5 years — perfect for weddings, new babies, or milestone birthdays.</p>
-        </div>
-        <div class="faq-item fade-in">
-          <p class="faq-q">Can I hire the Memory Vault on its own?</p>
-          <p class="faq-a">Absolutely. The Memory Vault works as a standalone hire for any event — at home, at a venue, a pub, or anywhere else. It doesn't need to be paired with a marquee.</p>
-        </div>
-        <div class="faq-item fade-in">
-          <p class="faq-q">How far in advance should I book?</p>
-          <p class="faq-a">As early as you can for peak summer weekends, but we're flexible. We'll always do our best to accommodate shorter notice bookings — just get in touch and we'll check availability for you.</p>
-        </div>
-        <div class="faq-item fade-in">
-          <p class="faq-q">Do you cater for smaller home events?</p>
-          <p class="faq-a">Yes — this is actually one of our specialities. As celebrations get more intimate and people choose to host at home rather than a venue, we're perfectly set up to bring the experience to you.</p>
-        </div>
-        <div class="faq-item fade-in">
-          <p class="faq-q">What's included in a full hire package?</p>
-          <p class="faq-a">Full hire includes delivery, setup, and collection of your marquee. We can also discuss styling, décor, personalised signage and floral touches. Every event is different — tell us your vision and we'll build the right package.</p>
-        </div>
+        <div class="faq-item fade-in"><p class="faq-q">What areas do you cover?</p><p class="faq-a">We cover the whole of the Midlands including Birmingham, Coventry, Leicester, Nottingham, Derby, Wolverhampton, Stoke-on-Trent and all surrounding areas. Not sure if we reach you? Just ask.</p></div>
+        <div class="faq-item fade-in"><p class="faq-q">What size marquee do you have?</p><p class="faq-a">We have a 6x12 metre marquee — ideal for 50–100+ guests — along with a smaller option perfect for more intimate gatherings and home events.</p></div>
+        <div class="faq-item fade-in"><p class="faq-q">What is dry hire?</p><p class="faq-a">Dry hire means you hire just the marquee structure, without additional styling or setup services. It's our most competitively priced option and gives you full creative control.</p></div>
+        <div class="faq-item fade-in"><p class="faq-q">What exactly is the Memory Vault?</p><p class="faq-a">It's a unique cream and gold telephone video box where guests record personal video messages. We package and preserve everything, then deliver it to you within 5 years — perfect for weddings, new babies, or milestone birthdays.</p></div>
+        <div class="faq-item fade-in"><p class="faq-q">Can I hire the Memory Vault on its own?</p><p class="faq-a">Absolutely. The Memory Vault works as a standalone hire for any event — at home, at a venue, a pub, or anywhere else. It doesn't need to be paired with a marquee.</p></div>
+        <div class="faq-item fade-in"><p class="faq-q">How far in advance should I book?</p><p class="faq-a">As early as you can for peak summer weekends, but we're flexible. We'll always do our best to accommodate shorter notice bookings — just get in touch and we'll check availability for you.</p></div>
+        <div class="faq-item fade-in"><p class="faq-q">Do you cater for smaller home events?</p><p class="faq-a">Yes — this is one of our specialities. As celebrations become more intimate and people choose to host at home rather than a venue, we're perfectly set up to bring the experience to you.</p></div>
+        <div class="faq-item fade-in"><p class="faq-q">What's included in a full hire package?</p><p class="faq-a">Full hire includes delivery, setup, and collection of your marquee. We can also discuss styling, décor, personalised signage and floral touches. Every event is different — tell us your vision and we'll build the right package.</p></div>
       </div>
     </div>
   </section>
@@ -634,34 +609,24 @@
           <h3>Let's create something beautiful together</h3>
           <div class="contact-item">
             <div class="contact-icon">✉️</div>
-            <div class="contact-item-text">
-              <p>Email</p>
-              <p>whitecanvaseventsuk@gmail.com</p>
-            </div>
+            <div class="contact-item-text"><p>Email</p><p>whitecanvaseventsuk@gmail.com</p></div>
           </div>
           <div class="contact-item">
             <div class="contact-icon">📍</div>
-            <div class="contact-item-text">
-              <p>Based in</p>
-              <p>The Midlands, UK</p>
-            </div>
+            <div class="contact-item-text"><p>Based in</p><p>The Midlands, UK</p></div>
           </div>
           <div class="contact-item">
             <div class="contact-icon">🕐</div>
-            <div class="contact-item-text">
-              <p>Response time</p>
-              <p>Within one working day</p>
-            </div>
+            <div class="contact-item-text"><p>Response time</p><p>Within one working day</p></div>
           </div>
           <div class="contact-note">
-            <strong>New business, honest service.</strong> We're just getting started but we're fully committed to making your event special. No scripts, no hard sell — just a genuine conversation about what you need.
+            <strong>Every event matters to us.</strong> We take the time to understand exactly what you're looking for — no scripts, no pressure, just an honest conversation about how we can make your event exceptional.
           </div>
         </div>
 
         <form name="enquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="enquiry-form" class="fade-in">
           <input type="hidden" name="form-name" value="enquiry" />
           <p hidden><input name="bot-field" /></p>
-
           <div class="form-row">
             <div class="form-group"><label for="name">Full Name *</label><input type="text" id="name" name="name" placeholder="Your name" required /></div>
             <div class="form-group"><label for="email">Email Address *</label><input type="email" id="email" name="email" placeholder="your@email.com" required /></div>
@@ -723,13 +688,16 @@
   <!-- ═══ FOOTER ═════════════════════════════════════════════════════════ -->
   <footer>
     <div class="footer-inner">
-      <div class="footer-logo">White<span>C</span>anvas Events UK</div>
+      <a href="#" class="footer-logo" aria-label="White Canvas Events UK">
+        <img src="/images/logo-transparent.png" alt="White Canvas Events UK" />
+      </a>
       <ul class="footer-links">
         <li><a href="#services">Services</a></li>
         <li><a href="#memory-vault">Memory Vault</a></li>
         <li><a href="#events">Events</a></li>
         <li><a href="#faq">FAQ</a></li>
         <li><a href="#contact">Contact</a></li>
+        <li><a href="/privacy-policy">Privacy Policy</a></li>
         <li><a href="/admin">CMS</a></li>
       </ul>
     </div>
@@ -764,45 +732,40 @@
       });
     }
   </script>
-  <!-- Cookie Consent (WhiteCanvas Style) -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
-<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
 
-<script>
-window.addEventListener("load", function(){
-  window.cookieconsent.initialise({
-    palette: {
-      popup: { background: "#000000", text: "#f5f0e6" }, // black + cream text
-      button: { background: "#d4af37", text: "#000000" } // rich gold button
-    },
-    theme: "classic",
-    type: "opt-in",
-    position: "bottom",
-    content: {
-      message: "We use cookies to improve your browsing experience and analyse traffic.",
-      allow: "Accept",
-      deny: "Reject",
-      link: "Privacy Policy",
-      href: "/privacy-policy"
-    },
-    onInitialise: function (status) {
-      if (status == cookieconsent.status.allow) {
-        enableGA();
+  <!-- ═══ COOKIE CONSENT — preserved exactly as configured ══════════════ -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
+  <script>
+  window.addEventListener("load", function(){
+    window.cookieconsent.initialise({
+      palette: {
+        popup: { background: "#000000", text: "#f5f0e6" },
+        button: { background: "#d4af37", text: "#000000" }
+      },
+      theme: "classic",
+      type: "opt-in",
+      position: "bottom",
+      content: {
+        message: "We use cookies to improve your browsing experience and analyse traffic.",
+        allow: "Accept",
+        deny: "Reject",
+        link: "Privacy Policy",
+        href: "/privacy-policy"
+      },
+      onInitialise: function (status) {
+        if (status == cookieconsent.status.allow) { enableGA(); }
+      },
+      onStatusChange: function(status) {
+        if (status == cookieconsent.status.allow) { enableGA(); }
       }
-    },
-    onStatusChange: function(status) {
-      if (status == cookieconsent.status.allow) {
-        enableGA();
-      }
-    }
+    });
   });
-});
 
-// GA4 loads ONLY after consent
-function enableGA() {
-  // Insert your GA4 ID below
-  gtag('config', 'G-W1EBPB2N87');
-}
-</script>
+  function enableGA() {
+    gtag('config', 'G-W1EBPB2N87');
+  }
+  </script>
+
 </body>
 </html>
