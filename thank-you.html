@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+
+  <title>Thank You | White Canvas Events UK</title>
+  <meta name="description" content="Thank you for your enquiry. We'll be in touch within one working day." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <!-- Netlify Identity Widget -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream:    #f7f1e8;
+      --cream-dk: #ede5d8;
+      --white:    #ffffff;
+      --black:    #1a1410;
+      --charcoal: #3d3530;
+      --mid:      #7a6f68;
+      --gold:     #b8963e;
+      --gold-lt:  #cead5a;
+      --gold-pale:#f5edd8;
+      --serif:    'Cormorant Garamond', Georgia, serif;
+      --sans:     'DM Sans', system-ui, sans-serif;
+      --max:      1200px;
+      --pad:      clamp(1.5rem, 5vw, 4rem);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--cream); color: var(--black); font-weight: 300; line-height: 1.7; overflow-x: hidden; }
+    img { display: block; object-fit: cover; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      padding: 0.75rem var(--pad);
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(247,241,232,0.97); backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 rgba(26,20,16,0.07);
+    }
+    .nav-logo { display: flex; align-items: center; }
+    .nav-logo img { height: 56px; width: auto; display: block; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid var(--gold); padding: 0.55rem 1.4rem; border-radius: 1px; color: var(--gold); transition: all 0.2s; white-space: nowrap; }
+    .nav-cta:hover { background: var(--gold); color: var(--white); }
+    .nav-burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .nav-burger span { display: block; width: 24px; height: 1.5px; background: var(--black); }
+    @media (max-width: 768px) { .nav-links, .nav-cta { display: none; } .nav-burger { display: flex; } }
+
+    /* ── THANK YOU CONTENT ── */
+    .thankyou-section {
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: calc(var(--pad) + 80px) var(--pad) var(--pad);
+    }
+    .thankyou-card {
+      max-width: 640px;
+      width: 100%;
+      text-align: center;
+      background: var(--white);
+      border: 1px solid rgba(184,150,62,0.25);
+      padding: clamp(2.5rem, 6vw, 4rem);
+      position: relative;
+    }
+    .thankyou-card::before {
+      content: '';
+      position: absolute;
+      inset: 14px;
+      border: 1px solid rgba(184,150,62,0.15);
+      pointer-events: none;
+    }
+    .thankyou-icon {
+      font-size: 3rem;
+      display: block;
+      margin-bottom: 1.5rem;
+    }
+    .thankyou-card h1 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--black);
+      margin-bottom: 1rem;
+    }
+    .thankyou-card h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .thankyou-card p {
+      color: var(--mid);
+      font-size: 0.95rem;
+      line-height: 1.85;
+      margin-bottom: 1rem;
+    }
+    .gold-divider {
+      width: 48px;
+      height: 1px;
+      background: var(--gold);
+      margin: 1.5rem auto;
+    }
+    .btn-primary {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--white);
+      padding: 0.9rem 2.25rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-radius: 1px;
+      transition: background 0.2s, transform 0.15s;
+      margin-top: 1rem;
+    }
+    .btn-primary:hover { background: var(--gold-lt); transform: translateY(-1px); }
+
+    /* ── FOOTER ── */
+    footer { background: var(--black); padding: 3rem var(--pad); }
+    .footer-inner { max-width: var(--max); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+    .footer-logo img { height: 40px; width: auto; filter: brightness(0) invert(1) sepia(1) saturate(0.3) brightness(1.1); opacity: 0.85; }
+    .footer-links { display: flex; gap: 2rem; list-style: none; flex-wrap: wrap; }
+    .footer-links a { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(247,241,232,0.35); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-copy { font-size: 0.75rem; color: rgba(247,241,232,0.2); width: 100%; text-align: center; padding-top: 1.5rem; border-top: 1px solid rgba(247,241,232,0.06); margin-top: 1rem; }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ NAV ══════════════════════════════════════════════════════════ -->
+  <nav id="nav" role="navigation" aria-label="Main navigation">
+    <a href="/" class="nav-logo" aria-label="White Canvas Events UK - Home">
+      <img src="/images/logo-transparent.png" alt="White Canvas Events UK" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="/#services">Services</a></li>
+      <li><a href="/#memory-vault">Memory Vault</a></li>
+      <li><a href="/#events">Events</a></li>
+      <li><a href="/#about">About</a></li>
+      <li><a href="/#faq">FAQ</a></li>
+    </ul>
+    <a href="/#contact" class="nav-cta">Get a Quote</a>
+    <div class="nav-burger" onclick="toggleMenu()" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- ═══ THANK YOU ═══════════════════════════════════════════════════ -->
+  <section class="thankyou-section" aria-label="Thank you">
+    <div class="thankyou-card">
+      <span class="thankyou-icon">&#127881;</span>
+      <h1>Thank <em>you</em></h1>
+      <p>Your enquiry has been received. We'll be in touch within one working day to chat through your event.</p>
+      <div class="gold-divider"></div>
+      <p>Every event matters to us — we can't wait to hear more about yours.</p>
+      <a href="/" class="btn-primary">Back to Home</a>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═════════════════════════════════════════════════════ -->
+  <footer>
+    <div class="footer-inner">
+      <a href="/" class="footer-logo" aria-label="White Canvas Events UK">
+        <img src="/images/logo-transparent.png" alt="White Canvas Events UK" />
+      </a>
+      <ul class="footer-links">
+        <li><a href="/#services">Services</a></li>
+        <li><a href="/#memory-vault">Memory Vault</a></li>
+        <li><a href="/#events">Events</a></li>
+        <li><a href="/#faq">FAQ</a></li>
+        <li><a href="/#contact">Contact</a></li>
+        <li><a href="/privacy-policy">Privacy Policy</a></li>
+      </ul>
+    </div>
+    <div class="footer-inner">
+      <p class="footer-copy">&copy; 2025 White Canvas Events UK. Marquee hire &amp; Memory Vault across the Midlands. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const links = document.querySelector('.nav-links');
+      const open = links.style.display === 'flex';
+      links.style.cssText = open ? '' : 'display:flex;flex-direction:column;position:fixed;top:68px;left:0;width:100%;background:rgba(247,241,232,0.98);padding:2rem;gap:1.5rem;box-shadow:0 8px 24px rgba(0,0,0,0.08);z-index:99;';
+    }
+
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) { window.netlifyIdentity.on("login", () => { document.location.href = "/admin/"; }); }
+      });
+    }
+  </script>
+
+</body>
+</html>

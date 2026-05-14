@@ -63,6 +63,7 @@ collections:
       - { label: "Service Name",   name: "title",   widget: "string" }
       - { label: "Icon (emoji)",   name: "icon",    widget: "string", hint: "Paste an emoji e.g. ⛺" }
       - { label: "Description",    name: "body",    widget: "text" }
+      - { label: "Service Image",  name: "image",   widget: "image", required: false, hint: "Optional photo for this service" }
       - { label: "Display Order",  name: "order",   widget: "number" }
       - { label: "Active",         name: "active",  widget: "boolean", default: true }
 
@@ -104,3 +105,41 @@ collections:
       - { label: "Caption",      name: "caption", widget: "string", required: false }
       - { label: "Event Type",   name: "type",    widget: "string", hint: "e.g. Wedding, Corporate" }
       - { label: "Display Order", name: "order",  widget: "number" }
+
+  # ── FAQ ────────────────────────────────────────────
+  - name: "faq"
+    label: "FAQ"
+    folder: "content/faq"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Question",      name: "question", widget: "string" }
+      - { label: "Answer",        name: "answer",   widget: "text" }
+      - { label: "Display Order", name: "order",    widget: "number" }
+
+  # ── Thank-You Page ─────────────────────────────────
+  - name: "thank-you"
+    label: "Thank-You Page"
+    files:
+      - label: "Thank-You Page"
+        name: "thank-you"
+        file: "content/thank-you.json"
+        fields:
+          - { label: "Heading",      name: "heading",     widget: "string" }
+          - { label: "Message",      name: "message",     widget: "text" }
+          - { label: "Follow-up",    name: "followup",    widget: "text" }
+          - { label: "Button Text",  name: "button_text", widget: "string" }
+          - { label: "Button Link",  name: "button_link", widget: "string", default: "/" }
+
+  # ── Pages ──────────────────────────────────────────
+  - name: "pages"
+    label: "Pages"
+    folder: "content/pages"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Page Title",    name: "title",   widget: "string" }
+      - { label: "Hero Image",    name: "image",   widget: "image", required: false }
+      - { label: "Body",          name: "body",    widget: "markdown" }
+      - { label: "SEO Title",     name: "seo_title",       widget: "string", required: false }
+      - { label: "SEO Description", name: "seo_description", widget: "text", required: false }
