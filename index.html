@@ -33,7 +33,7 @@
         "@id": "https://whitecanvasevents.co.uk/#business",
         "name": "White Canvas Events UK",
         "url": "https://whitecanvasevents.co.uk",
-        "logo": "https://whitecanvasevents.co.uk/images/uploads/logo-transparent.png",
+        "logo": "https://whitecanvasevents.co.uk/images/uploads/logo-white.png",
         "image": "https://whitecanvasevents.co.uk/images/uploads/marquee-front.JPG",
         "description": "White Canvas Events UK provides premium marquee hire and the unique Memory Vault telephone video box across the Midlands.",
         "email": "whitecanvaseventsuk@gmail.com",
@@ -224,13 +224,13 @@
       display: flex; transition: transform 0.45s cubic-bezier(0.4,0,0.2,1);
     }
     .svc {
-      min-width: 50%; padding: 3rem 2.5rem;
+      flex-shrink: 0;
+      padding: 3rem 2.5rem;
       border: 1px solid rgba(26,20,16,0.07);
       transition: background 0.25s;
       display: flex; flex-direction: column;
-      flex-shrink: 0;
+      /* width set by JS to avoid percentage-on-flex-track issues */
     }
-    @media (max-width: 640px) { .svc { min-width: 100%; } }
     .svc:hover { background: var(--cream); }
     .svc.highlight { background: var(--gold-pale); }
     .svc.highlight:hover { background: #f0e3c4; }
@@ -371,7 +371,7 @@
 <!-- ═══ NAV ══════════════════════════════════════════════════════════════ -->
 <nav role="navigation" aria-label="Main navigation">
   <a href="/" class="nav-logo" aria-label="White Canvas Events UK">
-    <img src="/images/uploads/logo-transparent.png"
+    <img src="/images/uploads/logo-white.png"
          alt="White Canvas Events UK"
          width="186" height="62"
          onerror="this.style.display='none';this.nextElementSibling.style.display='block';" />
@@ -744,7 +744,7 @@
 <footer>
   <div class="footer-top">
     <a href="/" aria-label="White Canvas Events UK" class="footer-logo">
-      <img src="/images/uploads/logo-transparent.png" alt="White Canvas Events UK"
+      <img src="/images/uploads/logo-white.png" alt="White Canvas Events UK"
            onerror="this.style.display='none'" />
     </a>
     <ul class="footer-links">
@@ -780,23 +780,27 @@
     }
   }
 
-  // Services carousel — shows 2 cards at a time, steps by 2
+  // Services carousel — pixel-based so percentages don't fight the flex track
   let svcIdx = 0;
-  const svcTotal = 2; // number of "pages" (4 cards / 2 per view)
   function svcRender() {
-    const isMobile = window.innerWidth < 640;
-    const perView  = isMobile ? 1 : 2;
-    const pages    = isMobile ? 4 : 2;
-    const track    = document.getElementById('svcTrack');
-    const pct      = isMobile ? svcIdx * 100 : svcIdx * 200;
-    track.style.transform = `translateX(-${pct}%)`;
+    const outer   = document.getElementById('svcOuter');
+    const track   = document.getElementById('svcTrack');
+    const cards   = Array.from(track.querySelectorAll('.svc'));
+    const perView = window.innerWidth < 640 ? 1 : 2;
+    const pages   = Math.ceil(cards.length / perView);
+    const w       = outer.offsetWidth;
+    svcIdx = Math.min(svcIdx, pages - 1);
+    cards.forEach(c => { c.style.flex = `0 0 ${w / perView}px`; c.style.width = `${w / perView}px`; });
+    track.style.transform = `translateX(-${svcIdx * w}px)`;
     document.getElementById('svcPrev').disabled = svcIdx === 0;
-    document.getElementById('svcNext').disabled = svcIdx === pages - 1;
-    document.querySelectorAll('.carousel-dot').forEach((d, i) => {
-      d.classList.toggle('active', i === svcIdx);
-    });
+    document.getElementById('svcNext').disabled = svcIdx >= pages - 1;
+    document.querySelectorAll('.carousel-dot').forEach((d, i) => d.classList.toggle('active', i === svcIdx));
   }
-  function svcStep(dir) { svcIdx = Math.max(0, Math.min(svcTotal - 1, svcIdx + dir)); svcRender(); }
+  function svcStep(dir) {
+    const pages = window.innerWidth < 640 ? 4 : 2;
+    svcIdx = Math.max(0, Math.min(pages - 1, svcIdx + dir));
+    svcRender();
+  }
   function svcGo(i) { svcIdx = i; svcRender(); }
   window.addEventListener('resize', () => { svcIdx = 0; svcRender(); });
   svcRender();
