@@ -7,7 +7,7 @@
 
   <title>White Canvas Events UK | Marquee Hire & Memory Vault | Midlands</title>
   <meta name="description" content="White Canvas Events UK — premium marquee hire and the unique Memory Vault telephone video box across the Midlands. Weddings, parties, corporate events, pub nights & more. Dry hire available. Get a free quote today." />
-  <meta name="keywords" content="marquee hire Midlands, marquee hire Derby, Birmingham, event hire West Midlands, East Midlands marquee, dry hire marquee, wedding marquee Midlands, Memory Vault video box, garden party marquee, corporate event hire Midlands, White Canvas Events UK" />
+  <meta name="keywords" content="marquee hire Midlands, marquee hire Birmingham, event hire West Midlands, East Midlands marquee, dry hire marquee, wedding marquee Midlands, Memory Vault video box, garden party marquee, corporate event hire Midlands, White Canvas Events UK" />
   <link rel="canonical" href="https://whitecanvasevents.co.uk/" />
   <meta name="geo.region" content="GB-ENG" />
   <meta name="geo.placename" content="Midlands, United Kingdom" />
@@ -216,21 +216,42 @@
     .section-head { margin-bottom: 4rem; }
     .rule { width: 48px; height: 1px; background: var(--gold); margin: 1.5rem 0; }
 
-    /* ── SERVICES ────────────────────────────────────── */
+    /* ── SERVICES CAROUSEL ───────────────────────────── */
     #services { background: var(--white); }
-    .services-grid {
-      display: grid; grid-template-columns: repeat(2, 1fr);
-      border: 1px solid rgba(26,20,16,0.07);
+    .carousel-wrap { position: relative; }
+    .services-track-outer { overflow: hidden; }
+    .services-track {
+      display: flex; transition: transform 0.45s cubic-bezier(0.4,0,0.2,1);
     }
-    @media (max-width: 640px) { .services-grid { grid-template-columns: 1fr; } }
     .svc {
-      padding: 3rem 2.5rem; border: 1px solid rgba(26,20,16,0.07);
+      min-width: 50%; padding: 3rem 2.5rem;
+      border: 1px solid rgba(26,20,16,0.07);
       transition: background 0.25s;
       display: flex; flex-direction: column;
+      flex-shrink: 0;
     }
+    @media (max-width: 640px) { .svc { min-width: 100%; } }
     .svc:hover { background: var(--cream); }
     .svc.highlight { background: var(--gold-pale); }
     .svc.highlight:hover { background: #f0e3c4; }
+
+    .carousel-controls {
+      display: flex; align-items: center; gap: 1rem;
+      margin-top: 2rem; justify-content: flex-end;
+    }
+    .carousel-btn {
+      width: 44px; height: 44px; border: 1px solid rgba(184,150,62,0.4);
+      background: var(--white); color: var(--gold); cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
+    }
+    .carousel-btn:hover { background: var(--gold); color: var(--white); border-color: var(--gold); }
+    .carousel-btn:disabled { opacity: 0.3; cursor: default; }
+    .carousel-btn:disabled:hover { background: var(--white); color: var(--gold); border-color: rgba(184,150,62,0.4); }
+    .carousel-dots { display: flex; gap: 0.5rem; margin-right: auto; }
+    .carousel-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(184,150,62,0.25); cursor: pointer; transition: background 0.2s; border: none; padding: 0; }
+    .carousel-dot.active { background: var(--gold); }
+
     .svc-num {
       font-family: var(--serif); font-size: 0.75rem;
       color: var(--gold); letter-spacing: 0.2em;
@@ -239,23 +260,11 @@
     }
     .svc-num::after { content: ''; flex: 1; height: 1px; background: rgba(184,150,62,0.25); }
     .svc-icon { color: var(--gold); margin-bottom: 1.25rem; }
-    .svc h3 {
-      font-family: var(--serif); font-size: 1.6rem;
-      font-weight: 300; color: var(--black); margin-bottom: 0.9rem;
-    }
+    .svc h3 { font-family: var(--serif); font-size: 1.6rem; font-weight: 300; color: var(--black); margin-bottom: 0.9rem; }
     .svc p { font-size: 0.88rem; color: var(--mid); line-height: 1.8; flex: 1; }
-    .svc-link {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      margin-top: 1.75rem; font-size: 0.7rem;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--gold); transition: gap 0.2s;
-    }
+    .svc-link { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1.75rem; font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); transition: gap 0.2s; }
     .svc-link:hover { gap: 0.85rem; }
-    .svc-badge {
-      display: inline-block; font-size: 0.6rem; letter-spacing: 0.1em;
-      text-transform: uppercase; background: var(--gold); color: var(--white);
-      padding: 0.2rem 0.7rem; margin-bottom: 0.75rem; align-self: flex-start;
-    }
+    .svc-badge { display: inline-block; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--gold); color: var(--white); padding: 0.2rem 0.7rem; margin-bottom: 0.75rem; align-self: flex-start; }
 
     /* ── VAULT ───────────────────────────────────────── */
     #memory-vault { background: var(--cream); }
@@ -436,49 +445,57 @@
       <h2 id="services-heading">Everything you need for an<br /><em>unforgettable</em> event</h2>
       <p class="section-intro">Two premium hire services with a whole lot of ways to use them — weddings, corporate days, home celebrations and everything in between.</p>
     </div>
-    <div class="services-grid">
+    <div class="carousel-wrap">
+      <div class="services-track-outer" id="svcOuter">
+        <div class="services-track" id="svcTrack">
 
-      <div class="svc fade-in">
-        <div class="svc-num">01 — Marquee Hire</div>
-        <div class="svc-icon">
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 20h20"/><path d="M12 4L2 14h20L12 4z"/><path d="M9 20v-6h6v6"/></svg>
+          <div class="svc">
+            <div class="svc-num">01 — Marquee Hire</div>
+            <div class="svc-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 20h20"/><path d="M12 4L2 14h20L12 4z"/><path d="M9 20v-6h6v6"/></svg></div>
+            <h3>Marquee Hire</h3>
+            <p>Our 6x12 metre marquee is the perfect blank canvas for any outdoor occasion — garden weddings, birthday parties, corporate days and more. Available in multiple sizes. Fully installed by us or taken as a dry hire.</p>
+            <a href="#contact" class="svc-link">Get a quote <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+
+          <div class="svc highlight">
+            <span class="svc-badge">Exclusive to White Canvas</span>
+            <div class="svc-num">02 — Memory Vault</div>
+            <div class="svc-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 3.07 9.81 19.79 19.79 0 0 1 .4 1.18 2 2 0 0 1 2.38 0h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L6.09 7.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+            <h3>The Memory Vault</h3>
+            <p>A stunning cream and gold telephone video box capturing heartfelt guest messages. We package and preserve everything, delivered within 5 years — a keepsake your family will treasure forever.</p>
+            <a href="#memory-vault" class="svc-link">Discover the Vault <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+
+          <div class="svc">
+            <div class="svc-num">03 — Dry Hire</div>
+            <div class="svc-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div>
+            <h3>Dry Hire</h3>
+            <p>Just the structure — no frills, full creative freedom. Our dry hire option is our most competitive rate and gives you complete control to style your space exactly as you envision it.</p>
+            <a href="#contact" class="svc-link">Enquire <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+
+          <div class="svc">
+            <div class="svc-num">04 — Styling &amp; Extras</div>
+            <div class="svc-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+            <h3>Styling &amp; Extras</h3>
+            <p>Personalised signage, floral décor, lighting and finishing touches that transform a marquee into a moment. Ask us about full styling packages for your event.</p>
+            <a href="#contact" class="svc-link">Enquire <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+
         </div>
-        <h3>Marquee Hire</h3>
-        <p>Our 6x12 metre marquee is the perfect blank canvas for any outdoor occasion — garden weddings, birthday parties, corporate days and more. Available in multiple sizes. Fully installed by us or taken as a dry hire.</p>
-        <a href="#contact" class="svc-link">Get a quote <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       </div>
-
-      <div class="svc highlight fade-in">
-        <span class="svc-badge">Exclusive to White Canvas</span>
-        <div class="svc-num">02 — Memory Vault</div>
-        <div class="svc-icon">
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 3.07 9.81 19.79 19.79 0 0 1 .4 1.18 2 2 0 0 1 2.38 0h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L6.09 7.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <div class="carousel-controls">
+        <div class="carousel-dots">
+          <button class="carousel-dot active" onclick="svcGo(0)" aria-label="Slide 1"></button>
+          <button class="carousel-dot" onclick="svcGo(1)" aria-label="Slide 2"></button>
         </div>
-        <h3>The Memory Vault</h3>
-        <p>A stunning cream and gold telephone video box capturing heartfelt guest messages. We package and preserve everything, delivered within 5 years — a keepsake your family will treasure forever.</p>
-        <a href="#memory-vault" class="svc-link">Discover the Vault <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <button class="carousel-btn" id="svcPrev" onclick="svcStep(-1)" aria-label="Previous">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        </button>
+        <button class="carousel-btn" id="svcNext" onclick="svcStep(1)" aria-label="Next">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
       </div>
-
-      <div class="svc fade-in">
-        <div class="svc-num">03 — Dry Hire</div>
-        <div class="svc-icon">
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
-        </div>
-        <h3>Dry Hire</h3>
-        <p>Just the structure — no frills, full creative freedom. Our dry hire option is our most competitive rate and gives you complete control to style your space exactly as you envision it.</p>
-        <a href="#contact" class="svc-link">Enquire <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-      </div>
-
-      <div class="svc fade-in">
-        <div class="svc-num">04 — Styling &amp; Extras</div>
-        <div class="svc-icon">
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        </div>
-        <h3>Styling &amp; Extras</h3>
-        <p>Personalised signage, floral décor, lighting and finishing touches that transform a marquee into a moment. Ask us about full styling packages for your event.</p>
-        <a href="#contact" class="svc-link">Enquire <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-      </div>
-
     </div>
   </div>
 </section>
@@ -762,6 +779,27 @@
       cta.style.cssText   = 'display:block;position:fixed;top:calc(80px + 10rem);left:0;width:100%;text-align:center;background:var(--gold);color:#fff;padding:1rem;z-index:99;';
     }
   }
+
+  // Services carousel — shows 2 cards at a time, steps by 2
+  let svcIdx = 0;
+  const svcTotal = 2; // number of "pages" (4 cards / 2 per view)
+  function svcRender() {
+    const isMobile = window.innerWidth < 640;
+    const perView  = isMobile ? 1 : 2;
+    const pages    = isMobile ? 4 : 2;
+    const track    = document.getElementById('svcTrack');
+    const pct      = isMobile ? svcIdx * 100 : svcIdx * 200;
+    track.style.transform = `translateX(-${pct}%)`;
+    document.getElementById('svcPrev').disabled = svcIdx === 0;
+    document.getElementById('svcNext').disabled = svcIdx === pages - 1;
+    document.querySelectorAll('.carousel-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === svcIdx);
+    });
+  }
+  function svcStep(dir) { svcIdx = Math.max(0, Math.min(svcTotal - 1, svcIdx + dir)); svcRender(); }
+  function svcGo(i) { svcIdx = i; svcRender(); }
+  window.addEventListener('resize', () => { svcIdx = 0; svcRender(); });
+  svcRender();
 
   if (window.netlifyIdentity) {
     window.netlifyIdentity.on("init", user => {
