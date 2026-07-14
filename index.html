@@ -6,8 +6,8 @@
   <meta name="robots" content="index, follow" />
 
   <title>Marquee Hire Derby, Midlands | White Canvas Events UK | Full-Service Event Hire</title>
-  <meta name="description" content="Premium marquee hire across Derby, Nottingham, Leicester, Birmingham & the Midlands. Full setup, décor, exclusive Memory Vault. Family-run, 5★ rated. Services from £350. Check your date now." />
-  <meta name="keywords" content="marquee hire Derby, marquee hire Midlands, marquee hire Birmingham, marquee hire Nottingham, marquee hire Leicester, marquee hire Sheffield, event hire Midlands, dry hire marquee Derby, wedding marquee Midlands, Memory Vault video box, garden party marquee Derby, corporate event hire Midlands, White Canvas Events UK, full service marquee hire" />
+  <meta name="description" content="One-stop-shop marquee & event hire across Derby, Nottingham, Leicester, Birmingham & the Midlands. Quality marquees (not cheap tents), full setup, décor, tables & chairs, trusted vendors and the exclusive Memory Vault. Family-run, 5★ rated. From £350. Check your date now." />
+  <meta name="keywords" content="marquee hire Derby, marquee hire Midlands, marquee hire Birmingham, marquee hire Nottingham, marquee hire Leicester, marquee hire Sheffield, event hire Midlands, one stop shop event hire Midlands, quality marquee hire not cheap, dry hire marquee Derby, wedding marquee Midlands, Memory Vault video box, garden party marquee Derby, corporate event hire Midlands, event vendor coordination Midlands, White Canvas Events UK, full service marquee hire" />
   <link rel="canonical" href="https://whitecanvasevents.co.uk/" />
   <meta name="geo.region" content="GB-ENG" />
   <meta name="geo.placename" content="Derby, Midlands, United Kingdom" />
@@ -62,7 +62,8 @@
           "itemListElement": [
             { "@type": "Offer", "price": "350", "priceCurrency": "GBP", "itemOffered": { "@type": "Service", "name": "Marquee Hire Derby & Midlands", "description": "Full-service 6x12 metre marquee hire across Derby, Nottingham, Leicester, Birmingham and the Midlands. Includes delivery, setup, décor sourcing and collection." } },
             { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Memory Vault Video Box", "description": "Exclusive cream and gold telephone video box capturing guest messages at events across the Midlands. Packaged and delivered within 5 years." } },
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Dry Hire Marquee Midlands", "description": "Marquee structure only — most competitive rate. Available across Derby and the Midlands." } }
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Dry Hire Marquee Midlands", "description": "Marquee structure only — most competitive rate. Available across Derby and the Midlands." } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "One-Stop-Shop Event Vendor Coordination", "description": "Full event coordination across Derby and the Midlands. Marquee, Memory Vault, backdrops, décor, tables and chairs supplied directly; trusted local vendors such as content creators and food vendors sourced and negotiated on the client's behalf, with admin handled throughout." } }
           ]
         },
         "aggregateRating": {
@@ -80,6 +81,8 @@
           { "@type": "Question", "name": "Do you offer full-service marquee hire including setup and décor?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — unlike many marquee companies, White Canvas Events provides a complete full-service experience. We find and set up your décor, work with local event partners, and style the entire space so you don't have to lift a finger." } },
           { "@type": "Question", "name": "What is the Memory Vault?", "acceptedAnswer": { "@type": "Answer", "text": "The Memory Vault is our exclusive cream and gold telephone video box where guests record heartfelt video messages. It has never been done before in this way in the Midlands. We package and deliver everything within 5 years." } },
           { "@type": "Question", "name": "Are your marquees good quality?", "acceptedAnswer": { "@type": "Answer", "text": "Absolutely. Our marquees are heavy-duty, premium-grade structures — clean, well-maintained and built to last. We refuse to compromise on quality, which is why we're different from budget operators." } },
+          { "@type": "Question", "name": "Are you the cheapest marquee hire in the Midlands?", "acceptedAnswer": { "@type": "Answer", "text": "No, and we don't try to be. Some Midlands companies offer marquees from around £150, which usually means a thin, worn tent that doesn't match the photos. We're not the most expensive option either — we sit deliberately in the middle, with heavy-duty maintained marquees, full styling and setup, and honest pricing from £350." } },
+          { "@type": "Question", "name": "Are you a one-stop shop for event hire in the Midlands?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The marquee, the Memory Vault audio/video guestbook, backdrops and décor, and tables and chairs are all supplied and set up directly by White Canvas Events. We also coordinate a trusted network of local vendors — content and reel creators, food and drink vendors, florists and entertainment — negotiating rates and handling the admin so clients across Derby and the Midlands only have to make one enquiry." } },
           { "@type": "Question", "name": "What types of events does White Canvas Events cater for?", "acceptedAnswer": { "@type": "Answer", "text": "Weddings, birthday parties, anniversaries, garden parties, corporate events, job fairs, pub sports nights, gender reveals, baby showers, cultural celebrations and home events across Derby and the Midlands." } },
           { "@type": "Question", "name": "How far in advance should I book marquee hire?", "acceptedAnswer": { "@type": "Answer", "text": "As early as possible for summer weekends, but we accommodate shorter notice where we can. Check availability for your date by contacting us today." } }
         ]
@@ -423,12 +426,107 @@
 
     /* ── GALLERY ─────────────────────────────────────── */
     #gallery { background: var(--cream); }
-    .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; }
-    @media (max-width: 580px) { .gallery-grid { grid-template-columns: 1fr 1fr; } }
-    .gallery-item { overflow: hidden; aspect-ratio: 1; }
-    .gallery-item:first-child { grid-column: span 2; aspect-ratio: 2/1; }
-    .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease; }
-    .gallery-item:hover img { transform: scale(1.04); }
+
+    .gcarousel { position: relative; }
+    .gcarousel-stage {
+      position: relative; overflow: hidden;
+      background: var(--black);
+      height: clamp(320px, 46vw, 520px);
+    }
+    .gcarousel-track {
+      display: flex; height: 100%;
+      transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+    }
+    .gslide {
+      flex: 0 0 100%; height: 100%; position: relative; cursor: zoom-in;
+    }
+    .gslide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .gslide-caption {
+      position: absolute; left: 0; right: 0; bottom: 0;
+      padding: 2.5rem 1.75rem 1.25rem;
+      background: linear-gradient(0deg, rgba(0,0,0,0.55) 0%, transparent 100%);
+      color: var(--cream); font-size: 0.82rem; letter-spacing: 0.04em;
+      pointer-events: none;
+    }
+    .gcarousel-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 46px; height: 46px; border-radius: 50%;
+      background: rgba(26,20,16,0.55); backdrop-filter: blur(6px);
+      border: 1px solid rgba(247,241,232,0.3); color: var(--cream);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: background 0.2s, border-color 0.2s; z-index: 3;
+    }
+    .gcarousel-arrow:hover { background: var(--gold); border-color: var(--gold); }
+    .gcarousel-arrow.prev { left: 1rem; }
+    .gcarousel-arrow.next { right: 1rem; }
+    .gcarousel-counter {
+      position: absolute; top: 1rem; right: 1rem; z-index: 3;
+      background: rgba(26,20,16,0.55); backdrop-filter: blur(6px);
+      color: var(--cream); font-size: 0.72rem; letter-spacing: 0.1em;
+      padding: 0.35rem 0.8rem; border: 1px solid rgba(247,241,232,0.25);
+      font-family: var(--serif);
+    }
+    .gcarousel-play {
+      position: absolute; top: 1rem; left: 1rem; z-index: 3;
+      background: rgba(26,20,16,0.55); backdrop-filter: blur(6px);
+      color: var(--cream); border: 1px solid rgba(247,241,232,0.25);
+      width: 36px; height: 36px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: background 0.2s;
+    }
+    .gcarousel-play:hover { background: var(--gold); }
+    .gcarousel-thumbs {
+      display: flex; gap: 0.5rem; overflow-x: auto; padding: 1rem 0 0.25rem;
+      scrollbar-width: thin; scrollbar-color: var(--gold) transparent;
+    }
+    .gcarousel-thumbs::-webkit-scrollbar { height: 5px; }
+    .gcarousel-thumbs::-webkit-scrollbar-thumb { background: rgba(184,150,62,0.4); }
+    .gthumb {
+      flex: 0 0 90px; height: 62px; overflow: hidden; cursor: pointer;
+      opacity: 0.5; transition: opacity 0.2s, outline 0.2s; outline: 2px solid transparent; outline-offset: 2px;
+    }
+    .gthumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .gthumb:hover { opacity: 0.85; }
+    .gthumb.active { opacity: 1; outline-color: var(--gold); }
+    .gcarousel-viewall {
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+      margin-top: 1.25rem;
+    }
+    .gcarousel-hint { font-size: 0.78rem; color: var(--mid); }
+    .gcarousel-hint strong { color: var(--gold); font-weight: 500; }
+
+    /* Lightbox */
+    .glightbox {
+      position: fixed; inset: 0; z-index: 500; background: rgba(15,11,8,0.95);
+      display: none; align-items: center; justify-content: center; padding: 2rem;
+    }
+    .glightbox.open { display: flex; }
+    .glightbox img { max-width: 90vw; max-height: 82vh; object-fit: contain; }
+    .glightbox-close {
+      position: absolute; top: 1.5rem; right: 1.5rem;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(247,241,232,0.1); border: 1px solid rgba(247,241,232,0.3);
+      color: var(--cream); display: flex; align-items: center; justify-content: center; cursor: pointer;
+    }
+    .glightbox-close:hover { background: var(--gold); border-color: var(--gold); }
+    .glightbox-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 50px; height: 50px; border-radius: 50%;
+      background: rgba(247,241,232,0.08); border: 1px solid rgba(247,241,232,0.3);
+      color: var(--cream); display: flex; align-items: center; justify-content: center; cursor: pointer;
+    }
+    .glightbox-arrow:hover { background: var(--gold); border-color: var(--gold); }
+    .glightbox-arrow.prev { left: 1.5rem; }
+    .glightbox-arrow.next { right: 1.5rem; }
+    .glightbox-counter {
+      position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+      color: rgba(247,241,232,0.6); font-size: 0.78rem; letter-spacing: 0.1em; font-family: var(--serif);
+    }
+    @media (max-width: 640px) {
+      .gcarousel-arrow { width: 38px; height: 38px; }
+      .glightbox-arrow { width: 40px; height: 40px; }
+      .glightbox-arrow.prev { left: 0.5rem; } .glightbox-arrow.next { right: 0.5rem; }
+    }
 
     /* ── TESTIMONIALS ────────────────────────────────── */
     #testimonials { background: var(--black); }
@@ -811,12 +909,12 @@
       </div>
 
       <div class="why-card">
-        <div class="why-badge">Exclusive service</div>
+        <div class="why-badge">One enquiry, sorted</div>
         <div class="why-icon">
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
         </div>
-        <h3>Local Partners &amp; Suppliers</h3>
-        <p>As we grow, we're building relationships with trusted local suppliers and event partners across Derby, Nottingham and the Midlands. One conversation with us and we'll help point you in the right direction — saving you time trawling through strangers online.</p>
+        <h3>A Genuine One-Stop Shop</h3>
+        <p>Marquee, Memory Vault, backdrops and décor, tables and chairs — all provided directly by us. For everything else, from content creators to food vendors, we lean on a trusted network of Midlands suppliers, negotiate the rate, and handle the admin. One enquiry, not five.</p>
       </div>
 
       <div class="why-card">
@@ -976,6 +1074,7 @@
         <div class="rule"></div>
         <p>White Canvas Events UK was founded on a simple but powerful idea — that premium event experiences should be accessible to everyone, at prices that make sense. We're based in Derby and cover Nottingham, Leicester, Birmingham, Sheffield, Coventry and the whole of the Midlands.</p>
         <p>Unlike most marquee companies, we don't just deliver a structure and disappear. We stay, set up your entire space, arrange your décor, and work with trusted local suppliers to make your event genuinely spectacular. Our marquees are heavy-duty and premium grade — because we refuse to compromise on quality.</p>
+        <p>We're not chasing the £150-a-tent end of the Midlands market, and we're not a premium agency charging for the name. We sit in between, on purpose: fair, transparent pricing for a marquee that actually looks like the photos and a team that turns up and does the job properly.</p>
         <p>You'll always speak directly to us. No scripts, no sales pressure. Just honest advice from people who genuinely care about making your event exceptional.</p>
         <a href="#contact" class="btn-primary" style="display:inline-block;margin-top:1.75rem;">Let's talk about your event</a>
       </div>
@@ -989,27 +1088,68 @@
     <div class="section-head fade-in">
       <p class="eyebrow">See it in action</p>
       <h2 id="gallery-heading">Our marquees &amp;<br /><em>Memory Vault</em> in the Midlands</h2>
-      <p class="section-intro">A glimpse of what we create for events across Derby, Nottingham, Leicester and Birmingham. Get in touch to arrange a viewing.</p>
+      <p class="section-intro">A growing gallery of real setups across Derby, Nottingham, Leicester and Birmingham. Browse the arrows or scrub through the thumbnails below — click any photo to see it full-size.</p>
     </div>
   </div>
-  <div class="gallery-grid fade-in" style="max-width:var(--max);margin:0 auto;padding:0 var(--pad);">
-    <div class="gallery-item">
-      <img src="/images/uploads/large-marquee-decor1.jpg" alt="White Canvas Events UK — full-service marquee interior with styling and décor, Derby Midlands event hire" loading="lazy" onerror="this.parentElement.style.background='#ede5d8'" />
-    </div>
-    <div class="gallery-item">
-      <img src="/images/uploads/marquee-inside.JPG" alt="Inside a premium White Canvas Events UK marquee — wedding and event hire across the Midlands" loading="lazy" onerror="this.parentElement.style.background='#ede5d8'" />
-    </div>
-    <div class="gallery-item">
-      <img src="/images/uploads/marquee-networking-event.jpg" alt="White Canvas Events UK smaller marquee interior — intimate event hire Derby and Nottingham" loading="lazy" onerror="this.parentElement.style.background='#ede5d8'" />
-    </div>
-    <div class="gallery-item">
-      <img src="/images/uploads/marquee-footballnew.png" alt="White Canvas Events UK marquee exterior rear view — premium quality event structures Midlands" loading="lazy" onerror="this.parentElement.style.background='#ede5d8'" />
-    </div>
-    <div class="gallery-item">
-      <img src="/images/uploads/Small-marquee-decor.jpg" alt="White Canvas Events UK styled marquee with décor — garden party and wedding hire Leicester Birmingham" loading="lazy" onerror="this.parentElement.style.background='#ede5d8'" />
+
+  <div class="container">
+    <div class="gcarousel fade-in" id="gCarousel">
+      <div class="gcarousel-stage">
+        <div class="gcarousel-track" id="gTrack">
+          <!--
+            ONGOING GALLERY: to add a new photo, just add one more <div class="gslide"> block
+            here (and a matching thumbnail in the strip below) — the carousel, counter,
+            thumbnails and lightbox all update automatically, no other changes needed.
+          -->
+          <div class="gslide"><img src="/images/uploads/large-marquee-decor1.jpg" alt="White Canvas Events UK — full-service marquee interior with styling and décor, Derby Midlands event hire" loading="eager" onerror="this.closest('.gslide').style.background='#3d3530'" /><div class="gslide-caption">Full-service marquee interior — Derby &amp; Midlands</div></div>
+           <div class="gslide"><img src="/images/uploads/classic-white-backdrop-goosedale.jpg" alt="White Canvas Events UK — full-service marquee interior with styling and décor, Derby Midlands event hire" loading="eager" onerror="this.closest('.gslide').style.background='#3d3530'" /><div class="gslide-caption">Full-service marquee interior — Derby &amp; Midlands</div></div>
+           <div class="gslide"><img src="/images/uploads/colourful-decor-large-marquee.png" alt="White Canvas Events UK — full-service marquee interior with styling and décor, Derby Midlands event hire" loading="eager" onerror="this.closest('.gslide').style.background='#3d3530'" /><div class="gslide-caption">Full-service marquee interior — Derby &amp; Midlands</div></div>
+           <div class="gslide"><img src="/images/uploads/Cream-decor-large-marquee.png" alt="White Canvas Events UK — full-service marquee interior with styling and décor, Derby Midlands event hire" loading="eager" onerror="this.closest('.gslide').style.background='#3d3530'" /><div class="gslide-caption">Full-service marquee interior — Derby &amp; Midlands</div></div>
+          <div class="gslide"><img src="/images/uploads/marquee-inside.JPG" alt="Inside a premium White Canvas Events UK marquee — wedding and event hire across the Midlands" loading="lazy" onerror="this.closest('.gslide').style.background='#3d3530'" /><div class="gslide-caption">Wedding &amp; event marquee interior</div></div>
+          <div class="gslide"><img src="/images/uploads/marquee-networking-event.jpg" alt="White Canvas Events UK smaller marquee interior — intimate event hire Derby and Nottingham" loading="lazy" onerror="this.closest('.gslide').style.background='#3d3530'" /><div class="gslide-caption">Intimate event setup — Derby &amp; Nottingham</div></div>
+          <div class="gslide"><img src="/images/uploads/marquee-footballnew.png" alt="White Canvas Events UK marquee exterior rear view — premium quality event structures Midlands" loading="lazy" onerror="this.closest('.gslide').style.background='#3d3530'" /><div class="gslide-caption">Heavy-duty, premium-grade marquee structure</div></div>
+          <div class="gslide"><img src="/images/uploads/Small-marquee-decor.jpg" alt="White Canvas Events UK styled marquee with décor — garden party and wedding hire Leicester Birmingham" loading="lazy" onerror="this.closest('.gslide').style.background='#3d3530'" /><div class="gslide-caption">Styled garden party marquee — Leicester &amp; Birmingham</div></div>
+          <div class="gslide"><img src="/images/uploads/marquee-front.JPG" alt="White Canvas Events UK premium marquee exterior — full-service marquee hire Derby and Midlands" loading="lazy" onerror="this.closest('.gslide').style.background='#3d3530'" /><div class="gslide-caption">Premium marquee exterior — Derby-based, Midlands-wide</div></div>
+          <div class="gslide"><img src="/images/uploads/marquee-beer-garden.png" alt="White Canvas Events UK marquee exterior — full-service event hire based in Derby, covering the Midlands" loading="lazy" onerror="this.closest('.gslide').style.background='#3d3530'" /><div class="gslide-caption">Garden marquee setup, dressed and ready</div></div>
+        </div>
+
+        <button class="gcarousel-play" id="gPlayBtn" onclick="gTogglePlay()" aria-label="Pause automatic slideshow">
+          <svg id="gPlayIcon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+        </button>
+        <span class="gcarousel-counter" id="gCounter">1 / 7</span>
+
+        <button class="gcarousel-arrow prev" onclick="gStep(-1)" aria-label="Previous photo">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        </button>
+        <button class="gcarousel-arrow next" onclick="gStep(1)" aria-label="Next photo">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+
+      <div class="gcarousel-thumbs" id="gThumbs"></div>
+
+      <div class="gcarousel-viewall">
+        <p class="gcarousel-hint">Click any photo to view it full-size · <strong>Live event photos added regularly</strong></p>
+        <a href="#contact" class="svc-link">Get in touch to arrange a viewing <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
     </div>
   </div>
 </section>
+
+<!-- Lightbox (shared by gallery carousel) -->
+<div class="glightbox" id="gLightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <button class="glightbox-close" onclick="gLightboxClose()" aria-label="Close photo viewer">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <button class="glightbox-arrow prev" onclick="gLightboxStep(-1)" aria-label="Previous photo">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+  </button>
+  <img id="gLightboxImg" src="" alt="" />
+  <button class="glightbox-arrow next" onclick="gLightboxStep(1)" aria-label="Next photo">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </button>
+  <span class="glightbox-counter" id="gLightboxCounter">1 / 7</span>
+</div>
 
 <!-- ═══ TESTIMONIALS ════════════════════════════════════════════════════ -->
 <section id="testimonials" aria-labelledby="testi-heading">
@@ -1119,10 +1259,10 @@
 
       <div class="faq-accordion" role="listitem">
         <button class="faq-trigger" aria-expanded="false" onclick="toggleFaq(this)">
-          <span class="faq-trigger-text">Can you help with other suppliers for my event?</span>
+          <span class="faq-trigger-text">Are you a one-stop shop, or do I still need to book other suppliers myself?</span>
           <span class="faq-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
         </button>
-        <div class="faq-body"><div class="faq-body-inner">We're building relationships with trusted local suppliers and event partners across Derby and the Midlands. While we're growing those connections, we're always happy to point you in the right direction — just ask us when you enquire and we'll help where we can.</div></div>
+        <div class="faq-body"><div class="faq-body-inner">We're genuinely a one-stop shop. The marquee, the Memory Vault audio/video guestbook, backdrops and décor, and tables and chairs are all provided directly by us — no third party involved, no handoffs. For everything beyond that, we've built a trusted network of local vendors across the Midlands, including content and reel creators, food and drink vendors, florists and entertainment. Because we work with them regularly, we can usually get you a better rate than booking direct, and we handle the coordination and admin — chasing quotes, confirming timings, keeping everyone talking to each other — so you're not juggling five different suppliers on top of your own life. One enquiry to us covers as much or as little of your event as you need.</div></div>
       </div>
 
       <div class="faq-accordion" role="listitem">
@@ -1131,6 +1271,14 @@
           <span class="faq-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
         </button>
         <div class="faq-body"><div class="faq-body-inner">Yes, genuinely. Our marquees are heavy-duty, premium-grade structures — spotlessly clean, well-maintained and built to handle British weather properly. We're aware that many budget marquee options across the Midlands fall far short of what's advertised. Ours don't. We price fairly because we run lean, not because we cut corners on quality.</div></div>
+      </div>
+
+      <div class="faq-accordion" role="listitem">
+        <button class="faq-trigger" aria-expanded="false" onclick="toggleFaq(this)">
+          <span class="faq-trigger-text">Are you the cheapest marquee hire in the Midlands?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">Honestly, no — and we don't try to be. There are companies across the Midlands offering marquees from around £150, and we can't and won't compete with that, because it usually means a thin, tired-looking tent that doesn't match the photos. We're not the most expensive option either. We sit in the middle deliberately: heavy-duty, properly maintained marquees, a full styling and setup service, and honest pricing from £350 — priced for people who want their event to actually look like the pictures, without paying premium-agency rates for it. If budget is the only thing that matters, we're probably not your cheapest quote. If quality and being looked after matter too, we think we're very good value.</div></div>
       </div>
 
       <div class="faq-accordion" role="listitem">
@@ -1382,6 +1530,116 @@
   function testiStep(dir) { testiGo(Math.max(0, Math.min(testiSlides.length - 1, testiIdx + dir))); }
   testiGo(0);
   setInterval(() => testiStep(testiIdx === testiSlides.length - 1 ? -(testiSlides.length - 1) : 1), 6000);
+
+  // ── GALLERY CAROUSEL ──────────────────────────────────────────────
+  (function () {
+    const track   = document.getElementById('gTrack');
+    const slides  = Array.from(track.querySelectorAll('.gslide'));
+    const thumbs  = document.getElementById('gThumbs');
+    const counter = document.getElementById('gCounter');
+    const playBtn = document.getElementById('gPlayBtn');
+    const playIcon = document.getElementById('gPlayIcon');
+    const stage   = document.querySelector('.gcarousel-stage');
+    const total   = slides.length;
+    let idx = 0;
+    let playing = true;
+    let timer = null;
+
+    // Build thumbnail strip from the slides so it always matches
+    slides.forEach((slide, i) => {
+      const img = slide.querySelector('img');
+      const t = document.createElement('div');
+      t.className = 'gthumb' + (i === 0 ? ' active' : '');
+      t.innerHTML = `<img src="${img.src}" alt="${img.alt}" loading="lazy" />`;
+      t.addEventListener('click', () => { gGo(i); gRestartAutoplay(); });
+      thumbs.appendChild(t);
+    });
+    const thumbEls = Array.from(thumbs.querySelectorAll('.gthumb'));
+
+    function render() {
+      track.style.transform = `translateX(-${idx * 100}%)`;
+      counter.textContent = `${idx + 1} / ${total}`;
+      thumbEls.forEach((t, i) => t.classList.toggle('active', i === idx));
+      const activeThumb = thumbEls[idx];
+      if (activeThumb) activeThumb.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }
+    function gGo(i) { idx = ((i % total) + total) % total; render(); }
+    function gStep(dir) { gGo(idx + dir); }
+    window.gGo = gGo;
+    window.gStep = gStep;
+
+    function gStartAutoplay() { timer = setInterval(() => gStep(1), 4500); }
+    function gStopAutoplay() { clearInterval(timer); }
+    function gRestartAutoplay() { if (playing) { gStopAutoplay(); gStartAutoplay(); } }
+
+    window.gTogglePlay = function () {
+      playing = !playing;
+      if (playing) {
+        gStartAutoplay();
+        playIcon.innerHTML = '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
+        playBtn.setAttribute('aria-label', 'Pause automatic slideshow');
+      } else {
+        gStopAutoplay();
+        playIcon.innerHTML = '<path d="M8 5v14l11-7z"/>';
+        playBtn.setAttribute('aria-label', 'Play automatic slideshow');
+      }
+    };
+
+    // Pause on hover / touch so people can linger, resume on leave
+    stage.addEventListener('mouseenter', gStopAutoplay);
+    stage.addEventListener('mouseleave', () => { if (playing) gStartAutoplay(); });
+
+    // Click a slide to open the lightbox
+    slides.forEach((slide, i) => slide.addEventListener('click', () => gLightboxOpen(i)));
+
+    // ── Lightbox ──
+    const lightbox   = document.getElementById('gLightbox');
+    const lbImg      = document.getElementById('gLightboxImg');
+    const lbCounter  = document.getElementById('gLightboxCounter');
+    let lbIdx = 0;
+
+    window.gLightboxOpen = function (i) {
+      lbIdx = i;
+      lbImg.src = slides[lbIdx].querySelector('img').src;
+      lbImg.alt = slides[lbIdx].querySelector('img').alt;
+      lbCounter.textContent = `${lbIdx + 1} / ${total}`;
+      lightbox.classList.add('open');
+      gStopAutoplay();
+      document.body.style.overflow = 'hidden';
+    };
+    window.gLightboxClose = function () {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+      if (playing) gStartAutoplay();
+    };
+    window.gLightboxStep = function (dir) {
+      lbIdx = ((lbIdx + dir) % total + total) % total;
+      lbImg.src = slides[lbIdx].querySelector('img').src;
+      lbImg.alt = slides[lbIdx].querySelector('img').alt;
+      lbCounter.textContent = `${lbIdx + 1} / ${total}`;
+      gGo(lbIdx);
+    };
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) gLightboxClose(); });
+    document.addEventListener('keydown', e => {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape') gLightboxClose();
+      if (e.key === 'ArrowRight') gLightboxStep(1);
+      if (e.key === 'ArrowLeft') gLightboxStep(-1);
+    });
+
+    // Basic swipe support on the main stage
+    let touchX = null;
+    stage.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
+    stage.addEventListener('touchend', e => {
+      if (touchX === null) return;
+      const dx = e.changedTouches[0].clientX - touchX;
+      if (Math.abs(dx) > 40) { gStep(dx < 0 ? 1 : -1); gRestartAutoplay(); }
+      touchX = null;
+    });
+
+    render();
+    gStartAutoplay();
+  })();
 
   // Sticky CTA
   const stickyCta = document.getElementById('stickyCta');
