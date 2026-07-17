@@ -414,6 +414,14 @@
     @keyframes eventTickerScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
     @media (prefers-reduced-motion: reduce) { .event-ticker-track { animation: none; } }
 
+    /* ── MID-PAGE PRICING CTA ─────────────────────────── */
+    .mid-pricing-cta { background: var(--black); padding: clamp(2.5rem,5vw,3.5rem) var(--pad); }
+    .mid-pricing-inner { display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .mid-pricing-text h3 { font-family: var(--serif); font-size: clamp(1.4rem,3vw,1.9rem); font-weight: 300; color: var(--cream); margin-bottom: 0.4rem; }
+    .mid-pricing-text p { font-size: 0.85rem; color: rgba(247,241,232,0.5); max-width: 460px; }
+    .mid-pricing-btn { white-space: nowrap; flex-shrink: 0; }
+    @media (max-width: 640px) { .mid-pricing-inner { flex-direction: column; align-items: flex-start; } .mid-pricing-btn { width: 100%; text-align: center; } }
+
     .event-cat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
     @media (max-width: 760px) { .event-cat-grid { grid-template-columns: 1fr; } }
     .event-cat-card { background: var(--white); border: 1px solid rgba(184,150,62,0.15); border-top: 2px solid var(--gold); padding: 2.25rem 2rem; transition: box-shadow 0.2s, transform 0.2s; }
@@ -1048,6 +1056,18 @@
   </div>
 </section>
 
+<!-- ═══ MID-PAGE PRICING CTA ══════════════════════════════════════════════ -->
+<section class="mid-pricing-cta" aria-label="Pricing calculator prompt">
+  <div class="container mid-pricing-inner">
+    <div class="mid-pricing-text">
+      <p class="eyebrow" style="color:var(--gold);justify-content:flex-start;">Wondering what it'll cost?</p>
+      <h3>Price up your exact marquee in under a minute</h3>
+      <p>Pick your size, add any extras, see the total instantly — no need to wait for a quote.</p>
+    </div>
+    <a href="/pricing.html" class="btn-primary pulse mid-pricing-btn">Try the Price Calculator</a>
+  </div>
+</section>
+
 <!-- ═══ HOW IT WORKS ══════════════════════════════════════════════════════ -->
 <section id="how-it-works" class="section" aria-labelledby="hiw-heading">
   <div class="container">
@@ -1245,91 +1265,6 @@
   </div>
 </section>
 
-<!-- ═══ FAQ ════════════════════════════════════════════════════════════════ -->
-<section id="faq" class="section" aria-labelledby="faq-heading">
-  <div class="container">
-    <div class="section-head fade-in">
-      <p class="eyebrow">Common questions</p>
-      <h2 id="faq-heading">Marquee hire in the Midlands —<br />everything you need to <em>know</em></h2>
-    </div>
-    <div class="faq-list" role="list">
-
-      <div class="faq-accordion" role="listitem">
-        <button class="faq-trigger" aria-expanded="false" onclick="toggleFaq(this)">
-          <span class="faq-trigger-text">What areas do you cover for marquee hire?</span>
-          <span class="faq-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
-        </button>
-        <div class="faq-body"><div class="faq-body-inner">We're based in Derby and cover the whole Midlands — Nottingham, Leicester, Birmingham, Sheffield, Coventry, Wolverhampton, Stoke-on-Trent and all surrounding areas. Derby is our home base, which means we can often offer faster response times and more competitive pricing for local events. Not sure if we reach you? Just ask — we'll always tell you honestly.</div></div>
-      </div>
-
-      <div class="faq-accordion" role="listitem">
-        <button class="faq-trigger" aria-expanded="false" onclick="toggleFaq(this)">
-          <span class="faq-trigger-text">How much does marquee hire cost in the Midlands?</span>
-          <span class="faq-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
-        </button>
-        <div class="faq-body"><div class="faq-body-inner">Our services start from £300. Pricing depends on the package, level of setup, styling requirements and your location across the Midlands. We'll always give you a clear, honest quote with no hidden costs — and we'll work with your budget to find the right solution. Get in touch with your date and we'll come back with a tailored price.</div></div>
-      </div>
-
-      <div class="faq-accordion" role="listitem">
-        <button class="faq-trigger" aria-expanded="false" onclick="toggleFaq(this)">
-          <span class="faq-trigger-text">Do you really set up all the décor for us?</span>
-          <span class="faq-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
-        </button>
-        <div class="faq-body"><div class="faq-body-inner">Yes — and this is one of the things that genuinely sets us apart from other marquee hire companies in the Midlands. Most companies deliver a structure and leave. We stay and style your entire space. We source décor, dress tables, manage the layout and make sure everything looks exactly how you imagined. You don't have to coordinate suppliers or lift a finger on the day.</div></div>
-      </div>
-
-      <div class="faq-accordion" role="listitem">
-        <button class="faq-trigger" aria-expanded="false" onclick="toggleFaq(this)">
-          <span class="faq-trigger-text">Are you a one-stop shop, or do I still need to book other suppliers myself?</span>
-          <span class="faq-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
-        </button>
-        <div class="faq-body"><div class="faq-body-inner">We're genuinely a one-stop shop. The marquee, the Memory Vault audio/video guestbook, backdrops and décor, and tables and chairs are all provided directly by us — no third party involved, no handoffs. For everything beyond that, we've built a trusted network of local vendors across the Midlands, including content and reel creators, food and drink vendors, florists and entertainment. Because we work with them regularly, we can usually get you a better rate than booking direct, and we handle the coordination and admin — chasing quotes, confirming timings, keeping everyone talking to each other — so you're not juggling five different suppliers on top of your own life. One enquiry to us covers as much or as little of your event as you need.</div></div>
-      </div>
-
-      <div class="faq-accordion" role="listitem">
-        <button class="faq-trigger" aria-expanded="false" onclick="toggleFaq(this)">
-          <span class="faq-trigger-text">Are your marquees actually good quality?</span>
-          <span class="faq-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
-        </button>
-        <div class="faq-body"><div class="faq-body-inner">Yes, genuinely. Our marquees are heavy-duty, premium-grade structures — spotlessly clean, well-maintained and built to handle British weather properly. We're aware that many budget marquee options across the Midlands fall far short of what's advertised. Ours don't. We price fairly because we run lean, not because we cut corners on quality.</div></div>
-      </div>
-
-      <div class="faq-accordion" role="listitem">
-        <button class="faq-trigger" aria-expanded="false" onclick="toggleFaq(this)">
-          <span class="faq-trigger-text">Are you the cheapest marquee hire in the Midlands?</span>
-          <span class="faq-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
-        </button>
-        <div class="faq-body"><div class="faq-body-inner">Honestly, no — and we don't try to be. There are companies across the Midlands offering marquees from around £150, and we can't and won't compete with that, because it usually means a thin, tired-looking tent that doesn't match the photos. We're not the most expensive option either. We sit in the middle deliberately: heavy-duty, properly maintained marquees, a full styling and setup service, and honest pricing from £300 — priced for people who want their event to actually look like the pictures, without paying premium-agency rates for it. If budget is the only thing that matters, we're probably not your cheapest quote. If quality and being looked after matter too, we think we're very good value.</div></div>
-      </div>
-
-      <div class="faq-accordion" role="listitem">
-        <button class="faq-trigger" aria-expanded="false" onclick="toggleFaq(this)">
-          <span class="faq-trigger-text">What is the Memory Vault and where can I hire it?</span>
-          <span class="faq-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
-        </button>
-        <div class="faq-body"><div class="faq-body-inner">The Memory Vault is our exclusive cream and gold telephone video box — guests pick up the receiver and record heartfelt personal video messages. We then package and preserve everything, and deliver it to you within 5 years as a keepsake. There is nothing else like it available in Derby, Nottingham, Leicester, Birmingham or anywhere in the Midlands. It's a product we created, exclusive to White Canvas Events UK.</div></div>
-      </div>
-
-      <div class="faq-accordion" role="listitem">
-        <button class="faq-trigger" aria-expanded="false" onclick="toggleFaq(this)">
-          <span class="faq-trigger-text">Can I hire the Memory Vault without a marquee?</span>
-          <span class="faq-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
-        </button>
-        <div class="faq-body"><div class="faq-body-inner">Absolutely. The Memory Vault works as standalone hire at any venue — a home, a pub, a corporate space, a wedding venue. No marquee needed. It's perfect as a standalone addition to any event anywhere across the Midlands.</div></div>
-      </div>
-
-      <div class="faq-accordion" role="listitem">
-        <button class="faq-trigger" aria-expanded="false" onclick="toggleFaq(this)">
-          <span class="faq-trigger-text">How far in advance should I book?</span>
-          <span class="faq-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
-        </button>
-        <div class="faq-body"><div class="faq-body-inner">As early as possible — particularly for summer weekends in Derby, Nottingham, Leicester and Birmingham, which fill up fast. That said, we always do our best with shorter notice too. The quickest way to find out is to check your date with us now. It takes two minutes and there's no obligation.</div></div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
 <!-- ═══ CONTACT ════════════════════════════════════════════════════════════ -->
 <section id="contact" class="section" aria-labelledby="contact-heading">
   <div class="container">
@@ -1431,6 +1366,91 @@
             </a>
           </div>
         </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FAQ ════════════════════════════════════════════════════════════════ -->
+<section id="faq" class="section" aria-labelledby="faq-heading">
+  <div class="container">
+    <div class="section-head fade-in">
+      <p class="eyebrow">Common questions</p>
+      <h2 id="faq-heading">Marquee hire in the Midlands —<br />everything you need to <em>know</em></h2>
+    </div>
+    <div class="faq-list" role="list">
+
+      <div class="faq-accordion" role="listitem">
+        <button class="faq-trigger" aria-expanded="false" onclick="toggleFaq(this)">
+          <span class="faq-trigger-text">What areas do you cover for marquee hire?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">We're based in Derby and cover the whole Midlands — Nottingham, Leicester, Birmingham, Sheffield, Coventry, Wolverhampton, Stoke-on-Trent and all surrounding areas. Derby is our home base, which means we can often offer faster response times and more competitive pricing for local events. Not sure if we reach you? Just ask — we'll always tell you honestly.</div></div>
+      </div>
+
+      <div class="faq-accordion" role="listitem">
+        <button class="faq-trigger" aria-expanded="false" onclick="toggleFaq(this)">
+          <span class="faq-trigger-text">How much does marquee hire cost in the Midlands?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">Our services start from £300. Pricing depends on the package, level of setup, styling requirements and your location across the Midlands. We'll always give you a clear, honest quote with no hidden costs — and we'll work with your budget to find the right solution. Get in touch with your date and we'll come back with a tailored price.</div></div>
+      </div>
+
+      <div class="faq-accordion" role="listitem">
+        <button class="faq-trigger" aria-expanded="false" onclick="toggleFaq(this)">
+          <span class="faq-trigger-text">Do you really set up all the décor for us?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">Yes — and this is one of the things that genuinely sets us apart from other marquee hire companies in the Midlands. Most companies deliver a structure and leave. We stay and style your entire space. We source décor, dress tables, manage the layout and make sure everything looks exactly how you imagined. You don't have to coordinate suppliers or lift a finger on the day.</div></div>
+      </div>
+
+      <div class="faq-accordion" role="listitem">
+        <button class="faq-trigger" aria-expanded="false" onclick="toggleFaq(this)">
+          <span class="faq-trigger-text">Are you a one-stop shop, or do I still need to book other suppliers myself?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">We're genuinely a one-stop shop. The marquee, the Memory Vault audio/video guestbook, backdrops and décor, and tables and chairs are all provided directly by us — no third party involved, no handoffs. For everything beyond that, we've built a trusted network of local vendors across the Midlands, including content and reel creators, food and drink vendors, florists and entertainment. Because we work with them regularly, we can usually get you a better rate than booking direct, and we handle the coordination and admin — chasing quotes, confirming timings, keeping everyone talking to each other — so you're not juggling five different suppliers on top of your own life. One enquiry to us covers as much or as little of your event as you need.</div></div>
+      </div>
+
+      <div class="faq-accordion" role="listitem">
+        <button class="faq-trigger" aria-expanded="false" onclick="toggleFaq(this)">
+          <span class="faq-trigger-text">Are your marquees actually good quality?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">Yes, genuinely. Our marquees are heavy-duty, premium-grade structures — spotlessly clean, well-maintained and built to handle British weather properly. We're aware that many budget marquee options across the Midlands fall far short of what's advertised. Ours don't. We price fairly because we run lean, not because we cut corners on quality.</div></div>
+      </div>
+
+      <div class="faq-accordion" role="listitem">
+        <button class="faq-trigger" aria-expanded="false" onclick="toggleFaq(this)">
+          <span class="faq-trigger-text">Are you the cheapest marquee hire in the Midlands?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">Honestly, no — and we don't try to be. There are companies across the Midlands offering marquees from around £150, and we can't and won't compete with that, because it usually means a thin, tired-looking tent that doesn't match the photos. We're not the most expensive option either. We sit in the middle deliberately: heavy-duty, properly maintained marquees, a full styling and setup service, and honest pricing from £300 — priced for people who want their event to actually look like the pictures, without paying premium-agency rates for it. If budget is the only thing that matters, we're probably not your cheapest quote. If quality and being looked after matter too, we think we're very good value.</div></div>
+      </div>
+
+      <div class="faq-accordion" role="listitem">
+        <button class="faq-trigger" aria-expanded="false" onclick="toggleFaq(this)">
+          <span class="faq-trigger-text">What is the Memory Vault and where can I hire it?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">The Memory Vault is our exclusive cream and gold telephone video box — guests pick up the receiver and record heartfelt personal video messages. We then package and preserve everything, and deliver it to you within 5 years as a keepsake. There is nothing else like it available in Derby, Nottingham, Leicester, Birmingham or anywhere in the Midlands. It's a product we created, exclusive to White Canvas Events UK.</div></div>
+      </div>
+
+      <div class="faq-accordion" role="listitem">
+        <button class="faq-trigger" aria-expanded="false" onclick="toggleFaq(this)">
+          <span class="faq-trigger-text">Can I hire the Memory Vault without a marquee?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">Absolutely. The Memory Vault works as standalone hire at any venue — a home, a pub, a corporate space, a wedding venue. No marquee needed. It's perfect as a standalone addition to any event anywhere across the Midlands.</div></div>
+      </div>
+
+      <div class="faq-accordion" role="listitem">
+        <button class="faq-trigger" aria-expanded="false" onclick="toggleFaq(this)">
+          <span class="faq-trigger-text">How far in advance should I book?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">As early as possible — particularly for summer weekends in Derby, Nottingham, Leicester and Birmingham, which fill up fast. That said, we always do our best with shorter notice too. The quickest way to find out is to check your date with us now. It takes two minutes and there's no obligation.</div></div>
       </div>
 
     </div>
