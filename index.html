@@ -1483,6 +1483,22 @@ window.__wceSiteJsLoaded = true;
 document.addEventListener('DOMContentLoaded', function () {
 
   // ── Reliable in-page anchor scrolling ──────────────────────────
+  // Pre-fill the contact form if the person came from the pricing calculator
+  try {
+    const saved = localStorage.getItem('wce_calc_prefill');
+    if (saved) {
+      const d = JSON.parse(saved);
+      const messageEl = document.getElementById('message');
+      const serviceEl = document.getElementById('service');
+      if (messageEl && !messageEl.value) {
+        const extrasText = d.extras.length ? `, extras: ${d.extras.join(', ')}` : '';
+        messageEl.value = `Priced up on your calculator: ${d.width}m x ${d.length}m marquee${extrasText}. Estimated total: £${d.total.toLocaleString()} (seats ${d.seated}, stands ${d.standing}).`;
+      }
+      if (serviceEl) serviceEl.value = 'Marquee Hire (Full Service)';
+      localStorage.removeItem('wce_calc_prefill');
+    }
+  } catch (e) { /* localStorage unavailable — form still works, just won't pre-fill */ }
+
   // Native anchor jumps + CSS scroll-margin can land on the wrong section
   // if the page height shifts at all. This computes the real target
   // position at click time instead, so it can't drift to the wrong place.
