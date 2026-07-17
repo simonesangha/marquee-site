@@ -748,7 +748,8 @@
       <div class="calc-result-price" id="calc-price">£300</div>
       <div class="calc-result-cap" id="calc-capacity">Seats 24 · Stands 35</div>
     </div>
-    <a href="/index.html#contact" class="btn-primary pulse calc-cta">Check Availability For This Size</a>
+    <p style="text-align:center;font-size:0.72rem;color:rgba(247,241,232,0.45);margin-top:0.85rem;">Includes delivery, installation &amp; collection — no hidden extras</p>
+    <a href="/index.html#contact" class="btn-primary pulse calc-cta" id="calc-cta">Check Availability For This Size</a>
   </div>
 </div>
 
@@ -1133,12 +1134,26 @@ document.addEventListener('DOMContentLoaded', function () {
     const length = document.getElementById('calc-length').value;
     const d = PRICE_DATA[width][length];
     if (!d) return;
+    const extras = [];
+    if (document.getElementById('calc-lining').checked) extras.push('Lining');
+    if (document.getElementById('calc-carpet').checked) extras.push('Carpet');
+    if (document.getElementById('calc-lighting').checked) extras.push('Lighting');
     let total = d.marquee;
     if (document.getElementById('calc-lining').checked) total += d.lining;
     if (document.getElementById('calc-carpet').checked) total += d.carpet;
     if (document.getElementById('calc-lighting').checked) total += d.lighting;
     document.getElementById('calc-price').textContent = '£' + total.toLocaleString();
     document.getElementById('calc-capacity').textContent = `Seats ${d.seated} · Stands ${d.standing}`;
+
+    // Show the actual price on the button itself — more compelling than generic text,
+    // and save the selection so the contact form on the homepage can pre-fill from it.
+    const ctaBtn = document.getElementById('calc-cta');
+    ctaBtn.textContent = `Check Availability — £${total.toLocaleString()}`;
+    try {
+      localStorage.setItem('wce_calc_prefill', JSON.stringify({
+        width, length, extras, total, seated: d.seated, standing: d.standing
+      }));
+    } catch (e) { /* localStorage unavailable — CTA still works, just won't pre-fill */ }
   }
   document.getElementById('calc-width').addEventListener('change', () => { populateLengths(); calcPrice(); });
   document.getElementById('calc-length').addEventListener('change', calcPrice);
