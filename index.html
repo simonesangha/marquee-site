@@ -1764,13 +1764,27 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // ── Cookie consent + GA (any page) ─────────────────────────────
   window.enableGA = function () { if (window.gtag) gtag('config', 'G-W1EBPB2N87'); };
+  window.enableFB = function () {
+    if (window.__wceFbPixelLoaded) return;
+    window.__wceFbPixelLoaded = true;
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '2485969114761774');
+    fbq('track', 'PageView');
+  };
   if (window.cookieconsent) {
     window.cookieconsent.initialise({
       palette: { popup: { background: "#000000", text: "#f5f0e6" }, button: { background: "#d4af37", text: "#000000" } },
       theme: "classic", type: "opt-in", position: "bottom",
       content: { message: "We use cookies to improve your browsing experience and analyse traffic.", allow: "Accept", deny: "Reject", link: "Privacy Policy", href: "/privacy-policy.html" },
-      onInitialise: function (status) { if (status == cookieconsent.status.allow) window.enableGA(); },
-      onStatusChange: function (status) { if (status == cookieconsent.status.allow) window.enableGA(); }
+      onInitialise: function (status) { if (status == cookieconsent.status.allow) { window.enableGA(); window.enableFB(); } },
+      onStatusChange: function (status) { if (status == cookieconsent.status.allow) { window.enableGA(); window.enableFB(); } }
     });
   }
 
