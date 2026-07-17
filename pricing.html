@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow" />
+  <title>Marquee Hire Prices | White Canvas Events UK | Instant Price Calculator</title>
+  <meta name="description" content="See our full marquee hire price list for Derby & the Midlands, or use our instant calculator to price up your size and extras. From £300, no hidden costs." />
+  <link rel="canonical" href="https://whitecanvasevents.co.uk/pricing.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/site.css" />
+  <style>
+    #pricing-hero { padding: calc(80px + 3.5rem) var(--pad) 3rem; text-align: center; background: var(--cream); }
+    #pricing-hero h1 { margin-bottom: 0.75rem; }
+    #pricing-hero p { color: var(--mid); max-width: 560px; margin: 0 auto; font-size: 0.95rem; line-height: 1.8; }
+
+    .calc-wrap { background: var(--black); padding: clamp(3rem,7vw,5rem) var(--pad); }
+    .calc-card { max-width: 760px; margin: 0 auto; background: #221c17; border: 1px solid rgba(184,150,62,0.2); padding: clamp(1.75rem,4vw,3rem); }
+    .calc-card h2 { color: var(--cream); text-align: center; margin-bottom: 0.5rem; }
+    .calc-card > p.calc-intro { color: rgba(247,241,232,0.5); text-align: center; font-size: 0.85rem; margin-bottom: 2.25rem; }
+    .calc-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.25rem; }
+    @media (max-width: 560px) { .calc-row { grid-template-columns: 1fr; } }
+    .calc-field label { display: block; font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+    .calc-field select {
+      width: 100%; background: #1a1410; border: 1px solid rgba(184,150,62,0.3); color: var(--cream);
+      padding: 0.85rem 1rem; font-family: var(--sans); font-size: 0.9rem; appearance: none; cursor: pointer;
+    }
+    .calc-extras { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin: 1.5rem 0; }
+    @media (max-width: 560px) { .calc-extras { grid-template-columns: 1fr; } }
+    .calc-extra { display: flex; align-items: center; gap: 0.6rem; background: #1a1410; border: 1px solid rgba(184,150,62,0.2); padding: 0.85rem 1rem; cursor: pointer; transition: border-color 0.2s; }
+    .calc-extra:hover { border-color: rgba(184,150,62,0.5); }
+    .calc-extra input { accent-color: var(--gold); width: 16px; height: 16px; cursor: pointer; }
+    .calc-extra span { font-size: 0.82rem; color: var(--cream); }
+    .calc-result { margin-top: 2rem; padding: 1.75rem; background: rgba(184,150,62,0.08); border: 1px solid rgba(184,150,62,0.3); text-align: center; }
+    .calc-result-label { font-size: 0.65rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+    .calc-result-price { font-family: var(--serif); font-size: clamp(2.2rem,5vw,3rem); color: var(--cream); }
+    .calc-result-cap { font-size: 0.78rem; color: rgba(247,241,232,0.5); margin-top: 0.5rem; }
+    .calc-cta { display: block; text-align: center; margin-top: 1.75rem; }
+
+    .price-table-section { padding: clamp(4rem,8vw,6rem) var(--pad); background: var(--white); }
+    .price-table-wrap { max-width: var(--max); margin: 0 auto 3.5rem; overflow-x: auto; }
+    .price-table-wrap h3 { font-family: var(--serif); font-size: 1.4rem; font-weight: 300; margin-bottom: 1rem; }
+    table.price-table { width: 100%; border-collapse: collapse; min-width: 620px; }
+    table.price-table th { background: var(--black); color: var(--cream); font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.75rem 0.9rem; text-align: left; font-weight: 400; }
+    table.price-table td { padding: 0.75rem 0.9rem; font-size: 0.85rem; color: var(--charcoal); border-bottom: 1px solid rgba(26,20,16,0.06); }
+    table.price-table tr:nth-child(even) td { background: var(--cream); }
+    table.price-table td.price-total { color: var(--gold); font-weight: 500; }
+    .price-note { max-width: var(--max); margin: 0 auto; font-size: 0.78rem; color: var(--mid); line-height: 1.8; }
+
+    .extras-section { padding: clamp(4rem,8vw,6rem) var(--pad); background: var(--cream-dk); }
+    .extras-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; max-width: var(--max); margin: 0 auto; }
+    @media (max-width: 760px) { .extras-grid { grid-template-columns: 1fr; } }
+    .extras-item { background: var(--white); padding: 1.1rem 1.25rem; display: flex; justify-content: space-between; align-items: center; border: 1px solid transparent; }
+    .extras-item span:first-child { font-size: 0.85rem; color: var(--charcoal); }
+    .extras-item span:last-child { font-size: 0.8rem; color: var(--gold); font-weight: 500; white-space: nowrap; }
+  </style>
+</head>
+<body>
+
+<div class="sticky-cta" id="stickyCta" role="complementary" aria-label="Quick contact bar">
+  <span class="sticky-cta-text">Derby &amp; Midlands — check your date</span>
+  <div class="sticky-cta-actions">
+    <a href="tel:07472314552" class="sticky-phone">07472 314552</a>
+    <a href="https://wa.me/447472314552" class="sticky-wa" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+    <a href="/index.html#contact" class="sticky-quote">Check Your Date</a>
+  </div>
+</div>
+
+<nav role="navigation" aria-label="Main navigation">
+  <a href="/" class="nav-logo" aria-label="White Canvas Events UK">
+    <img src="/images/uploads/logo-white.png" alt="White Canvas Events UK logo" width="186" height="62" onerror="this.style.display='none';this.nextElementSibling.style.display='block';" />
+    <span style="display:none;font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:300;letter-spacing:0.06em;color:#1a1410;">White<span style="color:#b8963e">C</span>anvas <small style="display:block;font-size:0.55em;letter-spacing:0.2em;color:#7a6f68;">EVENTS UK</small></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/index.html#services">Services</a></li>
+    <li><a href="/index.html#why-us">Why Us</a></li>
+    <li><a href="/pricing.html">Pricing</a></li>
+    <li><a href="/index.html#faq">FAQ</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:1rem;">
+    <a href="tel:07472314552" class="nav-phone"><span>07472 314552</span></a>
+    <a href="/index.html#contact" class="nav-cta">Check Availability</a>
+  </div>
+  <div class="nav-burger" onclick="toggleMenu()" aria-label="Open navigation menu"><span></span><span></span><span></span></div>
+</nav>
+
+<section id="pricing-hero">
+  <p class="eyebrow" style="justify-content:center;">Honest, upfront pricing</p>
+  <h1>Marquee hire prices,<br /><em>no guesswork</em></h1>
+  <p>Every price includes delivery, installation and collection over a full 7-day hire. Use the calculator below for an instant estimate, or check the full table underneath.</p>
+</section>
+
+<div class="calc-wrap">
+  <div class="calc-card">
+    <h2>Instant Price Calculator</h2>
+    <p class="calc-intro">Pick a size and any extras — your estimate updates as you go.</p>
+
+    <div class="calc-row">
+      <div class="calc-field">
+        <label for="calc-width">Marquee Width</label>
+        <select id="calc-width">
+          <option value="4">4 metres</option>
+          <option value="6">6 metres</option>
+        </select>
+      </div>
+      <div class="calc-field">
+        <label for="calc-length">Marquee Length</label>
+        <select id="calc-length"></select>
+      </div>
+    </div>
+
+    <div class="calc-extras">
+      <label class="calc-extra"><input type="checkbox" id="calc-lining" /><span>Lining</span></label>
+      <label class="calc-extra"><input type="checkbox" id="calc-carpet" /><span>Carpet</span></label>
+      <label class="calc-extra"><input type="checkbox" id="calc-lighting" /><span>Lighting</span></label>
+    </div>
+
+    <div class="calc-result">
+      <div class="calc-result-label">Estimated Total</div>
+      <div class="calc-result-price" id="calc-price">£300</div>
+      <div class="calc-result-cap" id="calc-capacity">Seats 24 · Stands 35</div>
+    </div>
+    <a href="/index.html#contact" class="btn-primary pulse calc-cta">Check Availability For This Size</a>
+  </div>
+</div>
+
+<section class="price-table-section">
+  <div class="price-table-wrap">
+    <h3>4 Metre Width Range</h3>
+    <table class="price-table">
+      <thead><tr><th>Size</th><th>Seated</th><th>Standing</th><th>Marquee Only</th><th>Lining</th><th>Carpet</th><th>Lighting</th><th>Full Package</th></tr></thead>
+      <tbody>
+        <tr><td>4m x 6m</td><td>24</td><td>35</td><td>£300</td><td>£100</td><td>£84</td><td>£30</td><td class="price-total">£514</td></tr>
+        <tr><td>4m x 8m</td><td>30</td><td>45</td><td>£350</td><td>£120</td><td>£112</td><td>£60</td><td class="price-total">£642</td></tr>
+        <tr><td>4m x 10m</td><td>35</td><td>55</td><td>£400</td><td>£150</td><td>£140</td><td>£60</td><td class="price-total">£750</td></tr>
+        <tr><td>4m x 12m</td><td>48</td><td>70</td><td>£450</td><td>£180</td><td>£168</td><td>£90</td><td class="price-total">£888</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="price-table-wrap">
+    <h3>6 Metre Width Range</h3>
+    <table class="price-table">
+      <thead><tr><th>Size</th><th>Seated</th><th>Standing</th><th>Marquee Only</th><th>Lining</th><th>Carpet</th><th>Lighting</th><th>Full Package</th></tr></thead>
+      <tbody>
+        <tr><td>6m x 6m</td><td>40</td><td>60</td><td>£400</td><td>£150</td><td>£126</td><td>£60</td><td class="price-total">£736</td></tr>
+        <tr><td>6m x 8m</td><td>50</td><td>75</td><td>£450</td><td>£180</td><td>£168</td><td>£60</td><td class="price-total">£858</td></tr>
+        <tr><td>6m x 10m</td><td>65</td><td>100</td><td>£500</td><td>£210</td><td>£210</td><td>£90</td><td class="price-total">£1,010</td></tr>
+        <tr><td>6m x 12m</td><td>80</td><td>120</td><td>£550</td><td>£250</td><td>£252</td><td>£120</td><td class="price-total">£1,172</td></tr>
+        <tr><td>6m x 14m</td><td>100</td><td>140</td><td>£600</td><td>£280</td><td>£294</td><td>£120</td><td class="price-total">£1,294</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="price-table-wrap">
+    <h3>Larger Marquees — Price on Quotation</h3>
+    <table class="price-table">
+      <thead><tr><th>Approx. Seated</th><th>Approx. Standing</th><th>Pricing</th></tr></thead>
+      <tbody>
+        <tr><td>150</td><td>210</td><td class="price-total">Price on Quotation</td></tr>
+        <tr><td>200</td><td>280</td><td class="price-total">Price on Quotation</td></tr>
+        <tr><td>300</td><td>420</td><td class="price-total">Price on Quotation</td></tr>
+        <tr><td>300+</td><td>Bespoke</td><td class="price-total">Price on Quotation</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="price-note">All prices cover a complete hire of up to 7 days — including delivery, installation &amp; collection. Extended hire beyond 7 days priced on quotation. A non-refundable deposit secures your booking, with the balance due prior to delivery. Prices are a guide and subject to availability, location and site survey.</p>
+</section>
+
+<section class="extras-section">
+  <div class="container">
+    <div class="section-head fade-in">
+      <p class="eyebrow">Hire individually</p>
+      <h2>Furniture &amp; extras</h2>
+    </div>
+    <div class="extras-grid">
+      <div class="extras-item"><span>Chiavari Chair — limewash, cream cushion</span><span>£3.50 each</span></div>
+      <div class="extras-item"><span>White Padded Folding Chair</span><span>POQ</span></div>
+      <div class="extras-item"><span>6ft Round Table (seats 10–12)</span><span>£11 each</span></div>
+      <div class="extras-item"><span>5ft Round Table (seats 8–10)</span><span>£11 each</span></div>
+      <div class="extras-item"><span>6ft Rectangular Trestle</span><span>POQ</span></div>
+      <div class="extras-item"><span>Poseur / Cake Table</span><span>POQ</span></div>
+      <div class="extras-item"><span>Premium Wooden Flooring</span><span>POQ by size</span></div>
+      <div class="extras-item"><span>Drapes &amp; Swags — full interior</span><span>POQ</span></div>
+      <div class="extras-item"><span>Decor — styling &amp; finishing</span><span>POQ</span></div>
+      <div class="extras-item"><span>Heater</span><span>POQ</span></div>
+      <div class="extras-item"><span>Summer Fan</span><span>POQ</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <a href="/" aria-label="White Canvas Events UK" class="footer-logo">
+      <img src="/images/uploads/logo-transparent.png" alt="White Canvas Events UK" onerror="this.style.display='none'" />
+    </a>
+    <ul class="footer-links">
+      <li><a href="/index.html#services">Services</a></li>
+      <li><a href="/pricing.html">Pricing</a></li>
+      <li><a href="/index.html#faq">FAQ</a></li>
+      <li><a href="/index.html#contact">Contact</a></li>
+      <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+    </ul>
+  </div>
+  <div class="footer-bottom"><p>© 2026 White Canvas Events UK. All rights reserved.</p></div>
+</footer>
+
+<a href="https://wa.me/447472314552?text=Hi%2C%20I%27d%20like%20a%20marquee%20hire%20quote" class="whatsapp-fab" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M16 0C7.164 0 0 7.163 0 16c0 2.83.737 5.486 2.027 7.8L0 32l8.395-2.002A15.93 15.93 0 0 0 16 32c8.836 0 16-7.163 16-16S24.836 0 16 0zm0 29.333a13.27 13.27 0 0 1-6.77-1.852l-.485-.288-5.026 1.199 1.237-4.895-.317-.503A13.262 13.262 0 0 1 2.667 16C2.667 8.636 8.636 2.667 16 2.667S29.333 8.636 29.333 16 23.364 29.333 16 29.333zm7.27-9.878c-.398-.2-2.355-1.162-2.72-1.294-.366-.133-.632-.2-.898.2-.265.398-1.03 1.294-1.263 1.56-.233.266-.465.3-.863.1-.398-.2-1.68-.62-3.2-1.975-1.183-1.055-1.982-2.358-2.214-2.756-.233-.398-.025-.613.175-.812.18-.179.398-.466.597-.699.2-.233.266-.4.398-.665.133-.266.067-.499-.033-.699-.1-.2-.898-2.162-1.23-2.96-.323-.778-.65-.672-.898-.685l-.765-.013c-.266 0-.699.1-1.065.499-.366.398-1.396 1.363-1.396 3.325 0 1.961 1.43 3.857 1.629 4.123.2.266 2.814 4.296 6.818 6.026.953.411 1.697.657 2.278.841.957.305 1.828.262 2.516.159.767-.114 2.355-.963 2.688-1.893.333-.93.333-1.727.233-1.893-.1-.166-.366-.266-.764-.466z"/></svg>
+</a>
+
+<script src="/js/site.js" defer></script>
+<script>
+  const PRICE_DATA = {
+    4: { 6: {marquee:300, lining:100, carpet:84, lighting:30, seated:24, standing:35},
+         8: {marquee:350, lining:120, carpet:112, lighting:60, seated:30, standing:45},
+         10:{marquee:400, lining:150, carpet:140, lighting:60, seated:35, standing:55},
+         12:{marquee:450, lining:180, carpet:168, lighting:90, seated:48, standing:70} },
+    6: { 6: {marquee:400, lining:150, carpet:126, lighting:60, seated:40, standing:60},
+         8: {marquee:450, lining:180, carpet:168, lighting:60, seated:50, standing:75},
+         10:{marquee:500, lining:210, carpet:210, lighting:90, seated:65, standing:100},
+         12:{marquee:550, lining:250, carpet:252, lighting:120, seated:80, standing:120},
+         14:{marquee:600, lining:280, carpet:294, lighting:120, seated:100, standing:140} }
+  };
+  function populateLengths() {
+    const width = document.getElementById('calc-width').value;
+    const lengthSel = document.getElementById('calc-length');
+    const lengths = Object.keys(PRICE_DATA[width]);
+    lengthSel.innerHTML = lengths.map(l => `<option value="${l}">${l} metres</option>`).join('');
+  }
+  function calcPrice() {
+    const width = document.getElementById('calc-width').value;
+    const length = document.getElementById('calc-length').value;
+    const d = PRICE_DATA[width][length];
+    if (!d) return;
+    let total = d.marquee;
+    if (document.getElementById('calc-lining').checked) total += d.lining;
+    if (document.getElementById('calc-carpet').checked) total += d.carpet;
+    if (document.getElementById('calc-lighting').checked) total += d.lighting;
+    document.getElementById('calc-price').textContent = '£' + total.toLocaleString();
+    document.getElementById('calc-capacity').textContent = `Seats ${d.seated} · Stands ${d.standing}`;
+  }
+  document.getElementById('calc-width').addEventListener('change', () => { populateLengths(); calcPrice(); });
+  document.getElementById('calc-length').addEventListener('change', calcPrice);
+  ['calc-lining','calc-carpet','calc-lighting'].forEach(id => document.getElementById(id).addEventListener('change', calcPrice));
+  populateLengths();
+  calcPrice();
+</script>
+
+</body>
+</html>
