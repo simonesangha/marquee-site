@@ -302,15 +302,14 @@
 
     /* ── EVENTS ──────────────────────────────────────── */
     #events { background: var(--cream-dk); }
-    .events-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 0.75rem; }
-    .event-item {
-      background: var(--white); padding: 1.25rem 1rem;
-      display: flex; align-items: center; gap: 0.75rem;
-      border: 1px solid transparent; transition: border-color 0.2s, background 0.2s;
-    }
-    .event-item:hover { border-color: rgba(184,150,62,0.35); background: var(--gold-pale); }
-    .event-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
-    .event-label { font-size: 0.82rem; color: var(--charcoal); }
+    .event-cat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    @media (max-width: 760px) { .event-cat-grid { grid-template-columns: 1fr; } }
+    .event-cat-card { background: var(--white); border: 1px solid rgba(184,150,62,0.15); border-top: 2px solid var(--gold); padding: 2.25rem 2rem; transition: box-shadow 0.2s, transform 0.2s; }
+    .event-cat-card:hover { box-shadow: 0 12px 32px rgba(26,20,16,0.08); transform: translateY(-2px); }
+    .event-cat-icon { color: var(--gold); margin-bottom: 1.1rem; }
+    .event-cat-card h3 { font-family: var(--serif); font-size: 1.3rem; font-weight: 300; color: var(--black); margin-bottom: 1.1rem; }
+    .event-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .event-tags span { font-size: 0.75rem; color: var(--charcoal); background: var(--cream); border: 1px solid rgba(184,150,62,0.18); padding: 0.35rem 0.8rem; }
 
     /* ── ABOUT ───────────────────────────────────────── */
     #about { background: var(--white); }
@@ -434,7 +433,7 @@
        set by the TALLEST slide — it no longer changes size when autoplay swaps
        which quote is active. That resizing (testimonials container growing/shrinking
        every 6s) was what pushed the FAQ section below it up and down. */
-    .testi-slides { display: grid; }
+    .testi-slides { display: grid; overflow-anchor: none; }
     .testi-slide {
       grid-area: 1 / 1;
       opacity: 0; transform: translateY(12px);
@@ -563,7 +562,7 @@
     }
     .faq-trigger[aria-expanded="true"] .faq-icon { transform: rotate(45deg); background: var(--gold); color: var(--white); }
     .faq-body {
-      overflow: hidden; max-height: 0;
+      overflow: hidden; max-height: 0; overflow-anchor: none;
       transition: max-height 0.35s cubic-bezier(0.4,0,0.2,1);
     }
     .faq-body-inner { padding: 0 2rem 1.6rem; font-size: 0.87rem; color: var(--mid); line-height: 1.85; }
