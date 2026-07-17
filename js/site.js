@@ -5,6 +5,26 @@
 
 document.addEventListener('DOMContentLoaded', function () {
 
+  // ── Reliable in-page anchor scrolling ──────────────────────────
+  // Native anchor jumps + CSS scroll-margin can land on the wrong section
+  // if the page height shifts at all. This computes the real target
+  // position at click time instead, so it can't drift to the wrong place.
+  document.querySelectorAll('a[href^="#"], a[href*="index.html#"]').forEach(link => {
+    link.addEventListener('click', e => {
+      const href = link.getAttribute('href');
+      const hashIndex = href.indexOf('#');
+      if (hashIndex === -1) return;
+      const id = href.slice(hashIndex + 1);
+      if (!id) return;
+      const target = document.getElementById(id);
+      if (!target) return;
+      e.preventDefault();
+      const top = target.getBoundingClientRect().top + window.scrollY - 130;
+      window.scrollTo({ top, behavior: 'smooth' });
+      history.replaceState(null, '', '#' + id);
+    });
+  });
+
   // ── Scroll fade-ins ─────────────────────────────────────────────
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
@@ -131,7 +151,13 @@ document.addEventListener('DOMContentLoaded', function () {
       counter.textContent = `${idx + 1} / ${total}`;
       thumbEls.forEach((t, i) => t.classList.toggle('active', i === idx));
       const activeThumb = thumbEls[idx];
-      if (activeThumb) activeThumb.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      if (activeThumb) {
+        const stageRect = stage.getBoundingClientRect();
+        const galleryOnScreen = stageRect.top < window.innerHeight && stageRect.bottom > 0;
+        if (galleryOnScreen) {
+          activeThumb.scrollIntoView({ behavior: 'smooth', inline: 'nearest', block: 'nearest' });
+        }
+      }
     }
     function gGo(i) { idx = ((i % total) + total) % total; render(); }
     function gStep(dir) { gGo(idx + dir); }
@@ -205,6 +231,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     render();
     gStartAutoplay();
+
+    const galleryVisibilityObs = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) { if (playing) gStartAutoplay(); }
+      else { gStopAutoplay(); }
+    }, { threshold: 0.1 });
+    galleryVisibilityObs.observe(stage);
   }
 
   // ── Sticky CTA bar (any page with a #hero to watch) ────────────
