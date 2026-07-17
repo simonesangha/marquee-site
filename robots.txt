@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /thank-you.html
+
+Sitemap: https://whitecanvasevents.co.uk/sitemap.xml
