@@ -2,6 +2,10 @@
    Loaded on every page. Every block below checks the relevant element
    exists before wiring it up, so pages that don't have (e.g.) a gallery
    or services carousel simply skip that block instead of throwing. */
+if (window.__wceSiteJsLoaded) {
+  console.warn('site.js loaded more than once — skipping duplicate run. Check your HTML for a repeated <script src="/js/site.js"> tag.');
+} else {
+window.__wceSiteJsLoaded = true;
 
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -152,11 +156,10 @@ document.addEventListener('DOMContentLoaded', function () {
       thumbEls.forEach((t, i) => t.classList.toggle('active', i === idx));
       const activeThumb = thumbEls[idx];
       if (activeThumb) {
-        const stageRect = stage.getBoundingClientRect();
-        const galleryOnScreen = stageRect.top < window.innerHeight && stageRect.bottom > 0;
-        if (galleryOnScreen) {
-          activeThumb.scrollIntoView({ behavior: 'smooth', inline: 'nearest', block: 'nearest' });
-        }
+        // Manual horizontal-only scroll of the thumb strip — never touches
+        // the page's vertical scroll, unlike scrollIntoView().
+        const targetLeft = activeThumb.offsetLeft - (thumbs.clientWidth - activeThumb.clientWidth) / 2;
+        thumbs.scrollTo({ left: Math.max(0, targetLeft), behavior: 'smooth' });
       }
     }
     function gGo(i) { idx = ((i % total) + total) % total; render(); }
@@ -265,3 +268,5 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
 });
+
+}
