@@ -537,45 +537,6 @@
       .glightbox-arrow.prev { left: 0.5rem; } .glightbox-arrow.next { right: 0.5rem; }
     }
 
-    /* ── TESTIMONIALS ────────────────────────────────── */
-    #testimonials { background: var(--black); }
-    .testi-outer { max-width: var(--max); margin: 0 auto; padding: clamp(5rem,10vw,9rem) var(--pad); }
-    .testi-stage { position: relative; }
-    /* All slides stack in the same grid cell, so the container's height is always
-       set by the TALLEST slide — it no longer changes size when autoplay swaps
-       which quote is active. That resizing (testimonials container growing/shrinking
-       every 6s) was what pushed the FAQ section below it up and down. */
-    .testi-slides { display: grid; overflow-anchor: none; }
-    .testi-slide {
-      grid-area: 1 / 1;
-      opacity: 0; transform: translateY(12px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
-      pointer-events: none;
-      visibility: hidden;
-    }
-    .testi-slide.active { opacity: 1; transform: none; pointer-events: auto; visibility: visible; }
-    .testi-stars { display: flex; gap: 4px; color: var(--gold); margin-bottom: 1.75rem; }
-    .testi-quote {
-      font-family: var(--serif); font-size: clamp(1.25rem,2.5vw,1.9rem);
-      font-style: italic; font-weight: 300; line-height: 1.65;
-      color: rgba(247,241,232,0.92); margin-bottom: 2rem;
-      max-width: 860px; quotes: none;
-    }
-    .testi-author { display: flex; align-items: center; gap: 1.25rem; }
-    .testi-author::before { content:''; display:block; width:32px; height:1px; background:var(--gold); }
-    .testi-name { font-size: 0.88rem; color: var(--cream); letter-spacing: 0.06em; }
-    .testi-event { font-size: 0.7rem; color: var(--gold); letter-spacing: 0.14em; text-transform: uppercase; margin-left: 0.5rem; }
-    .testi-controls { display: flex; align-items: center; gap: 1rem; margin-top: 2.5rem; }
-    .testi-btn {
-      width: 44px; height: 44px; border: 1px solid rgba(184,150,62,0.35);
-      background: transparent; color: var(--gold); cursor: pointer;
-      display: flex; align-items: center; justify-content: center; transition: all 0.2s;
-    }
-    .testi-btn:hover { background: var(--gold); color: var(--black); border-color: var(--gold); }
-    .testi-dots { display: flex; gap: 0.5rem; }
-    .testi-dot { width: 6px; height: 6px; border-radius: 50%; border: none; padding: 0; cursor: pointer; background: rgba(184,150,62,0.25); transition: background 0.2s; }
-    .testi-dot.active { background: var(--gold); }
-
     /* ── FAQ ─────────────────────────────────────────── */
     #faq { background: var(--white); }
     .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(26,20,16,0.06); border: 1px solid rgba(26,20,16,0.06); }
@@ -914,53 +875,42 @@
   </div>
 </section>
 
-<!-- ═══ TESTIMONIALS ══════════════════════════════════════════════════════ -->
-<section aria-labelledby="testi-heading" style="background:var(--black);">
-  <div class="testi-outer">
-    <div class="section-head" style="margin-bottom:2.5rem;">
-      <p class="eyebrow" style="color:var(--gold);">What our clients say</p>
-      <h2 id="testi-heading" style="color:var(--cream);">Real events across the Midlands,<br /><em>real memories</em></h2>
+<!-- ═══ OUR PROMISE ══════════════════════════════════════════════════════ -->
+<section class="section" aria-labelledby="promise-heading" style="background:var(--black);">
+  <div class="container">
+    <div class="section-head fade-in" style="margin-bottom:2.5rem;">
+      <p class="eyebrow" style="color:var(--gold);">What you can count on</p>
+      <h2 id="promise-heading" style="color:var(--cream);">Our promise<br /><em>to you</em></h2>
     </div>
-    <div class="testi-stage">
-      <div class="testi-slides" id="testiSlides">
-        
-        <div class="testi-slide active">
-          <div class="testi-stars" aria-label="5 star review">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          </div>
-          <blockquote class="testi-quote">"Booked the marquee for our garden wedding reception and it was perfect. Really good communication from start to finish — they answered every question quickly and the setup crew were respectful of the space. Exactly what we wanted and well within our budget."</blockquote>
-          <div class="testi-author"><span class="testi-name">Jordan &amp; Priya M.</span><span class="testi-event">Wedding Reception &mdash; Coventry</span></div>
+    <div class="why-grid fade-in">
+      <div class="why-card">
+        <div class="why-badge">No tired tents</div>
+        <div class="why-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
-
-        <div class="testi-slide">
-          <div class="testi-stars" aria-label="5 star review">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          </div>
-          <blockquote class="testi-quote">"We used White Canvas for my mum's 60th birthday in the back garden and honestly it transformed the whole space. The marquee went up without a hitch, the team were lovely and it looked stunning. Guests couldn't believe we'd done it at home. Will absolutely use them again."</blockquote>
-          <div class="testi-author"><span class="testi-name">Rachel T.</span><span class="testi-event">60th Birthday Party &mdash; Solihull</span></div>
-        </div>
-
-        <div class="testi-slide">
-          <div class="testi-stars" aria-label="5 star review">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          </div>
-          <blockquote class="testi-quote">"Used the dry hire option for our corporate summer event — great value and the marquee itself is really solid quality. We styled it ourselves which was half the fun. Brilliant service, flexible with timing, and the whole thing came together beautifully. Highly recommend."</blockquote>
-          <div class="testi-author"><span class="testi-name">Daniel K.</span><span class="testi-event">Corporate Summer Event &mdash; Leicester</span></div>
-        </div>
+        <h3>It Looks Like The Photos</h3>
+        <p>The marquee will look like the photos — heavy-duty, premium-grade, no tired tents.</p>
       </div>
-      <div class="testi-controls">
-        <button class="testi-btn" id="testiPrev" onclick="testiStep(-1)" aria-label="Previous testimonial">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-        </button>
-        <div class="testi-dots" id="testiDots">
-          <button class="testi-dot active" onclick="testiGo(0)" aria-label="Testimonial 1"></button>
-          <button class="testi-dot" onclick="testiGo(1)" aria-label="Testimonial 2"></button>
-          <button class="testi-dot" onclick="testiGo(2)" aria-label="Testimonial 3"></button>
+      <div class="why-card">
+        <div class="why-badge">Direct access</div>
+        <div class="why-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         </div>
-        <button class="testi-btn" id="testiNext" onclick="testiStep(1)" aria-label="Next testimonial">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </button>
+        <h3>You Deal With Us, Directly</h3>
+        <p>You deal with us directly, start to finish — the people who own the business are the people on site.</p>
       </div>
+      <div class="why-card">
+        <div class="why-badge">Honest pricing</div>
+        <div class="why-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 17.01"/></svg>
+        </div>
+        <h3>The Price We Quote Is The Price You Pay</h3>
+        <p>The price we quote is the price you pay — delivery, setup and collection included, no surprises.</p>
+      </div>
+    </div>
+    <div class="why-cta-row fade-in">
+      <p>That's not marketing — it's how we run our business.</p>
+      <a href="#contact" class="btn-primary pulse">Check Availability for Your Date</a>
     </div>
   </div>
 </section>
@@ -1060,7 +1010,7 @@
       <div class="fade-in">
         <div class="contact-urgency" role="note" aria-label="Availability notice">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-          <span>Summer 2026 weekends are filling up across Sheffield — <strong>check your date now before it's gone.</strong></span>
+          <span>Late summer &amp; autumn dates are booking up across Sheffield — and Christmas party season is next. <strong>Check your date now.</strong></span>
         </div>
         <form name="enquiry" method="POST" action="/thank-you.html"
               data-netlify="true" netlify-honeypot="bot-field"
@@ -1254,26 +1204,6 @@ document.addEventListener('DOMContentLoaded', function () {
     uploadZone.addEventListener('dragover', e => { e.preventDefault(); uploadZone.classList.add('drag-over'); });
     uploadZone.addEventListener('dragleave', () => uploadZone.classList.remove('drag-over'));
     uploadZone.addEventListener('drop', e => { e.preventDefault(); uploadZone.classList.remove('drag-over'); mergeFiles(Array.from(e.dataTransfer.files).filter(f => f.type.startsWith('image/'))); });
-  }
-
-  // ── Testimonials carousel (any page that includes it) ─────────
-  const testiSlides = document.querySelectorAll('.testi-slide');
-  if (testiSlides.length) {
-    let testiIdx = 0;
-    const testiDots = document.querySelectorAll('.testi-dot');
-    const testiGo = function (i) {
-      testiSlides[testiIdx].classList.remove('active'); if (testiDots[testiIdx]) testiDots[testiIdx].classList.remove('active');
-      testiIdx = i;
-      testiSlides[testiIdx].classList.add('active'); if (testiDots[testiIdx]) testiDots[testiIdx].classList.add('active');
-      const prevBtn = document.getElementById('testiPrev');
-      const nextBtn = document.getElementById('testiNext');
-      if (prevBtn) prevBtn.disabled = testiIdx === 0;
-      if (nextBtn) nextBtn.disabled = testiIdx === testiSlides.length - 1;
-    };
-    window.testiGo = testiGo;
-    window.testiStep = function (dir) { testiGo(Math.max(0, Math.min(testiSlides.length - 1, testiIdx + dir))); };
-    testiGo(0);
-    setInterval(() => window.testiStep(testiIdx === testiSlides.length - 1 ? -(testiSlides.length - 1) : 1), 6000);
   }
 
   // ── Gallery carousel + lightbox (any page that includes it) ───

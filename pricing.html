@@ -438,45 +438,6 @@
       .glightbox-arrow.prev { left: 0.5rem; } .glightbox-arrow.next { right: 0.5rem; }
     }
 
-    /* ── TESTIMONIALS ────────────────────────────────── */
-    #testimonials { background: var(--black); }
-    .testi-outer { max-width: var(--max); margin: 0 auto; padding: clamp(5rem,10vw,9rem) var(--pad); }
-    .testi-stage { position: relative; }
-    /* All slides stack in the same grid cell, so the container's height is always
-       set by the TALLEST slide — it no longer changes size when autoplay swaps
-       which quote is active. That resizing (testimonials container growing/shrinking
-       every 6s) was what pushed the FAQ section below it up and down. */
-    .testi-slides { display: grid; overflow-anchor: none; }
-    .testi-slide {
-      grid-area: 1 / 1;
-      opacity: 0; transform: translateY(12px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
-      pointer-events: none;
-      visibility: hidden;
-    }
-    .testi-slide.active { opacity: 1; transform: none; pointer-events: auto; visibility: visible; }
-    .testi-stars { display: flex; gap: 4px; color: var(--gold); margin-bottom: 1.75rem; }
-    .testi-quote {
-      font-family: var(--serif); font-size: clamp(1.25rem,2.5vw,1.9rem);
-      font-style: italic; font-weight: 300; line-height: 1.65;
-      color: rgba(247,241,232,0.92); margin-bottom: 2rem;
-      max-width: 860px; quotes: none;
-    }
-    .testi-author { display: flex; align-items: center; gap: 1.25rem; }
-    .testi-author::before { content:''; display:block; width:32px; height:1px; background:var(--gold); }
-    .testi-name { font-size: 0.88rem; color: var(--cream); letter-spacing: 0.06em; }
-    .testi-event { font-size: 0.7rem; color: var(--gold); letter-spacing: 0.14em; text-transform: uppercase; margin-left: 0.5rem; }
-    .testi-controls { display: flex; align-items: center; gap: 1rem; margin-top: 2.5rem; }
-    .testi-btn {
-      width: 44px; height: 44px; border: 1px solid rgba(184,150,62,0.35);
-      background: transparent; color: var(--gold); cursor: pointer;
-      display: flex; align-items: center; justify-content: center; transition: all 0.2s;
-    }
-    .testi-btn:hover { background: var(--gold); color: var(--black); border-color: var(--gold); }
-    .testi-dots { display: flex; gap: 0.5rem; }
-    .testi-dot { width: 6px; height: 6px; border-radius: 50%; border: none; padding: 0; cursor: pointer; background: rgba(184,150,62,0.25); transition: background 0.2s; }
-    .testi-dot.active { background: var(--gold); }
-
     /* ── FAQ ─────────────────────────────────────────── */
     #faq { background: var(--white); }
     .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(26,20,16,0.06); border: 1px solid rgba(26,20,16,0.06); }
@@ -942,26 +903,6 @@ document.addEventListener('DOMContentLoaded', function () {
     uploadZone.addEventListener('dragover', e => { e.preventDefault(); uploadZone.classList.add('drag-over'); });
     uploadZone.addEventListener('dragleave', () => uploadZone.classList.remove('drag-over'));
     uploadZone.addEventListener('drop', e => { e.preventDefault(); uploadZone.classList.remove('drag-over'); mergeFiles(Array.from(e.dataTransfer.files).filter(f => f.type.startsWith('image/'))); });
-  }
-
-  // ── Testimonials carousel (any page that includes it) ─────────
-  const testiSlides = document.querySelectorAll('.testi-slide');
-  if (testiSlides.length) {
-    let testiIdx = 0;
-    const testiDots = document.querySelectorAll('.testi-dot');
-    const testiGo = function (i) {
-      testiSlides[testiIdx].classList.remove('active'); if (testiDots[testiIdx]) testiDots[testiIdx].classList.remove('active');
-      testiIdx = i;
-      testiSlides[testiIdx].classList.add('active'); if (testiDots[testiIdx]) testiDots[testiIdx].classList.add('active');
-      const prevBtn = document.getElementById('testiPrev');
-      const nextBtn = document.getElementById('testiNext');
-      if (prevBtn) prevBtn.disabled = testiIdx === 0;
-      if (nextBtn) nextBtn.disabled = testiIdx === testiSlides.length - 1;
-    };
-    window.testiGo = testiGo;
-    window.testiStep = function (dir) { testiGo(Math.max(0, Math.min(testiSlides.length - 1, testiIdx + dir))); };
-    testiGo(0);
-    setInterval(() => window.testiStep(testiIdx === testiSlides.length - 1 ? -(testiSlides.length - 1) : 1), 6000);
   }
 
   // ── Gallery carousel + lightbox (any page that includes it) ───
