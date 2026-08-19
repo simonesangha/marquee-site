@@ -5,6 +5,43 @@
 [build]
   publish = "."
 
+# Canonicalise pages served under clean URLs — the .html version used to be
+# (or could become) reachable as a separate live URL with no redirect,
+# splitting SEO signal between two copies of the same page. New pages built
+# with an extensionless canonical (inspiration, the cost guide) get the same
+# treatment up front so this bug can't recur.
+[[redirects]]
+  from = "/pricing.html"
+  to   = "/pricing"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/inspiration.html"
+  to   = "/inspiration"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/marquee-hire-cost-guide.html"
+  to   = "/blog/marquee-hire-cost-guide"
+  status = 301
+  force = true
+
+# The cost guide briefly lived at the site root before moving under /blog —
+# catch both old locations in case either was ever crawled or shared.
+[[redirects]]
+  from = "/marquee-hire-cost-guide"
+  to   = "/blog/marquee-hire-cost-guide"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/marquee-hire-cost-guide.html"
+  to   = "/blog/marquee-hire-cost-guide"
+  status = 301
+  force = true
+
 # Fix: explicitly redirect /admin and /admin/ as well as /admin/*
 [[redirects]]
   from = "/admin"
