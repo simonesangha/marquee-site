@@ -267,8 +267,29 @@
     }
     .tiktok-embed-wrap blockquote.tiktok-embed { margin: 0 !important; }
 
-    /* Instagram CTA tile */
-    .tile-card.instagram-tile { border-top-color: #b8963e; }
+    /* Instagram tile — a hand-picked mosaic of real gallery photos (not a live feed —
+       Meta doesn't offer a free one), with lightweight CSS-only hover interactivity.
+       No JS, no extra libraries, images lazy-loaded — kept deliberately light for page speed. */
+    .tile-card.instagram-tile { border-top-color: #b8963e; padding: 0; }
+    .ig-mosaic { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+    .ig-cell { position: relative; aspect-ratio: 1 / 1; overflow: hidden; display: block; background: var(--black); }
+    .ig-cell img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.45s ease; }
+    .ig-cell:hover img { transform: scale(1.08); }
+    .ig-cell-overlay {
+      position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+      color: var(--cream); background: rgba(26,20,16,0); opacity: 0;
+      transition: opacity 0.25s ease, background 0.25s ease;
+    }
+    .ig-cell:hover .ig-cell-overlay { opacity: 1; background: rgba(26,20,16,0.45); }
+    .ig-more {
+      background: var(--black); color: var(--cream);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 0.3rem; text-align: center; padding: 0.5rem;
+    }
+    .ig-more svg { color: var(--gold-lt); }
+    .ig-more strong { font-family: var(--serif); font-size: 0.85rem; font-weight: 500; }
+    .ig-more span { font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-lt); }
+    .instagram-tile .tile-image-body { padding: 1.75rem 2rem 2.25rem; display: flex; flex-direction: column; flex-grow: 1; }
 
     footer { background: var(--black); padding: 3.5rem var(--pad); }
     .footer-top { max-width: var(--max); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(247,241,232,0.07); }
@@ -352,15 +373,45 @@
       </div>
     </div>
 
-    <!-- Instagram — honest placeholder: Meta doesn't offer a free live-pull embed anymore -->
+    <!-- Instagram — honest: Meta doesn't offer a free live-pull embed, so this is a hand-picked
+         mosaic of real photos from our own gallery, not a fabricated "live feed" -->
     <div class="tile-card instagram-tile fade-in" data-cat="reels">
-      <div class="tile-badge">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-        Instagram
+      <div class="ig-mosaic">
+        <a class="ig-cell" href="https://www.instagram.com/whitecanvas_events/" target="_blank" rel="noopener" aria-label="View on Instagram">
+          <img src="/images/uploads/ig-thumb-cream-decor.jpg" alt="Cream-toned marquee styling — White Canvas Events UK" loading="lazy" />
+          <span class="ig-cell-overlay"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></span>
+        </a>
+        <a class="ig-cell" href="https://www.instagram.com/whitecanvas_events/" target="_blank" rel="noopener" aria-label="View on Instagram">
+          <img src="/images/uploads/ig-thumb-colourful-decor.jpg" alt="Colourful marquee décor — White Canvas Events UK" loading="lazy" />
+          <span class="ig-cell-overlay"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></span>
+        </a>
+        <a class="ig-cell" href="https://www.instagram.com/whitecanvas_events/" target="_blank" rel="noopener" aria-label="View on Instagram">
+          <img src="/images/uploads/ig-thumb-memory-vault.jpg" alt="Our Memory Vault telephone video box — White Canvas Events UK" loading="lazy" />
+          <span class="ig-cell-overlay"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></span>
+        </a>
+        <a class="ig-cell" href="https://www.instagram.com/whitecanvas_events/" target="_blank" rel="noopener" aria-label="View on Instagram">
+          <img src="/images/uploads/ig-thumb-corporate-event.jpg" alt="Corporate event marquee — White Canvas Events UK" loading="lazy" />
+          <span class="ig-cell-overlay"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></span>
+        </a>
+        <a class="ig-cell" href="https://www.instagram.com/whitecanvas_events/" target="_blank" rel="noopener" aria-label="View on Instagram">
+          <img src="/images/uploads/ig-thumb-wedding-backdrop.jpg" alt="Classic white wedding backdrop — White Canvas Events UK" loading="lazy" />
+          <span class="ig-cell-overlay"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></span>
+        </a>
+        <a class="ig-cell ig-more" href="https://www.instagram.com/whitecanvas_events/" target="_blank" rel="noopener">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          <strong>@whitecanvas_events</strong>
+          <span>See more &rarr;</span>
+        </a>
       </div>
-      <h3>See more on Instagram</h3>
-      <p>Our Instagram grid is where most of our day-to-day event styling and behind-the-scenes content lives first. Give us a follow to see it as it's posted.</p>
-      <a href="https://www.instagram.com/whitecanvas_events/" target="_blank" rel="noopener" class="tile-cta">@whitecanvas_events &rarr;</a>
+      <div class="tile-image-body">
+        <div class="tile-badge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          Instagram
+        </div>
+        <h3>See more on Instagram</h3>
+        <p>A few real shots from our gallery — our Instagram grid is where most of our day-to-day event styling and behind-the-scenes content lives first. Give us a follow to see it as it's posted.</p>
+        <a href="https://www.instagram.com/whitecanvas_events/" target="_blank" rel="noopener" class="tile-cta">@whitecanvas_events &rarr;</a>
+      </div>
     </div>
 
     <!-- Stories — real content: our first blog post -->
