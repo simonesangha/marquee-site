@@ -42,6 +42,12 @@
   status = 301
   force = true
 
+[[redirects]]
+  from = "/blog/marquee-size-guide.html"
+  to   = "/blog/marquee-size-guide"
+  status = 301
+  force = true
+
 # Fix: explicitly redirect /admin and /admin/ as well as /admin/*
 [[redirects]]
   from = "/admin"
