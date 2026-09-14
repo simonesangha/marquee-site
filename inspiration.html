@@ -32,7 +32,7 @@
         "logo": "https://whitecanvasevents.co.uk/images/uploads/logo-white.png",
         "image": "https://whitecanvasevents.co.uk/images/uploads/marquee-front.JPG",
         "description": "Real marquee events, styling ideas, videos and client reviews from White Canvas Events UK, serving Derby, Nottingham, Leicester, Birmingham and the wider Midlands.",
-        "email": "whitecanvaseventsuk@gmail.com",
+        "email": "info@whitecanvasevents.co.uk",
         "telephone": "+447472314552",
         "address": {
           "@type": "PostalAddress",
@@ -257,6 +257,14 @@
     .tile-card.image-tile h3 { transition: color 0.2s; }
     .tile-card.image-tile:hover h3 { color: var(--gold); }
 
+    /* Video tile — real behind-the-scenes clip, portrait phone footage.
+       preload="none" on the <video> means zero video bytes are fetched
+       until a visitor presses play, so this can't add to page load. */
+    .tile-card.video-tile { padding: 0; }
+    .tile-card.video-tile .tile-video { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: center 30%; background: #000; display: block; }
+    .tile-card.video-tile .tile-image-body { padding: 1.75rem 2rem 2.25rem; display: flex; flex-direction: column; flex-grow: 1; }
+    .tile-card.video-tile .tile-badge { margin-bottom: 1rem; }
+
     /* TikTok embed tile — spans full width, holds the live widget */
     .tile-card.tiktok-tile {
       grid-column: 1 / -1; align-items: center; text-align: center;
@@ -437,14 +445,22 @@
       </div>
     </a>
 
-    <!-- Videos — empty state -->
-    <div class="tile-card empty fade-in" data-cat="videos">
-      <div class="tile-icon">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+    <!-- Videos — real content: a behind-the-scenes clip from one of our own installs.
+         preload="none" + poster = no video bytes load until the visitor presses play. -->
+    <div class="tile-card video-tile fade-in" data-cat="videos">
+      <video class="tile-video" controls preload="none" playsinline poster="/images/uploads/bts-video-poster.jpg" aria-label="Behind the scenes: setting up one of our marquees">
+        <source src="/videos/behind-the-scenes.webm" type="video/webm">
+        <source src="/videos/behind-the-scenes.mp4" type="video/mp4">
+        Your browser doesn't support embedded video — you can still see plenty of real photos above.
+      </video>
+      <div class="tile-image-body">
+        <div class="tile-badge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+          Video
+        </div>
+        <h3>Behind the scenes: a marquee going up</h3>
+        <p>A short real clip from one of our own installs — from an empty car park to a fully styled marquee, ready for guests. No stock footage, no staging.</p>
       </div>
-      <div class="tile-badge">Videos</div>
-      <h3>Full event walk-throughs, coming soon</h3>
-      <p>Longer-form video from real installs and events is on its way. In the meantime, our TikTok and Instagram above are updated regularly.</p>
     </div>
 
     <!-- Reviews — empty state -->

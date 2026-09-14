@@ -36,7 +36,7 @@
         "logo": "https://whitecanvasevents.co.uk/images/uploads/logo-white.png",
         "image": "https://whitecanvasevents.co.uk/images/uploads/marquee-front.JPG",
         "description": "White Canvas Events UK — premium full-service marquee hire and our signature Memory Vault telephone video box, the only video guestbook that comes hand-in-hand with a full marquee and styling package from one supplier, across Derby, Nottingham, Leicester, Birmingham and the wider Midlands. Packages from £300.",
-        "email": "whitecanvaseventsuk@gmail.com",
+        "email": "info@whitecanvasevents.co.uk",
         "telephone": "+447472314552",
         "address": {
           "@type": "PostalAddress",
@@ -449,8 +449,8 @@
     .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
     @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; gap: 3rem; } }
     .about-img { aspect-ratio: 4/5; overflow: hidden; position: relative; }
-    .about-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .about-img::after { content: ''; position: absolute; inset: 0; border: 1px solid rgba(184,150,62,0.2); margin: 1.25rem; pointer-events: none; }
+    .about-img img, .about-img video { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .about-img::after { content: ''; position: absolute; inset: 0; border: 1px solid rgba(184,150,62,0.2); margin: 1.25rem; pointer-events: none; z-index: 1; }
     .about-text h2 { margin-bottom: 1rem; }
     .about-text p { color: var(--mid); font-size: 0.93rem; line-height: 1.85; margin-bottom: 1.25rem; }
 
@@ -789,7 +789,7 @@
     </div>
     <p class="hero-avail-note">
       <span class="hero-avail-dot" aria-hidden="true"></span>
-      Autumn weekends filling fast — secure your date today
+      Weekends filling fast — secure your date today
     </p>
   </div>
   <div class="hero-img-col">
@@ -1085,10 +1085,11 @@
   <div class="container">
     <div class="about-grid">
       <div class="about-img fade-in">
-        <img src="/images/uploads/marquee-beer-garden.jpg"
-             alt="White Canvas Events UK premium marquee exterior — full-service event hire based in Derby, covering the Midlands"
-             loading="lazy"
-             onerror="this.parentElement.style.background='#ede5d8'" />
+        <video controls preload="none" playsinline poster="/images/uploads/bts-video-poster.jpg" aria-label="Behind the scenes: Hanraj and Simone's crew setting up one of our marquees">
+          <source src="/videos/behind-the-scenes.webm" type="video/webm">
+          <source src="/videos/behind-the-scenes.mp4" type="video/mp4">
+          Your browser doesn't support embedded video.
+        </video>
       </div>
       <div class="about-text fade-in">
         <p class="eyebrow">Derby-based, Midlands-proud</p>
@@ -1255,14 +1256,14 @@
           <div><p class="contact-item-label">Response time</p><p class="contact-item-val">Within one working day</p></div>
         </div>
         <div class="contact-note">
-          <strong>Autumn dates are going fast.</strong> If you have a date in mind — even if you're not sure yet — just drop it in the form and we'll check it for you straight away. No commitment needed.
+          <strong>Our dates are going fast.</strong> If you have a date in mind — even if you're not sure yet — just drop it in the form and we'll check it for you straight away. No commitment needed.
         </div>
       </div>
 
       <div class="fade-in">
         <div class="contact-urgency" role="note" aria-label="Availability notice">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-          <span>Autumn dates are booking up across Derby, Nottingham &amp; Birmingham — and Christmas party season is next. <strong>Check your date now.</strong></span>
+          <span>Dates are booking up fast across Derby, Nottingham &amp; Birmingham — enquire early to secure yours. <strong>Check your date now.</strong></span>
         </div>
 
         <form name="enquiry" method="POST" action="/thank-you.html"
