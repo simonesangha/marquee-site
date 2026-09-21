@@ -36,7 +36,7 @@
         "logo": "https://whitecanvasevents.co.uk/images/uploads/logo-white.png",
         "image": "https://whitecanvasevents.co.uk/images/uploads/marquee-front.JPG",
         "description": "White Canvas Events UK — premium full-service marquee hire and our signature Memory Vault telephone video box, the only video guestbook that comes hand-in-hand with a full marquee and styling package from one supplier, across Derby, Nottingham, Leicester, Birmingham and the wider Midlands. Packages from £300.",
-        "email": "info@whitecanvasevents.co.uk",
+        "email": "whitecanvaseventsuk@gmail.com",
         "telephone": "+447472314552",
         "address": {
           "@type": "PostalAddress",
@@ -140,7 +140,7 @@
     a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; }
     .container { max-width: var(--max); margin: 0 auto; padding: 0 var(--pad); }
-    .section { padding: clamp(5rem, 10vw, 9rem) 0; }
+    .section { padding: clamp(4rem, 8vw, 6.5rem) 0; }
     .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.75s ease, transform 0.75s ease; }
     .fade-in.visible { opacity: 1; transform: none; }
 
@@ -174,6 +174,7 @@
       white-space: nowrap; transition: color 0.2s;
     }
     .nav-phone:hover { color: var(--gold); }
+    @media (max-width: 768px) { .nav-phone { display: none !important; } }
 
     /* ── STICKY CTA BAR ──────────────────────────────── */
     .sticky-cta {
@@ -211,7 +212,7 @@
 
     /* ── HERO ─────────────────────────────────────────── */
     #hero {
-      min-height: 100svh; background: var(--cream);
+      min-height: min(85svh, 700px); background: var(--cream);
       display: grid; grid-template-columns: 1fr 1fr;
       align-items: stretch; overflow: hidden;
     }
@@ -1296,7 +1297,7 @@
           <div class="contact-icon">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           </div>
-          <div><p class="contact-item-label">Email</p><p class="contact-item-val">info@whitecanvasevents.co.uk</p></div>
+          <div><p class="contact-item-label">Email</p><p class="contact-item-val">whitecanvaseventsuk@gmail.com</p></div>
         </div>
         <div class="contact-item">
           <div class="contact-icon">
