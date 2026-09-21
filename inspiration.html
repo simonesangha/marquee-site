@@ -100,6 +100,7 @@
       --gold:     #b8963e;
       --gold-lt:  #cead5a;
       --gold-pale:#f5edd8;
+      --gold-text:#7a6329; /* darkened gold — meets WCAG AA (4.5:1+) for text on white/cream, unlike --gold */
       --serif:    'Cormorant Garamond', Georgia, serif;
       --sans:     'DM Sans', system-ui, sans-serif;
       --max:      1200px;
@@ -137,9 +138,9 @@
     .nav-cta {
       font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
       border: 1px solid var(--gold); padding: 0.6rem 1.5rem;
-      color: var(--gold); transition: all 0.2s; white-space: nowrap;
+      color: var(--gold-text); transition: all 0.2s; white-space: nowrap;
     }
-    .nav-cta:hover { background: var(--gold); color: var(--white); }
+    .nav-cta:hover { background: var(--gold); color: var(--black); }
     .nav-burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
     .nav-burger span { display: block; width: 24px; height: 1.5px; background: var(--black); }
     @media (max-width: 900px) { .nav-links { gap: 1.25rem; } }
@@ -191,7 +192,7 @@
     #inspiration-hero p { color: var(--mid); max-width: 580px; margin: 0 auto; font-size: 0.95rem; line-height: 1.8; }
     .eyebrow {
       font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 1rem;
+      color: var(--gold-text); margin-bottom: 1rem;
       display: flex; align-items: center; gap: 0.75rem; justify-content: center;
     }
     .eyebrow::after { content: ''; display: block; width: 28px; height: 1px; background: var(--gold); }
@@ -209,7 +210,7 @@
       transition: all 0.2s; font-family: var(--sans); font-weight: 400;
     }
     .filter-tab:hover { border-color: var(--gold); color: var(--gold); }
-    .filter-tab.active { background: var(--gold); border-color: var(--gold); color: var(--white); }
+    .filter-tab.active { background: var(--gold); border-color: var(--gold); color: var(--black); }
 
     /* ── TILE GRID ────────────────────────────────────── */
     #gallery-section { padding: 0 var(--pad) clamp(4rem,8vw,6rem); background: var(--cream); }
@@ -229,16 +230,16 @@
     .tile-badge {
       display: inline-flex; align-items: center; gap: 0.4rem; width: fit-content;
       font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase;
-      background: var(--gold-pale); color: var(--gold);
+      background: var(--gold-pale); color: var(--gold-text);
       border: 1px solid rgba(184,150,62,0.3);
       padding: 0.3rem 0.7rem; margin-bottom: 1.25rem;
     }
-    .tile-icon { color: var(--gold); margin-bottom: 1rem; }
+    .tile-icon { color: var(--gold-text); margin-bottom: 1rem; }
     .tile-card h3 { font-family: var(--serif); font-size: 1.35rem; font-weight: 300; color: var(--black); margin-bottom: 0.6rem; line-height: 1.3; }
     .tile-card p { font-size: 0.87rem; color: var(--mid); line-height: 1.8; flex-grow: 1; }
     .tile-card .tile-cta {
       margin-top: 1.5rem; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--gold); display: inline-flex; align-items: center; gap: 0.4rem; width: fit-content;
+      color: var(--gold-text); display: inline-flex; align-items: center; gap: 0.4rem; width: fit-content;
     }
     .tile-card .tile-cta:hover { color: var(--gold-lt); }
 
@@ -248,6 +249,12 @@
     }
     .tile-card.empty .tile-icon { color: var(--mid); opacity: 0.6; }
     .tile-card.empty .tile-badge { background: transparent; color: var(--mid); border-color: rgba(26,20,16,0.15); }
+
+    /* Review tile — real Google reviews, quoted in full */
+    .tile-card.review-tile .stars { display: flex; gap: 0.15rem; color: var(--gold-text); margin-bottom: 1rem; }
+    .tile-card.review-tile blockquote { margin: 0; font-size: 0.87rem; color: var(--charcoal); line-height: 1.8; flex-grow: 1; }
+    .tile-card.review-tile .review-attrib { margin-top: 1.25rem; font-size: 0.78rem; color: var(--mid); display: flex; align-items: center; gap: 0.4rem; }
+    .tile-card.review-tile .review-attrib strong { color: var(--black); font-weight: 500; }
 
     /* Image tile — real content with a thumbnail (e.g. blog posts) */
     .tile-card.image-tile { padding: 0; cursor: pointer; }
@@ -463,15 +470,31 @@
       </div>
     </div>
 
-    <!-- Reviews — empty state -->
-    <div class="tile-card empty fade-in" data-cat="reviews">
-      <div class="tile-icon">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+    <!-- Reviews — real, verified Google reviews, quoted in full -->
+    <div class="tile-card review-tile fade-in" data-cat="reviews">
+      <div class="tile-badge">Google Review</div>
+      <div class="stars" aria-label="5 out of 5 stars">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
       </div>
-      <div class="tile-badge">Reviews</div>
-      <h3>Client reviews, coming soon</h3>
-      <p>We're collecting reviews from real clients as their events wrap up. Genuine, verified feedback will appear here — nothing written for us.</p>
-      <a href="/index.html#contact" class="tile-cta">Check your date &rarr;</a>
+      <blockquote>&ldquo;We had a last-minute event at our workplace and needed a marquee at short notice. The team were incredibly helpful, responsive and professional from start to finish. Despite the tight timeframe, they went above and beyond to accommodate us and made the whole process straightforward and stress-free. The marquee was set up perfectly, looked fantastic and was exactly what we needed for the event.&rdquo;</blockquote>
+      <div class="review-attrib"><strong>Jemma S.</strong> &middot; via Google</div>
+    </div>
+
+    <div class="tile-card review-tile fade-in" data-cat="reviews">
+      <div class="tile-badge">Google Review</div>
+      <div class="stars" aria-label="5 out of 5 stars">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      </div>
+      <blockquote>&ldquo;The service, price, delivery and collection was 5* service. The people doing the erecting and dismantling were lovely people too. Would definitely recommend this company and will definitely use them in the future.&rdquo;</blockquote>
+      <div class="review-attrib"><strong>Andrea O.</strong> &middot; via Google</div>
     </div>
 
   </div>
@@ -543,7 +566,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (open) { links.style.cssText = ''; cta.style.cssText = ''; }
     else {
       links.style.cssText = 'display:flex;flex-direction:column;position:fixed;top:80px;left:0;width:100%;background:rgba(247,241,232,0.98);padding:2rem;gap:1.5rem;box-shadow:0 8px 24px rgba(0,0,0,0.08);z-index:99;';
-      cta.style.cssText   = 'display:block;position:fixed;top:calc(80px + 10rem);left:0;width:100%;text-align:center;background:var(--gold);color:#fff;padding:1rem;z-index:99;';
+      cta.style.cssText   = 'display:block;position:fixed;top:calc(80px + 10rem);left:0;width:100%;text-align:center;background:var(--gold);color:#1a1410;padding:1rem;z-index:99;';
     }
   };
 

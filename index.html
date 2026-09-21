@@ -124,6 +124,7 @@
       --gold:     #b8963e;
       --gold-lt:  #cead5a;
       --gold-pale:#f5edd8;
+      --gold-text:#7a6329; /* darkened gold — meets WCAG AA (4.5:1+) for text on white/cream, unlike --gold */
       --serif:    'Cormorant Garamond', Georgia, serif;
       --sans:     'DM Sans', system-ui, sans-serif;
       --max:      1200px;
@@ -160,9 +161,9 @@
     .nav-cta {
       font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
       border: 1px solid var(--gold); padding: 0.6rem 1.5rem;
-      color: var(--gold); transition: all 0.2s; white-space: nowrap;
+      color: var(--gold-text); transition: all 0.2s; white-space: nowrap;
     }
-    .nav-cta:hover { background: var(--gold); color: var(--white); }
+    .nav-cta:hover { background: var(--gold); color: var(--black); }
     .nav-burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
     .nav-burger span { display: block; width: 24px; height: 1.5px; background: var(--black); }
     @media (max-width: 900px) { .nav-links { gap: 1.25rem; } }
@@ -230,7 +231,7 @@
     .hero-line {
       display: flex; align-items: center; gap: 0.75rem;
       font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 1.5rem;
+      color: var(--gold-text); margin-bottom: 1.5rem;
     }
     .hero-line::before { content: ''; display: block; width: 32px; height: 1px; background: var(--gold); }
     h1 {
@@ -254,7 +255,7 @@
     }
     .btn-row { display: flex; gap: 1rem; flex-wrap: wrap; }
     .btn-primary {
-      display: inline-block; background: var(--gold); color: var(--white);
+      display: inline-block; background: var(--gold); color: var(--black);
       padding: 0.95rem 2.5rem; font-size: 0.75rem; letter-spacing: 0.12em;
       text-transform: uppercase; transition: background 0.2s, transform 0.15s;
     }
@@ -308,7 +309,7 @@
     /* ── SECTION HEADS ───────────────────────────────── */
     .eyebrow {
       font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 1rem;
+      color: var(--gold-text); margin-bottom: 1rem;
       display: flex; align-items: center; gap: 0.75rem;
     }
     .eyebrow::after { content: ''; display: block; width: 28px; height: 1px; background: var(--gold); }
@@ -378,7 +379,7 @@
       display: flex; align-items: center; justify-content: center;
       transition: all 0.2s;
     }
-    .carousel-btn:hover { background: var(--gold); color: var(--white); border-color: var(--gold); }
+    .carousel-btn:hover { background: var(--gold); color: var(--black); border-color: var(--gold); }
     .carousel-btn:disabled { opacity: 0.3; cursor: default; }
     .carousel-btn:disabled:hover { background: var(--white); color: var(--gold); border-color: rgba(184,150,62,0.4); }
     .carousel-dots { display: flex; gap: 0.5rem; margin-right: auto; }
@@ -394,10 +395,10 @@
     .svc-icon { color: var(--gold); margin-bottom: 1.25rem; }
     .svc h3 { font-family: var(--serif); font-size: 1.6rem; font-weight: 300; color: var(--black); margin-bottom: 0.9rem; }
     .svc p { font-size: 0.88rem; color: var(--mid); line-height: 1.8; flex: 1; }
-    .svc-link { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1.75rem; font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); transition: gap 0.2s; }
+    .svc-link { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1.75rem; font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-text); transition: gap 0.2s; }
     .svc-link:hover { gap: 0.85rem; }
-    .svc-badge { display: inline-block; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--gold); color: var(--white); padding: 0.2rem 0.7rem; margin-bottom: 0.75rem; align-self: flex-start; }
-    .svc-from { font-size: 0.78rem; color: var(--gold); letter-spacing: 0.06em; margin-top: 0.75rem; font-weight: 400; }
+    .svc-badge { display: inline-block; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--gold); color: var(--black); padding: 0.2rem 0.7rem; margin-bottom: 0.75rem; align-self: flex-start; }
+    .svc-from { font-size: 0.78rem; color: var(--gold-text); letter-spacing: 0.06em; margin-top: 0.75rem; font-weight: 400; }
 
     /* ── VAULT ───────────────────────────────────────── */
     #memory-vault { background: var(--cream); }
@@ -523,7 +524,7 @@
       margin-top: 1.25rem;
     }
     .gcarousel-hint { font-size: 0.78rem; color: var(--mid); }
-    .gcarousel-hint strong { color: var(--gold); font-weight: 500; }
+    .gcarousel-hint strong { color: var(--gold-text); font-weight: 500; }
 
     /* Lightbox */
     .glightbox {
@@ -556,6 +557,41 @@
       .gcarousel-arrow { width: 38px; height: 38px; }
       .glightbox-arrow { width: 40px; height: 40px; }
       .glightbox-arrow.prev { left: 0.5rem; } .glightbox-arrow.next { right: 0.5rem; }
+    }
+
+    /* ── REVIEWS ──────────────────────────────────────── */
+    /* Compact, fixed-height carousel — deliberately stays this size as more
+       real reviews are added, so the page doesn't get longer over time. */
+    #reviews { background: var(--white); }
+    .rcarousel { max-width: 640px; margin: 0 auto; position: relative; }
+    .rcarousel-viewport { min-height: 260px; display: flex; align-items: center; justify-content: center; }
+    .rslide { display: none; text-align: center; padding: 0 3.5rem; animation: rFadeIn 0.4s ease; }
+    .rslide.active { display: block; }
+    @keyframes rFadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+    .rslide .stars { display: flex; justify-content: center; gap: 0.2rem; color: var(--gold); margin-bottom: 1.25rem; }
+    .rslide blockquote { margin: 0; font-family: var(--serif); font-size: 1.15rem; font-weight: 300; font-style: italic; color: var(--black); line-height: 1.7; }
+    .rslide .review-attrib { margin-top: 1.5rem; font-size: 0.82rem; color: var(--mid); }
+    .rslide .review-attrib strong { color: var(--gold); font-weight: 500; font-style: normal; }
+    .rcarousel-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 40px; height: 40px; border-radius: 50%; background: var(--white);
+      border: 1px solid rgba(184,150,62,0.3); color: var(--black);
+      display: flex; align-items: center; justify-content: center; cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+    }
+    .rcarousel-arrow:hover { background: var(--gold); border-color: var(--gold); color: var(--black); }
+    .rcarousel-arrow.prev { left: 0; }
+    .rcarousel-arrow.next { right: 0; }
+    .rcarousel-dots { display: flex; justify-content: center; gap: 0.5rem; margin-top: 1.75rem; }
+    .rcarousel-dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(26,20,16,0.15); border: none; cursor: pointer; padding: 0; transition: background 0.2s; }
+    .rcarousel-dot.active { background: var(--gold); }
+    .reviews-hint { text-align: center; margin-top: 2rem; font-size: 0.8rem; color: var(--mid); }
+    .reviews-hint a { color: var(--gold-text); font-weight: 500; }
+    .reviews-hint a:hover { color: var(--gold-lt); }
+    @media (max-width: 600px) {
+      .rslide { padding: 0 2.75rem; }
+      .rslide blockquote { font-size: 1.02rem; }
+      .rcarousel-arrow { width: 34px; height: 34px; }
     }
 
     /* ── OUR PROMISE ─────────────────────────────────── */
@@ -605,7 +641,7 @@
     textarea { resize: vertical; min-height: 120px; }
     input::placeholder, textarea::placeholder { color: rgba(26,20,16,0.22); }
     .form-submit {
-      margin-top: 1.5rem; width: 100%; background: var(--gold); color: var(--white);
+      margin-top: 1.5rem; width: 100%; background: var(--gold); color: var(--black);
       padding: 1.15rem 2rem; font-family: var(--sans); font-size: 0.82rem;
       letter-spacing: 0.15em; text-transform: uppercase; border: none; cursor: pointer;
       transition: background 0.2s, transform 0.15s;
@@ -630,7 +666,7 @@
     .hiw-step { padding: 3rem 2.5rem; text-align: center; position: relative; }
     .hiw-num {
       width: 52px; height: 52px; border-radius: 50%;
-      background: var(--gold); color: var(--white);
+      background: var(--gold); color: var(--black);
       font-family: var(--serif); font-size: 1.35rem; font-weight: 300;
       display: flex; align-items: center; justify-content: center;
       margin: 0 auto 1.75rem; position: relative; z-index: 1;
@@ -657,7 +693,7 @@
       border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center;
       color: var(--gold); transition: transform 0.3s, background 0.2s;
     }
-    .faq-trigger[aria-expanded="true"] .faq-icon { transform: rotate(45deg); background: var(--gold); color: var(--white); }
+    .faq-trigger[aria-expanded="true"] .faq-icon { transform: rotate(45deg); background: var(--gold); color: var(--black); }
     .faq-body {
       overflow: hidden; max-height: 0; overflow-anchor: none;
       transition: max-height 0.35s cubic-bezier(0.4,0,0.2,1);
@@ -954,39 +990,12 @@
       </div>
 
       <div class="why-card">
-        <div class="why-badge">Premium quality</div>
-        <div class="why-icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        </div>
-        <h3>Heavy-Duty, Premium Marquees</h3>
-        <p>Budget marquee hire in the Midlands often means a flimsy, dirty tent that looks nothing like the photos. Ours are heavy-duty, premium-grade structures — well-maintained, spotlessly clean, and built to handle British weather properly.</p>
-      </div>
-
-      <div class="why-card">
         <div class="why-badge">Signature piece</div>
         <div class="why-icon">
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 3.07 9.81 19.79 19.79 0 0 1 .4 1.18 2 2 0 0 1 2.38 0h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L6.09 7.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         </div>
         <h3>The Memory Vault — Our Signature Piece</h3>
         <p>Our Memory Vault is our signature way of capturing your event journey - in a beautifully curated keepsake. Our timecapsule captures guest messages that are packaged and delivered years later. It's a product we created, that's uniquely yours.</p>
-      </div>
-
-      <div class="why-card">
-        <div class="why-badge">Flexible options</div>
-        <div class="why-icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-        </div>
-        <h3>Packages or Dry Hire — Your Choice</h3>
-        <p>Want us to handle everything? We have a full-service package for that. Prefer to DIY the styling? Take the marquee on dry hire at our most competitive rate. We work around you — not the other way around.</p>
-      </div>
-
-      <div class="why-card">
-        <div class="why-badge">Family run</div>
-        <div class="why-icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        </div>
-        <h3>Personal, Family-Run Service</h3>
-        <p>You'll always speak directly to us — no call centres, no handoffs. We're Derby-based, Midlands-proud, and genuinely invested in making your event exceptional. Your questions get real answers, fast.</p>
       </div>
 
     </div>
@@ -1219,6 +1228,58 @@
   </div>
 </section>
 
+<!-- ═══ REVIEWS ════════════════════════════════════════════════════════════
+     Real Google reviews only. To add a new one: copy an .rslide block,
+     paste it inside #rTrack, and add one more dot button below — the
+     carousel picks it up automatically. Nothing here is written for us. -->
+<section id="reviews" class="section" aria-labelledby="reviews-heading">
+  <div class="container">
+    <div class="section-head fade-in" style="text-align:center;">
+      <p class="eyebrow" style="justify-content:center;">Real feedback</p>
+      <h2 id="reviews-heading">What clients <em>actually</em> say</h2>
+    </div>
+    <div class="rcarousel fade-in" id="rCarousel">
+      <div class="rcarousel-viewport">
+        <div class="rcarousel-track" id="rTrack">
+          <div class="rslide active">
+            <div class="stars" aria-label="5 out of 5 stars">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <blockquote>&ldquo;We had a last-minute event at our workplace and needed a marquee at short notice. The team were incredibly helpful, responsive and professional from start to finish. Despite the tight timeframe, they went above and beyond to accommodate us and made the whole process straightforward and stress-free.&rdquo;</blockquote>
+            <div class="review-attrib"><strong>Jemma S.</strong> &middot; Google Review</div>
+          </div>
+          <div class="rslide">
+            <div class="stars" aria-label="5 out of 5 stars">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <blockquote>&ldquo;The service, price, delivery and collection was 5* service. The people doing the erecting and dismantling were lovely people too. Would definitely recommend this company and will definitely use them in the future.&rdquo;</blockquote>
+            <div class="review-attrib"><strong>Andrea O.</strong> &middot; Google Review</div>
+          </div>
+        </div>
+      </div>
+      <button class="rcarousel-arrow prev" onclick="rStep(-1)" aria-label="Previous review">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      </button>
+      <button class="rcarousel-arrow next" onclick="rStep(1)" aria-label="Next review">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+      <div class="rcarousel-dots" id="rDots">
+        <button class="rcarousel-dot active" onclick="rGoTo(0)" aria-label="Review 1"></button>
+        <button class="rcarousel-dot" onclick="rGoTo(1)" aria-label="Review 2"></button>
+      </div>
+    </div>
+    <p class="reviews-hint">Real reviews from Google &middot; <a href="https://www.google.com/maps/search/?api=1&amp;query=White+Canvas+Events+UK+Derby" target="_blank" rel="noopener">see all reviews &rarr;</a></p>
+  </div>
+</section>
+
 <!-- ═══ CONTACT ════════════════════════════════════════════════════════════ -->
 <section id="contact" class="section" aria-labelledby="contact-heading">
   <div class="container">
@@ -1437,7 +1498,7 @@
   <div class="footer-bottom">
     <p>© 2026 White Canvas Events UK — Premium marquee hire &amp; Memory Vault across Derby, Nottingham, Leicester, Birmingham &amp; the Midlands. All rights reserved.</p>
   </div>
-  <p class="footer-locations">Marquee hire Derby · <a href="/marquee-hire-nottingham.html">Marquee hire Nottingham</a> · <a href="/marquee-hire-leicester.html">Marquee hire Leicester</a> · <a href="/marquee-hire-birmingham.html">Marquee hire Birmingham</a> · <a href="/marquee-hire-sheffield.html">Marquee hire Sheffield</a> · Event hire Midlands</p>
+  <p class="footer-locations"><a href="/marquee-hire-derby.html">Marquee hire Derby</a> · <a href="/marquee-hire-nottingham.html">Marquee hire Nottingham</a> · <a href="/marquee-hire-leicester.html">Marquee hire Leicester</a> · <a href="/marquee-hire-birmingham.html">Marquee hire Birmingham</a> · <a href="/marquee-hire-sheffield.html">Marquee hire Sheffield</a> · Event hire Midlands</p>
 </footer>
 
 <a href="https://wa.me/447472314552?text=Hi%2C%20I%27d%20like%20to%20check%20availability%20for%20marquee%20hire"
@@ -1614,7 +1675,7 @@ document.addEventListener('DOMContentLoaded', function () {
     window.gGo = gGo;
     window.gStep = gStep;
 
-    function gStartAutoplay() { timer = setInterval(() => gStep(1), 4500); }
+    function gStartAutoplay() { if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; timer = setInterval(() => gStep(1), 4500); }
     function gStopAutoplay() { clearInterval(timer); }
     function gRestartAutoplay() { if (playing) { gStopAutoplay(); gStartAutoplay(); } }
 
@@ -1687,6 +1748,38 @@ document.addEventListener('DOMContentLoaded', function () {
       else { gStopAutoplay(); }
     }, { threshold: 0.1 });
     galleryVisibilityObs.observe(stage);
+  }
+
+  // ── Reviews carousel (homepage only) ────────────────────────────
+  const rTrackEl = document.getElementById('rTrack');
+  if (rTrackEl) {
+    const rSlides = Array.from(rTrackEl.querySelectorAll('.rslide'));
+    const rDotsEl = Array.from(document.querySelectorAll('.rcarousel-dot'));
+    const rStage  = document.getElementById('rCarousel');
+    const rTotal  = rSlides.length;
+    let rIdx = 0;
+    let rTimer = null;
+
+    function rGo(i) {
+      rIdx = (i + rTotal) % rTotal;
+      rSlides.forEach((s, n) => s.classList.toggle('active', n === rIdx));
+      rDotsEl.forEach((d, n) => d.classList.toggle('active', n === rIdx));
+    }
+    function rStep(dir) { rGo(rIdx + dir); }
+    window.rGoTo = rGo;
+    window.rStep = rStep;
+
+    function rStartAutoplay() { if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; if (rTotal > 1) rTimer = setInterval(() => rStep(1), 6000); }
+    function rStopAutoplay() { clearInterval(rTimer); }
+
+    if (rStage) {
+      rStage.addEventListener('mouseenter', rStopAutoplay);
+      rStage.addEventListener('mouseleave', rStartAutoplay);
+      const rVisibilityObs = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) rStartAutoplay(); else rStopAutoplay();
+      }, { threshold: 0.1 });
+      rVisibilityObs.observe(rStage);
+    }
   }
 
   // ── Sticky CTA bar (any page with a #hero to watch) ────────────
