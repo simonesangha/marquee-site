@@ -16,13 +16,13 @@
   <meta property="og:description" content="Premium full-service marquee hire across Derby, Nottingham, Leicester, Birmingham & the Midlands. Our signature Memory Vault. Services from £300. Check your date today." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://whitecanvasevents.co.uk/" />
-  <meta property="og:image" content="https://whitecanvasevents.co.uk/images/uploads/marquee-front.JPG" />
+  <meta property="og:image" content="https://whitecanvasevents.co.uk/images/uploads/styled-marquee-aisle-chandeliers.jpg" />
   <meta property="og:locale" content="en_GB" />
   <meta property="og:site_name" content="White Canvas Events UK" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Marquee Hire Derby & Midlands | White Canvas Events UK | Full-Service Event Hire" />
   <meta name="twitter:description" content="Premium full-service marquee hire across the Midlands. Our signature Memory Vault. Services from £300. Check your date." />
-  <meta name="twitter:image" content="https://whitecanvasevents.co.uk/images/uploads/marquee-front.JPG" />
+  <meta name="twitter:image" content="https://whitecanvasevents.co.uk/images/uploads/styled-marquee-aisle-chandeliers.jpg" />
 
   <script type="application/ld+json">
   {
@@ -141,7 +141,7 @@
     img { display: block; max-width: 100%; }
     .container { max-width: var(--max); margin: 0 auto; padding: 0 var(--pad); }
     .section { padding: clamp(4rem, 8vw, 6.5rem) 0; }
-    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.75s ease, transform 0.75s ease; }
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1); }
     .fade-in.visible { opacity: 1; transform: none; }
 
     /* ── NAV ─────────────────────────────────────────── */
@@ -260,7 +260,7 @@
       padding: 0.95rem 2.5rem; font-size: 0.75rem; letter-spacing: 0.12em;
       text-transform: uppercase; transition: background 0.2s, transform 0.15s;
     }
-    .btn-primary:hover { background: var(--gold-lt); transform: translateY(-1px); }
+    .btn-primary:hover { background: var(--gold-lt); transform: translateY(-2px) scale(1.015); }
     /* urgency pulse on primary CTA */
     .btn-primary.pulse {
       animation: pulseBorder 2.5s ease-in-out infinite;
@@ -289,7 +289,9 @@
     .hero-img-col img {
       position: absolute; inset: 0;
       width: 100%; height: 100%; object-fit: cover;
+      animation: heroKenBurns 24s cubic-bezier(0.45,0,0.55,1) infinite alternate;
     }
+    @keyframes heroKenBurns { from { transform: scale(1); } to { transform: scale(1.055); } }
     .hero-img-col::after {
       content: ''; position: absolute; inset: 0;
       background: linear-gradient(135deg, rgba(247,241,232,0.12) 0%, transparent 50%);
@@ -302,7 +304,19 @@
       display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem;
     }
     @media (max-width: 640px) { .trust-inner { grid-template-columns: 1fr 1fr; } }
-    .trust-item { display: flex; align-items: center; gap: 1rem; }
+    .trust-item {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 1.1rem 1.25rem; border-radius: 10px;
+      background: rgba(247,241,232,0.02);
+      border: 1px solid rgba(184,150,62,0.1);
+      transition: transform 0.5s cubic-bezier(0.16,1,0.3,1), background 0.4s ease, border-color 0.4s ease, box-shadow 0.5s ease;
+    }
+    .trust-item:hover {
+      transform: translateY(-3px);
+      background: rgba(184,150,62,0.06);
+      border-color: rgba(184,150,62,0.3);
+      box-shadow: 0 16px 32px -16px rgba(184,150,62,0.25);
+    }
     .trust-icon { color: var(--gold); flex-shrink: 0; }
     .trust-label { font-size: 0.8rem; color: rgba(247,241,232,0.5); line-height: 1.5; }
     .trust-label strong { display: block; color: var(--cream); font-size: 0.9rem; font-weight: 400; margin-bottom: 0.1rem; }
@@ -336,11 +350,16 @@
     @media (max-width: 760px) { .why-grid { grid-template-columns: 1fr; } }
     .why-card {
       background: var(--black); padding: 2.5rem 2rem;
-      transition: background 0.25s;
       border-top: 2px solid transparent;
-      transition: border-color 0.25s, background 0.25s;
+      position: relative;
+      transition: border-color 0.25s, background 0.25s, transform 0.5s cubic-bezier(0.16,1,0.3,1), box-shadow 0.5s cubic-bezier(0.16,1,0.3,1);
     }
-    .why-card:hover { background: #221c17; border-top-color: var(--gold); }
+    .why-card:hover {
+      background: #221c17; border-top-color: var(--gold);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px -16px rgba(184,150,62,0.25);
+      z-index: 1;
+    }
     .why-icon { color: var(--gold); margin-bottom: 1.25rem; }
     .why-card h3 { font-family: var(--serif); font-size: 1.35rem; font-weight: 300; color: var(--cream); margin-bottom: 0.75rem; line-height: 1.3; }
     .why-card p { font-size: 0.85rem; color: rgba(247,241,232,0.5); line-height: 1.8; }
@@ -364,12 +383,15 @@
       flex-shrink: 0;
       padding: 3rem 2.5rem;
       border: 1px solid rgba(26,20,16,0.07);
-      transition: background 0.25s;
+      transition: background 0.25s, box-shadow 0.5s cubic-bezier(0.16,1,0.3,1);
       display: flex; flex-direction: column;
     }
-    .svc:hover { background: var(--cream); }
+    /* note: .services-track-outer has overflow:hidden for the slider, so hover
+       effects here stay inset (box-shadow) rather than outward (transform/translateY)
+       to avoid being clipped by the carousel mask. */
+    .svc:hover { background: var(--cream); box-shadow: inset 0 0 0 1px rgba(184,150,62,0.35); }
     .svc.highlight { background: var(--gold-pale); }
-    .svc.highlight:hover { background: #f0e3c4; }
+    .svc.highlight:hover { background: #f0e3c4; box-shadow: inset 0 0 0 1px rgba(184,150,62,0.5); }
     .carousel-controls {
       display: flex; align-items: center; gap: 1rem;
       margin-top: 2rem; justify-content: flex-end;
@@ -760,6 +782,15 @@
     }
     .whatsapp-fab:hover { transform: scale(1.08); box-shadow: 0 6px 26px rgba(37,211,102,0.55); }
     .whatsapp-fab svg { width: 28px; height: 28px; fill: #fff; }
+
+    /* ── MOTION SAFEGUARD ────────────────────────────────
+       Anyone with "reduce motion" set at OS level gets the new
+       hover depth/lift effects but not the animated bits. */
+    @media (prefers-reduced-motion: reduce) {
+      .hero-img-col img { animation: none; }
+      .fade-in { transition: opacity 0.3s ease; }
+      .trust-item, .why-card, .btn-primary, .whatsapp-fab { transition-duration: 0.15s; }
+    }
   </style>
 </head>
 <body>
@@ -830,9 +861,10 @@
     </p>
   </div>
   <div class="hero-img-col">
-    <img src="/images/uploads/marquee-front.JPG"
-         alt="White Canvas Events UK premium marquee setup — full-service marquee hire Derby and Midlands"
+    <img src="/images/uploads/styled-marquee-aisle-chandeliers.jpg"
+         alt="White Canvas Events UK fully styled marquee interior — chandeliers, floral centrepieces and aisle styling, Derby and Midlands"
          loading="eager"
+         fetchpriority="high"
          onerror="this.parentElement.style.background='#ede5d8'" />
   </div>
 </section>
@@ -1134,23 +1166,22 @@
             here (and a matching thumbnail in the strip below) — the carousel, counter,
             thumbnails and lightbox all update automatically, no other changes needed.
           -->
+          <div class="gslide"><img src="/images/uploads/large-marquee-decor1.jpg" alt="White Canvas Events UK — full-service marquee interior with styling and décor, Derby Midlands event hire" loading="eager" onerror="this.closest('.gslide').style.background='#3d3530';console.warn('Image failed to load:', this.src);this.style.display='none';" /><div class="gslide-caption">Full-service marquee interior — Derby &amp; Midlands</div></div>
           <div class="gslide"><img src="/images/uploads/styled-marquee-tables-florals.jpg" alt="White Canvas Events UK full marquee styling — round tables, gold Chiavari chairs and a floral aisle, Derby Midlands event hire" loading="eager" onerror="this.closest('.gslide').style.background='#3d3530';console.warn('Image failed to load:', this.src);this.style.display='none';" /><div class="gslide-caption">Full marquee styling — tables, chairs &amp; floral aisle</div></div>
-          <div class="gslide"><img src="/images/uploads/styled-marquee-aisle-chandeliers.jpg" alt="White Canvas Events UK styled marquee interior with chandeliers and floral centrepieces, Midlands event hire" loading="eager" onerror="this.closest('.gslide').style.background='#3d3530';console.warn('Image failed to load:', this.src);this.style.display='none';" /><div class="gslide-caption">Styled marquee interior — chandeliers &amp; floral centrepieces</div></div>
-          <div class="gslide"><img src="/images/uploads/floral-archway-marquee-styling.jpg" alt="White Canvas Events UK floral archway styling framing a marquee interior, Midlands event hire" loading="lazy" onerror="this.closest('.gslide').style.background='#3d3530';console.warn('Image failed to load:', this.src);this.style.display='none';" /><div class="gslide-caption">Floral archway styling, framing the marquee interior</div></div>
-          <div class="gslide"><img src="/images/uploads/marquee-tablescape-detail.jpg" alt="White Canvas Events UK tablescape styling detail — linen, gold cutlery and greenery, Midlands event hire" loading="lazy" onerror="this.closest('.gslide').style.background='#3d3530';console.warn('Image failed to load:', this.src);this.style.display='none';" /><div class="gslide-caption">Tablescape detail — linen, gold cutlery &amp; greenery</div></div>
-          <div class="gslide"><img src="/images/uploads/lounge-seating-floral-arch.jpg" alt="White Canvas Events UK styled lounge seating area with floral arch backdrop, Midlands event hire" loading="lazy" onerror="this.closest('.gslide').style.background='#3d3530';console.warn('Image failed to load:', this.src);this.style.display='none';" /><div class="gslide-caption">Styled lounge seating with floral arch backdrop</div></div>
-          <div class="gslide"><img src="/images/uploads/lounge-seating-wide.jpg" alt="White Canvas Events UK lounge seating area, dressed and ready, Midlands event hire" loading="lazy" onerror="this.closest('.gslide').style.background='#3d3530';console.warn('Image failed to load:', this.src);this.style.display='none';" /><div class="gslide-caption">Lounge seating area, dressed and ready</div></div>
-          <div class="gslide"><img src="/images/uploads/marquee-interior-wide-styled.jpg" alt="White Canvas Events UK fully styled marquee interior, ready for guests, Midlands event hire" loading="lazy" onerror="this.closest('.gslide').style.background='#3d3530';console.warn('Image failed to load:', this.src);this.style.display='none';" /><div class="gslide-caption">Fully styled marquee, ready for guests</div></div>
-          <div class="gslide"><img src="/images/uploads/large-marquee-decor1.jpg" alt="White Canvas Events UK — full-service marquee interior with styling and décor, Derby Midlands event hire" loading="lazy" onerror="this.closest('.gslide').style.background='#3d3530';console.warn('Image failed to load:', this.src);this.style.display='none';" /><div class="gslide-caption">Full-service marquee interior — Derby &amp; Midlands</div></div>
           <div class="gslide"><img src="/images/uploads/classic-white-backdrop-goosedale.jpg" alt="White Canvas Events UK styled backdrop at Goosedale — Nottingham Midlands event hire" loading="lazy" onerror="this.closest('.gslide').style.background='#3d3530';console.warn('Image failed to load:', this.src);this.style.display='none';" /><div class="gslide-caption">Classic white backdrop — Goosedale, Nottingham</div></div>
           <div class="gslide"><img src="/images/uploads/colourful-decor-large-marquee.jpg" alt="White Canvas Events UK colourful marquee décor — Midlands event hire" loading="lazy" onerror="this.closest('.gslide').style.background='#3d3530';console.warn('Image failed to load:', this.src);this.style.display='none';" /><div class="gslide-caption">Colourful styling inside the large marquee</div></div>
+          <div class="gslide"><img src="/images/uploads/floral-archway-marquee-styling.jpg" alt="White Canvas Events UK floral archway styling framing a marquee interior, Midlands event hire" loading="lazy" onerror="this.closest('.gslide').style.background='#3d3530';console.warn('Image failed to load:', this.src);this.style.display='none';" /><div class="gslide-caption">Floral archway styling, framing the marquee interior</div></div>
           <div class="gslide"><img src="/images/uploads/Cream-decor-large-marquee.jpg" alt="White Canvas Events UK cream marquee décor — Midlands event hire" loading="lazy" onerror="this.closest('.gslide').style.background='#3d3530';console.warn('Image failed to load:', this.src);this.style.display='none';" /><div class="gslide-caption">Cream-toned styling inside the large marquee</div></div>
           <div class="gslide"><img src="/images/uploads/marquee-inside.JPG" alt="Inside a premium White Canvas Events UK marquee — wedding and event hire across the Midlands" loading="lazy" onerror="this.closest('.gslide').style.background='#3d3530';console.warn('Image failed to load:', this.src);this.style.display='none';" /><div class="gslide-caption">Wedding &amp; event marquee interior</div></div>
+          <div class="gslide"><img src="/images/uploads/marquee-tablescape-detail.jpg" alt="White Canvas Events UK tablescape styling detail — linen, gold cutlery and greenery, Midlands event hire" loading="lazy" onerror="this.closest('.gslide').style.background='#3d3530';console.warn('Image failed to load:', this.src);this.style.display='none';" /><div class="gslide-caption">Tablescape detail — linen, gold cutlery &amp; greenery</div></div>
           <div class="gslide"><img src="/images/uploads/marquee-networking-event.jpg" alt="White Canvas Events UK smaller marquee interior — intimate event hire Derby and Nottingham" loading="lazy" onerror="this.closest('.gslide').style.background='#3d3530';console.warn('Image failed to load:', this.src);this.style.display='none';" /><div class="gslide-caption">Intimate event setup — Derby &amp; Nottingham</div></div>
           <div class="gslide"><img src="/images/uploads/marquee-footballnew.jpg" alt="White Canvas Events UK marquee exterior rear view — premium quality event structures Midlands" loading="lazy" onerror="this.closest('.gslide').style.background='#3d3530';console.warn('Image failed to load:', this.src);this.style.display='none';" /><div class="gslide-caption">Heavy-duty, premium-grade marquee structure</div></div>
+          <div class="gslide"><img src="/images/uploads/lounge-seating-floral-arch.jpg" alt="White Canvas Events UK styled lounge seating area with floral arch backdrop, Midlands event hire" loading="lazy" onerror="this.closest('.gslide').style.background='#3d3530';console.warn('Image failed to load:', this.src);this.style.display='none';" /><div class="gslide-caption">Styled lounge seating with floral arch backdrop</div></div>
           <div class="gslide"><img src="/images/uploads/Small-marquee-decor.jpg" alt="White Canvas Events UK styled marquee with décor — garden party and wedding hire Leicester Birmingham" loading="lazy" onerror="this.closest('.gslide').style.background='#3d3530'" /><div class="gslide-caption">Styled garden party marquee — Leicester &amp; Birmingham</div></div>
           <div class="gslide"><img src="/images/uploads/marquee-front.JPG" alt="White Canvas Events UK premium marquee exterior — full-service marquee hire Derby and Midlands" loading="lazy" onerror="this.closest('.gslide').style.background='#3d3530'" /><div class="gslide-caption">Premium marquee exterior — Derby-based, Midlands-wide</div></div>
+          <div class="gslide"><img src="/images/uploads/lounge-seating-wide.jpg" alt="White Canvas Events UK lounge seating area, dressed and ready, Midlands event hire" loading="lazy" onerror="this.closest('.gslide').style.background='#3d3530';console.warn('Image failed to load:', this.src);this.style.display='none';" /><div class="gslide-caption">Lounge seating area, dressed and ready</div></div>
           <div class="gslide"><img src="/images/uploads/marquee-beer-garden.jpg" alt="White Canvas Events UK marquee exterior — full-service event hire based in Derby, covering the Midlands" loading="lazy" onerror="this.closest('.gslide').style.background='#3d3530'" /><div class="gslide-caption">Garden marquee setup, dressed and ready</div></div>
+          <div class="gslide"><img src="/images/uploads/marquee-interior-wide-styled.jpg" alt="White Canvas Events UK fully styled marquee interior, ready for guests, Midlands event hire" loading="lazy" onerror="this.closest('.gslide').style.background='#3d3530';console.warn('Image failed to load:', this.src);this.style.display='none';" /><div class="gslide-caption">Fully styled marquee, ready for guests</div></div>
           <div class="gslide"><img src="/images/uploads/memory-vault-telephone-box.jpg" alt="White Canvas Events UK — our real cream and gold Memory Vault telephone video box" loading="lazy" onerror="this.closest('.gslide').style.background='#3d3530'" /><div class="gslide-caption">Our Memory Vault — the real telephone video box</div></div>
           <div class="gslide"><img src="/images/uploads/corporate-event-marquee-setup.jpg" alt="White Canvas Events UK marquee being set up for a corporate event on a sports ground in the Midlands" loading="lazy" onerror="this.closest('.gslide').style.background='#3d3530'" /><div class="gslide-caption">Corporate event marquee, set up and ready</div></div>
           <div class="gslide"><img src="/images/uploads/corporate-event-marquee-interior.jpg" alt="Inside a White Canvas Events UK marquee before styling, corporate event hire Midlands" loading="lazy" onerror="this.closest('.gslide').style.background='#3d3530'" /><div class="gslide-caption">Marquee interior, dressed for a corporate event</div></div>
