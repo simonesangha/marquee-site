@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="index, follow" />
-  <title>Marquee Hire Prices | White Canvas Events UK | Instant Price Calculator</title>
+  <title>Marquee Hire Prices & Calculator | White Canvas Events UK</title>
   <meta name="description" content="See our full marquee hire price list for Derby & the Midlands, or use our instant calculator to price up your size and extras. From £300, no hidden costs." />
   <link rel="canonical" href="https://whitecanvasevents.co.uk/pricing" />
 
@@ -111,11 +111,14 @@
       --gold:     #b8963e;
       --gold-lt:  #cead5a;
       --gold-pale:#f5edd8;
+      --gold-text:#7a6329; /* darkened gold — meets WCAG AA (4.5:1+) for text on white/cream, unlike --gold */
       --serif:    'Cormorant Garamond', Georgia, serif;
       --sans:     'DM Sans', system-ui, sans-serif;
       --max:      1200px;
       --pad:      clamp(1.5rem, 5vw, 4rem);
     }
+        .skip-link { position:absolute; left:-9999px; top:0; background:var(--gold-text); color:#fff; padding:0.85rem 1.4rem; z-index:99999; font-size:0.8rem; text-decoration:none; border-radius:0 0 4px 0; }
+    .skip-link:focus { left:0; top:0; }
     html { scroll-behavior: smooth; }
     /* Keeps anchor-jump targets (nav links, #faq, #contact etc.) clear of the
        fixed nav (~80px) + sticky CTA bar (~56px) that can sit on top of them. */
@@ -147,7 +150,7 @@
     .nav-cta {
       font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
       border: 1px solid var(--gold); padding: 0.6rem 1.5rem;
-      color: var(--gold); transition: all 0.2s; white-space: nowrap;
+      color: var(--gold-text); transition: all 0.2s; white-space: nowrap;
     }
     .nav-cta:hover { background: var(--gold); color: var(--white); }
     .nav-burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
@@ -227,7 +230,7 @@
       font-weight: 300; line-height: 1.05;
       color: var(--black); margin-bottom: 1.25rem;
     }
-    h1 em { font-style: italic; color: var(--gold); }
+    h1 em { font-style: italic; color: var(--gold-text); }
     .hero-price-tag {
       display: inline-flex; align-items: center; gap: 0.6rem;
       margin-bottom: 1.5rem;
@@ -305,7 +308,7 @@
       font-size: clamp(2.2rem, 4.5vw, 3.5rem);
       font-weight: 300; line-height: 1.1; color: var(--black);
     }
-    h2 em { font-style: italic; color: var(--gold); }
+    h2 em { font-style: italic; color: var(--gold-text); }
     .section-intro { margin-top: 1.1rem; color: var(--mid); max-width: 520px; font-size: 0.95rem; line-height: 1.8; }
     .section-head { margin-bottom: 4rem; }
     .rule { width: 48px; height: 1px; background: var(--gold); margin: 1.5rem 0; }
@@ -756,6 +759,7 @@
   </style>
 </head>
 <body>
+<a href="#main" class="skip-link">Skip to main content</a>
 
 <div class="sticky-cta" id="stickyCta" role="complementary" aria-label="Quick contact bar">
   <span class="sticky-cta-text">Derby &amp; Midlands — check your date</span>
@@ -771,7 +775,7 @@
     <img src="/images/uploads/logo-white.png" alt="White Canvas Events UK logo" width="186" height="62" onerror="this.style.display='none';this.nextElementSibling.style.display='block';" />
     <span style="display:none;font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:300;letter-spacing:0.06em;color:#1a1410;">White<span style="color:#b8963e">C</span>anvas <small style="display:block;font-size:0.55em;letter-spacing:0.2em;color:#7a6f68;">EVENTS UK</small></span>
   </a>
-  <ul class="nav-links">
+  <ul class="nav-links" id="navLinks">
     <li><a href="/index.html#services">Services</a></li>
     <li><a href="/index.html#why-us">Why Us</a></li>
     <li><a href="/pricing">Pricing</a></li>
@@ -783,8 +787,9 @@
     <a href="tel:07472314552" class="nav-phone"><span>07472 314552</span></a>
     <a href="/index.html#contact" class="nav-cta">Check Availability</a>
   </div>
-  <div class="nav-burger" onclick="toggleMenu()" aria-label="Open navigation menu"><span></span><span></span><span></span></div>
+  <div class="nav-burger" onclick="toggleMenu()" role="button" tabindex="0" aria-expanded="false" aria-controls="navLinks" aria-label="Open navigation menu"><span></span><span></span><span></span></div>
 </nav>
+<a id="main"></a>
 
 <section id="pricing-hero">
   <p class="eyebrow" style="justify-content:center;">Honest, upfront pricing</p>
@@ -930,6 +935,10 @@
     <ul class="footer-links">
       <li><a href="/index.html#services">Services</a></li>
       <li><a href="/pricing">Pricing</a></li>
+      <li><a href="/marquee-packages">Marquee Packages</a></li>
+      <li><a href="/dry-hire">Dry Hire</a></li>
+      <li><a href="/decor-styling">D&eacute;cor &amp; Styling</a></li>
+      <li><a href="/memory-vault">Memory Vault</a></li>
       <li><a href="/inspiration">Inspiration</a></li>
       <li><a href="/index.html#faq">FAQ</a></li>
       <li><a href="/index.html#contact">Contact</a></li>
@@ -990,14 +999,21 @@ document.addEventListener('DOMContentLoaded', function () {
   window.toggleMenu = function () {
     const links = document.querySelector('.nav-links');
     const cta   = document.querySelector('.nav-cta');
+    const burger = document.querySelector('.nav-burger');
     if (!links || !cta) return;
     const open = links.style.display === 'flex';
-    if (open) { links.style.cssText = ''; cta.style.cssText = ''; }
+    if (open) { links.style.cssText = ''; cta.style.cssText = ''; if (burger) burger.setAttribute('aria-expanded', 'false'); }
     else {
-      links.style.cssText = 'display:flex;flex-direction:column;position:fixed;top:80px;left:0;width:100%;background:rgba(247,241,232,0.98);padding:2rem;gap:1.5rem;box-shadow:0 8px 24px rgba(0,0,0,0.08);z-index:99;';
-      cta.style.cssText   = 'display:block;position:fixed;top:calc(80px + 10rem);left:0;width:100%;text-align:center;background:var(--gold);color:#fff;padding:1rem;z-index:99;';
+      links.style.cssText = 'display:flex;flex-direction:column;position:fixed;top:80px;left:0;width:100%;background:#f7f1e8;padding:2rem;gap:1.5rem;box-shadow:0 8px 24px rgba(0,0,0,0.08);z-index:99;';
+      cta.style.cssText   = 'display:block;position:fixed;top:calc(80px + 10rem);left:0;width:100%;text-align:center;background:var(--gold);color:var(--black);padding:1rem;z-index:99;';
+      if (burger) burger.setAttribute('aria-expanded', 'true');
     }
   };
+  document.querySelectorAll('.nav-burger').forEach(function (b) {
+    b.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleMenu(); }
+    });
+  });
 
   // ── Services carousel (homepage only) ──────────────────────────
   const svcOuter = document.getElementById('svcOuter');

@@ -3,4 +3,24 @@ Allow: /
 Disallow: /admin/
 Disallow: /thank-you.html
 
+# Explicit allow for AI assistant crawlers — nothing here is blocked,
+# this just removes any doubt for crawlers that check by name.
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
 Sitemap: https://whitecanvasevents.co.uk/sitemap.xml

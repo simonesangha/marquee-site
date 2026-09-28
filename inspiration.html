@@ -106,6 +106,8 @@
       --max:      1200px;
       --pad:      clamp(1.5rem, 5vw, 4rem);
     }
+        .skip-link { position:absolute; left:-9999px; top:0; background:var(--gold-text); color:#fff; padding:0.85rem 1.4rem; z-index:99999; font-size:0.8rem; text-decoration:none; border-radius:0 0 4px 0; }
+    .skip-link:focus { left:0; top:0; }
     html { scroll-behavior: smooth; }
     #hero, #inspiration-hero, #gallery-section, #faq, #contact {
       scroll-margin-top: 140px;
@@ -117,9 +119,9 @@
     .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.75s ease, transform 0.75s ease; }
     .fade-in.visible { opacity: 1; transform: none; }
     h1 { font-family: var(--serif); font-size: clamp(3rem, 5.5vw, 5.5rem); font-weight: 300; line-height: 1.05; color: var(--black); }
-    h1 em { font-style: italic; color: var(--gold); }
+    h1 em { font-style: italic; color: var(--gold-text); }
     h2 { font-family: var(--serif); font-size: clamp(2.2rem, 4.5vw, 3.5rem); font-weight: 300; line-height: 1.1; color: var(--black); }
-    h2 em { font-style: italic; color: var(--gold); }
+    h2 em { font-style: italic; color: var(--gold-text); }
 
     /* ── NAV ─────────────────────────────────────────── */
     nav {
@@ -323,6 +325,7 @@
 </head>
 
 <body>
+<a href="#main" class="skip-link">Skip to main content</a>
 
 <div class="sticky-cta" id="stickyCta" role="complementary" aria-label="Quick contact bar">
   <span class="sticky-cta-text">Derby &amp; Midlands — check your date</span>
@@ -338,7 +341,7 @@
     <img src="/images/uploads/logo-white.png" alt="White Canvas Events UK logo" width="186" height="62" onerror="this.style.display='none';this.nextElementSibling.style.display='block';" />
     <span style="display:none;font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:300;letter-spacing:0.06em;color:#1a1410;">White<span style="color:#b8963e">C</span>anvas <small style="display:block;font-size:0.55em;letter-spacing:0.2em;color:#7a6f68;">EVENTS UK</small></span>
   </a>
-  <ul class="nav-links">
+  <ul class="nav-links" id="navLinks">
     <li><a href="/index.html#services">Services</a></li>
     <li><a href="/index.html#why-us">Why Us</a></li>
     <li><a href="/pricing">Pricing</a></li>
@@ -350,8 +353,9 @@
     <a href="tel:07472314552" class="nav-phone"><span>07472 314552</span></a>
     <a href="/index.html#contact" class="nav-cta">Check Availability</a>
   </div>
-  <div class="nav-burger" onclick="toggleMenu()" aria-label="Open navigation menu"><span></span><span></span><span></span></div>
+  <div class="nav-burger" onclick="toggleMenu()" role="button" tabindex="0" aria-expanded="false" aria-controls="navLinks" aria-label="Open navigation menu"><span></span><span></span><span></span></div>
 </nav>
+<a id="main"></a>
 
 <section id="inspiration-hero">
   <p class="eyebrow">Inspiration</p>
@@ -521,6 +525,10 @@
     <ul class="footer-links">
       <li><a href="/index.html#services">Services</a></li>
       <li><a href="/pricing">Pricing</a></li>
+      <li><a href="/marquee-packages">Marquee Packages</a></li>
+      <li><a href="/dry-hire">Dry Hire</a></li>
+      <li><a href="/decor-styling">D&eacute;cor &amp; Styling</a></li>
+      <li><a href="/memory-vault">Memory Vault</a></li>
       <li><a href="/inspiration">Inspiration</a></li>
       <li><a href="/index.html#faq">FAQ</a></li>
       <li><a href="/index.html#contact">Contact</a></li>
@@ -574,14 +582,21 @@ document.addEventListener('DOMContentLoaded', function () {
   window.toggleMenu = function () {
     const links = document.querySelector('.nav-links');
     const cta   = document.querySelector('.nav-cta');
+    const burger = document.querySelector('.nav-burger');
     if (!links || !cta) return;
     const open = links.style.display === 'flex';
-    if (open) { links.style.cssText = ''; cta.style.cssText = ''; }
+    if (open) { links.style.cssText = ''; cta.style.cssText = ''; if (burger) burger.setAttribute('aria-expanded', 'false'); }
     else {
-      links.style.cssText = 'display:flex;flex-direction:column;position:fixed;top:80px;left:0;width:100%;background:rgba(247,241,232,0.98);padding:2rem;gap:1.5rem;box-shadow:0 8px 24px rgba(0,0,0,0.08);z-index:99;';
+      links.style.cssText = 'display:flex;flex-direction:column;position:fixed;top:80px;left:0;width:100%;background:#f7f1e8;padding:2rem;gap:1.5rem;box-shadow:0 8px 24px rgba(0,0,0,0.08);z-index:99;';
       cta.style.cssText   = 'display:block;position:fixed;top:calc(80px + 10rem);left:0;width:100%;text-align:center;background:var(--gold);color:#1a1410;padding:1rem;z-index:99;';
+      if (burger) burger.setAttribute('aria-expanded', 'true');
     }
   };
+  document.querySelectorAll('.nav-burger').forEach(function (b) {
+    b.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleMenu(); }
+    });
+  });
 
   // ── Inspiration filter tabs (this page only) ────────────────────
   window.filterInspiration = function (cat, btn) {

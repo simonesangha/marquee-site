@@ -22,6 +22,33 @@
   status = 301
   force = true
 
+# The 4 dedicated service pages (Marquee Packages, Dry Hire, Décor & Styling,
+# Memory Vault) added 2026-09-28 — extensionless canonical from day one, same
+# treatment as above so this bug can't recur.
+[[redirects]]
+  from = "/marquee-packages.html"
+  to   = "/marquee-packages"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/dry-hire.html"
+  to   = "/dry-hire"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/decor-styling.html"
+  to   = "/decor-styling"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/memory-vault.html"
+  to   = "/memory-vault"
+  status = 301
+  force = true
+
 [[redirects]]
   from = "/blog/marquee-hire-cost-guide.html"
   to   = "/blog/marquee-hire-cost-guide"
