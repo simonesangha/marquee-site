@@ -2,6 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="index, follow" />
 
@@ -167,7 +171,7 @@
     .nav-logo { display: flex; align-items: center; }
     .nav-logo img { height: 62px; width: auto; display: block; object-fit: contain; }
     .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a { font-size: 0.72rem; letter-spacing: 0.13em; text-transform: uppercase; color: var(--mid); transition: color 0.2s; }
+    .nav-links a { font-size: 0.72rem; letter-spacing: 0.13em; text-transform: uppercase; color: var(--mid); transition: color 0.2s; padding: 0.6rem 0.2rem; display: inline-block; }
     .nav-links a:hover { color: var(--gold); }
     .nav-cta {
       font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
@@ -175,7 +179,7 @@
       color: var(--gold-text); transition: all 0.2s; white-space: nowrap;
     }
     .nav-cta:hover { background: var(--gold); color: var(--white); }
-    .nav-burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .nav-burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 15px; margin: -15px; }
     .nav-burger span { display: block; width: 24px; height: 1.5px; background: var(--black); }
     @media (max-width: 900px) { .nav-links { gap: 1.25rem; } }
     @media (max-width: 768px) { .nav-links, .nav-cta, .nav-phone { display: none; } .nav-burger { display: flex; } }
@@ -471,11 +475,9 @@
   </a>
   <ul class="nav-links" id="navLinks">
     <li><a href="/index.html#services">Services</a></li>
-    <li><a href="/index.html#why-us">Why Us</a></li>
     <li><a href="/pricing">Pricing</a></li>
     <li><a href="/memory-vault">Memory Vault</a></li>
     <li><a href="/inspiration">Inspiration</a></li>
-    <li><a href="#faq">FAQ</a></li>
   </ul>
   <div style="display:flex;align-items:center;gap:1rem;">
     <a href="tel:07472314552" class="nav-phone" aria-label="Call White Canvas Events UK">
@@ -863,19 +865,33 @@ document.addEventListener('DOMContentLoaded', function () {
   }, { threshold: 0.08 });
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
+  function positionMobileCta() {
+    const links = document.querySelector('.nav-links');
+    const cta   = document.querySelector('.nav-cta');
+    if (!links || !cta || links.style.display !== 'flex') return;
+    const linksBottom = links.getBoundingClientRect().bottom;
+    cta.style.top = (linksBottom + 16) + 'px';
+  }
   window.toggleMenu = function () {
     const links = document.querySelector('.nav-links');
     const cta   = document.querySelector('.nav-cta');
     const burger = document.querySelector('.nav-burger');
     if (!links || !cta) return;
     const open = links.style.display === 'flex';
-    if (open) { links.style.cssText = ''; cta.style.cssText = ''; if (burger) burger.setAttribute('aria-expanded', 'false'); }
-    else {
+    if (open) {
+      links.style.cssText = ''; cta.style.cssText = '';
+      if (burger) { burger.setAttribute('aria-expanded', 'false'); burger.setAttribute('aria-label', 'Open navigation menu'); burger.focus(); }
+    } else {
       links.style.cssText = 'display:flex;flex-direction:column;position:fixed;top:80px;left:0;width:100%;background:#f7f1e8;padding:2rem;gap:1.5rem;box-shadow:0 8px 24px rgba(0,0,0,0.08);z-index:99;';
-      cta.style.cssText   = 'display:block;position:fixed;top:calc(80px + 10rem);left:0;width:100%;text-align:center;background:var(--gold);color:var(--black);padding:1rem;z-index:99;';
-      if (burger) burger.setAttribute('aria-expanded', 'true');
+      const linksBottom = links.getBoundingClientRect().bottom;
+      cta.style.cssText   = 'display:block;position:fixed;top:' + (linksBottom + 16) + 'px;left:0;width:100%;text-align:center;background:var(--gold);color:var(--black);padding:1rem;z-index:99;';
+      if (burger) { burger.setAttribute('aria-expanded', 'true'); burger.setAttribute('aria-label', 'Close navigation menu'); }
+      const firstLink = links.querySelector('a');
+      if (firstLink) firstLink.focus();
     }
   };
+  window.addEventListener('resize', positionMobileCta);
+  window.addEventListener('orientationchange', positionMobileCta);
   document.querySelectorAll('.nav-burger').forEach(function (b) {
     b.addEventListener('keydown', function (e) {
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleMenu(); }
